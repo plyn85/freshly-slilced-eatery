@@ -13,7 +13,7 @@ const PORT = 8080;
 app.use(express.static("public"));
 
 // Start the server and listen on the TCP port defined above
-// Display a console message to indicate that the server staarted and is running
+// Display a console message to indicate that the server started and is running
 app.listen(PORT, () => {
   console.log(`Server connected at http://localhost:${PORT}`);
 });

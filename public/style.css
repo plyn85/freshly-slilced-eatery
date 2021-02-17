@@ -8,6 +8,7 @@
 .white {
   color: #ffffff;
 }
+
 /* home page carousel */
 
 .carousel-control-next,
@@ -45,4 +46,9 @@
   -ms-flex-align: center;
   align-items: center;
   position: relative;
+}
+
+/* menu page  */
+.menu-img {
+  width: 100%;
 }

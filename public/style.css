@@ -19,12 +19,20 @@
 .carousel-caption {
   margin-bottom: 15rem;
 }
+
+.bg-img-div-1 {
+  background: url("../images/healthy-food-background.jpg") no-repeat fixed;
+}
+.bg-img-div-2 {
+  background: url("../images/p3_MedDiet_W1806_gi667751254.jpg") no-repeat fixed;
+}
+
 /* our story page page images and carousel*/
 .carousel-item,
 .bg-img-div {
   color: #000;
   height: 100vh;
-  background-position-x: 50%;
+  /* background-position-x: 50%; */
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -37,11 +45,4 @@
   -ms-flex-align: center;
   align-items: center;
   position: relative;
-}
-
-.bg-img-div-1 {
-  background: url("../images/healthy-food-background.jpg") no-repeat fixed;
-}
-.bg-img-div-2 {
-  background: url("../images/p3_MedDiet_W1806_gi667751254.jpg") no-repeat fixed;
 }

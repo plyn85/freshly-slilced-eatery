@@ -48,6 +48,11 @@
                             <li class="nav-item">
                                 <a href="order.html" class="btn btn-info p-2">Order now</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="cart.html">
+                                    <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -56,47 +61,84 @@
         </header>
         <!-- start main -->
         <main>
-            <!-- container div wrapping order page -->
-            <div class="container-fluid">
-                <h1 class="text-center">Order Page</h1>
-                <h2 class="text-center">How do you want to order?</h2>
+            <!-- container div wrapping home page -->
+            <div class="container mt-5 px-5">
+                <div class="mb-4">
+                    <h2>Confirm order and pay</h2>
+                </div>
                 <div class="row">
-                    <div class="col-6">
-                        <div class="row mt-5 justify-content-center">
-                            <div class="col-12 py-3 my-3">
-                                <div class="card text-center">
-                                    <div class="card-header display-4">
-                                        Delivery
+                    <div class="col-md-8">
+                        <div class="card p-3">
+                            <h6 class="text-uppercase">Payment details</h6>
+                            <div class="inputbox mt-3">
+                                <input
+                                    type="text"
+                                    name="name"
+                                    class="form-control"
+                                    required="required"
+                                >
+                                <span>Name on card</span>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="inputbox mt-3 mr-2">
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            class="form-control"
+                                            required="required"
+                                        >
+                                        <i class="fa fa-credit-card"></i>
+                                        <span>Card Number</span>
                                     </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">I want to order for delivery</h5>
-                                        <a href="delivery.html" class="btn btn-primary">Place Order</a>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex flex-row">
+                                        <div class="inputbox mt-3 mr-2">
+                                            <input
+                                                type="text"
+                                                name="name"
+                                                class="form-control"
+                                                required="required"
+                                            >
+                                            <span>Expiry</span>
+                                        </div>
+                                        <div class="inputbox mt-3 mr-2">
+                                            <input
+                                                type="text"
+                                                name="name"
+                                                class="form-control"
+                                                required="required"
+                                            >
+                                            <span>CVV</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="mt-4 mb-4 d-flex justify-content-between">
+                            <a href="cart.html">Back to Cart</a>
+                            <button class="btn btn-success px-3">Pay 840</button>
+                        </div>
                     </div>
-                    <div class="col-6">
-                        <div class="row mt-5 justify-content-center">
-                            <div class="col-12 py-3 my-3">
-                                <div class="card text-center">
-                                    <div class="card-header display-4">
-                                        Collection
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">I want to order for collection</h5>
-                                        <a href="menu.html" class="btn btn-primary">Place Order</a>
-                                    </div>
-                                </div>
+                    <div class="col-md-4">
+                        <div class="card card-blue p-3 text-white mb-3">
+                            <span>Cost</span>
+                            <div class="d-flex flex-row align-items-end mb-3">
+                                <h1 class="mb-0 ">$549</h1>
+                                <span>.99</span>
+                            </div>
+                            <span>Your Order</span>
+                            <div class="hightlight">
+                                <span>Meals Ordered</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- end container-->
             <!-- start footer -->
             <section>
-                <footer class="mt-auto py-2 sticky-bottom text-center container-fluid">
+                <footer class="mt-auto py-2 fixed-bottom text-center container-fluid">
                     <div class="row">
                         <div class="col-9">
                             <div class="row justify-content-center">

@@ -48,6 +48,11 @@
                             <li class="nav-item">
                                 <a href="order.html" class="btn btn-info p-2">Order now</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="cart.html">
+                                    <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -56,47 +61,41 @@
         </header>
         <!-- start main -->
         <main>
-            <!-- container div wrapping order page -->
+            <!-- container div wrapping home page -->
             <div class="container-fluid">
-                <h1 class="text-center">Order Page</h1>
-                <h2 class="text-center">How do you want to order?</h2>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="row mt-5 justify-content-center">
-                            <div class="col-12 py-3 my-3">
-                                <div class="card text-center">
-                                    <div class="card-header display-4">
-                                        Delivery
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">I want to order for delivery</h5>
-                                        <a href="delivery.html" class="btn btn-primary">Place Order</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <form class="form-signin">
+                    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input
+                        type="email"
+                        id="inputEmail"
+                        class="form-control"
+                        placeholder="Email address"
+                        required=""
+                        autofocus=""
+                    >
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input
+                        type="password"
+                        id="inputPassword"
+                        class="form-control"
+                        placeholder="Password"
+                        required=""
+                    >
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" value="remember-me">
+                            Remember me
+                        </label>
                     </div>
-                    <div class="col-6">
-                        <div class="row mt-5 justify-content-center">
-                            <div class="col-12 py-3 my-3">
-                                <div class="card text-center">
-                                    <div class="card-header display-4">
-                                        Collection
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">I want to order for collection</h5>
-                                        <a href="menu.html" class="btn btn-primary">Place Order</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                    <a href="register.html" class="btn btn-lg btn-primary btn-block" type="submit">Register</a>
+                    <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+                </form>
             </div>
-            <!-- end container-->
             <!-- start footer -->
             <section>
-                <footer class="mt-auto py-2 sticky-bottom text-center container-fluid">
+                <footer class="mt-auto py-2 fixed-bottom text-center container-fluid">
                     <div class="row">
                         <div class="col-9">
                             <div class="row justify-content-center">

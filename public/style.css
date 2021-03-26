@@ -3,6 +3,8 @@
 * {
   border: 1px solid red;
 }
+/* for body  */
+
 /* colors */
 
 .white {
@@ -22,10 +24,12 @@
 }
 
 .bg-img-div-1 {
-  background: url("../images/healthy-food-background.jpg") no-repeat fixed;
+  background: url("https://res.cloudinary.com/plyn85/image/upload/v1614533563/freshly-sliced-eatery/healthy-food-background_oc6ddy.jpg")
+    no-repeat fixed;
 }
 .bg-img-div-2 {
-  background: url("../images/p3_MedDiet_W1806_gi667751254.jpg") no-repeat fixed;
+  background: url("https://res.cloudinary.com/plyn85/image/upload/v1614533530/freshly-sliced-eatery/p3_MedDiet_W1806_gi667751254_qi6mzj.jpg")
+    no-repeat fixed;
 }
 
 /* our story page page images and carousel*/
@@ -51,4 +55,157 @@
 /* menu page  */
 .menu-img {
   width: 100%;
+}
+
+/* shopping cart css */
+
+.quantity {
+  float: left;
+  margin-right: 15px;
+  background-color: #eee;
+  position: relative;
+  width: 80px;
+  overflow: hidden;
+}
+
+.quantity input {
+  margin: 0;
+  text-align: center;
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  float: right;
+  color: #000;
+  font-size: 20px;
+  border: 0;
+  outline: 0;
+  background-color: #f6f6f6;
+}
+
+.quantity input.qty {
+  position: relative;
+  border: 0;
+  width: 100%;
+  height: 40px;
+  padding: 10px 25px 10px 10px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 15px;
+  border-radius: 0;
+  background-clip: padding-box;
+}
+
+.quantity .minus,
+.quantity .plus {
+  line-height: 0;
+  background-clip: padding-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-background-size: 6px 30px;
+  -moz-background-size: 6px 30px;
+  color: #bbb;
+  font-size: 20px;
+  position: absolute;
+  height: 50%;
+  border: 0;
+  right: 0;
+  padding: 0;
+  width: 25px;
+  z-index: 3;
+}
+
+.quantity .minus:hover,
+.quantity .plus:hover {
+  background-color: #dad8da;
+}
+
+.quantity .minus {
+  bottom: 0;
+}
+.shopping-cart {
+  margin-top: 20px;
+}
+
+/* css for checkout  */
+.card {
+  border: none;
+}
+
+.form-control {
+  border-bottom: 2px solid #eee !important;
+  border: none;
+  font-weight: 600;
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #8bbafe;
+  outline: 0;
+  box-shadow: none;
+  border-radius: 0px;
+  border-bottom: 2px solid blue !important;
+}
+
+.inputbox {
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.inputbox span {
+  position: absolute;
+  top: 7px;
+  left: 11px;
+  transition: 0.5s;
+}
+
+.inputbox i {
+  position: absolute;
+  top: 13px;
+  right: 8px;
+  transition: 0.5s;
+  color: #3f51b5;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.inputbox input:focus ~ span {
+  transform: translateX(-0px) translateY(-15px);
+  font-size: 12px;
+}
+
+.inputbox input:valid ~ span {
+  transform: translateX(-0px) translateY(-15px);
+  font-size: 12px;
+}
+
+.card-blue {
+  background-color: #575658;
+}
+
+.hightlight {
+  background-color: #575658;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.decoration {
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* for login form */
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
 }

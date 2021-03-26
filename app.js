@@ -7,7 +7,7 @@ const express = require("express");
 const app = express();
 
 // TCP port
-const PORT = 8080;
+const PORT = 3000;
 
 // Serve Static Assets from the public folder
 app.use(express.static("public"));

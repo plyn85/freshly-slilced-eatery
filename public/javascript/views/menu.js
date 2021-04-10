@@ -17,7 +17,7 @@ let displayMeals = (meals) => {
         <h6 class="text-truncate">  ${meal.meal_name}</h6>
         <p class="small">  ${meal.meal_description}
         </p>
-        <a href="menu.html" class="btn-sm btn-info p-2 col-5 col-md-4 col-lg-1">Add Meal</a>
+        <a href="menu.html" id='addMealsBtn' class="btn-sm btn-info p-2 col-5 col-md-4 col-lg-1">Add Meal</a>
     </div>`;
 
     return card;

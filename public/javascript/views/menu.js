@@ -14,6 +14,7 @@ let displayMeals = (meals) => {
         <span class="float-right font-weight-bold">${Number(
           meal.meal_price
         ).toFixed(2)}</span>
+    
         <h6 class="text-truncate">  ${meal.meal_name}</h6>
         <p class="small">  ${meal.meal_description}
         </p>

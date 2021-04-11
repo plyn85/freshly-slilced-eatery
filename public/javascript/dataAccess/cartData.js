@@ -3,7 +3,7 @@
 import * as api from "./fetchAPI.js";
 
 //
-// Get all products
+// Get all cartItems
 let getCartItems = async () => {
   try {
     // get products data - note only one parameter in function call
@@ -14,4 +14,15 @@ let getCartItems = async () => {
   }
 }; // End Functions
 
-export { getCartItems };
+// Get the cart
+let getCart = async () => {
+  try {
+    // get products data - note only one parameter in function call
+    return await api.getDataAsync(`${api.BASE_URL}/cart/get-cart`);
+  } catch (err) {
+    // catch and log any errors
+    console.log(err);
+  }
+}; // End Functions
+
+export { getCartItems, getCart };

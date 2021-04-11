@@ -48,8 +48,6 @@ mealsCardBody.addEventListener("click", handleEvents);
 // add mealToCartFunction
 function handleEvents(event) {
   //if the button is clicked
-
-  //console.log(event.target);
   if (event.target && event.target.nodeName == "BUTTON") {
     //pass the meal id form the button id element
     addMealToCart(event.target.id);

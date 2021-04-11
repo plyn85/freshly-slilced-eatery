@@ -61,7 +61,7 @@ let displayCartItems = (cartItems) => {
                  </div>
                  </div>
              <div class="col-2 col-sm-2 col-md-2 text-right">
-                 <button type="button" class="btn btn-outline-danger btn-xs">
+                 <button id=${cartItem._id} type="button" class="btn btn-outline-danger btn-xs">
                      <i class="fa fa-trash" aria-hidden="true"></i>
                  </button>
              </div>
@@ -87,7 +87,34 @@ let loadCartItems = async () => {
     displayCartItems(cartItems);
   }
 };
+// find parent of button elements
+const cartCardBody = document.getElementById("cartCard");
+//
+// add event listener
+cartCardBody.addEventListener("click", handleEvents);
 
+// add mealToCartFunction
+function handleEvents(event) {
+  //if the button is clicked
+  if (event.target && event.target.nodeName == "BUTTON") {
+    //pass the meal id form the button id element
+    addMealToCart(event.target.id);
+  }
+}
+
+//add meals to cart function
+async function addMealToCart(mealId) {
+  console.log(mealId);
+  //pass the meal id to deleteCartItems
+  const deleteMeal = await cartData.deleteCartItem(mealId);
+  //if its successful return true
+  if (deleteMeal) {
+    return deleteMeal;
+    //call display cart and display cartItems
+    // displayCartItems();
+    // displayCart();
+  }
+}
 //Use the array map method to iterate through cart
 let displayCart = (cart) => {
   const rows = cart.map((cart) => {

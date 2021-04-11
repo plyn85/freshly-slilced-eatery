@@ -12,7 +12,7 @@ let getCartItems = async () => {
     // catch and log any errors
     console.log(err);
   }
-}; // End Functions
+}; // End Function
 
 // Get the cart
 let getCart = async () => {
@@ -23,6 +23,23 @@ let getCart = async () => {
     // catch and log any errors
     console.log(err);
   }
-}; // End Functions
+};
+// End Function
 
-export { getCartItems, getCart };
+// Get the cart
+let deleteCartItem = async (mealId) => {
+  // console.log(mealId);
+  //http method
+  let httpMethod = "DELETE";
+  //build the request method
+  const request = api.fetchInit(httpMethod);
+  console.log(request);
+  try {
+    // delete cartItem
+    return await api.getDataAsync(`${api.BASE_URL}/cart/${mealId}`, request);
+  } catch (err) {
+    // catch and log any errors
+    console.log(err);
+  }
+}; // End Functions
+export { getCartItems, getCart, deleteCartItem };

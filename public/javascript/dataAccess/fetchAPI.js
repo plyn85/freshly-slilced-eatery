@@ -37,6 +37,7 @@ let fetchInit = (httpMethod = "GET", bodyContent = "") => {
 
 // Asynchronous Function getDataAsync from a url and return
 let getDataAsync = async (url, init = fetchInit()) => {
+  console.log(url, init);
   try {
     // Call fetch and await the respose
     // returns a promise

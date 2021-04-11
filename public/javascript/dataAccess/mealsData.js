@@ -3,10 +3,10 @@
 import * as api from "./fetchAPI.js";
 
 //
-// Get all products
+// Get all meals
 let getMeals = async () => {
   try {
-    // get products data - note only one parameter in function call
+    // get meals data - note only one parameter in function call
     return await api.getDataAsync(`${api.BASE_URL}/meals`);
   } catch (err) {
     // catch and log any errors
@@ -14,4 +14,20 @@ let getMeals = async () => {
   }
 }; // End Functions
 
-export { getMeals };
+// Get all meals
+let addMealToCart = async (mealData) => {
+  //http method is post
+  let httpMethod = "POST";
+  //build the request object
+  const request = api.fetchInit(httpMethod, JSON.stringify(mealData));
+  console.log(request);
+
+  try {
+    // get meals data - note only one parameter in function call
+    return await api.getDataAsync(`${api.BASE_URL}/cart`, request);
+  } catch (err) {
+    // catch and log any errors
+    console.log(err);
+  }
+}; // End Functions
+export { getMeals, addMealToCart };

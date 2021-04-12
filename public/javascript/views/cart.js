@@ -97,22 +97,20 @@ cartCardBody.addEventListener("click", handleEvents);
 function handleEvents(event) {
   //if the button is clicked
   if (event.target && event.target.nodeName == "BUTTON") {
-    //pass the meal id form the button id element
-    addMealToCart(event.target.id);
+    //pass the event form the button id element
+    deleteMealFromCart(event.target.id);
   }
 }
 
 //add meals to cart function
-async function addMealToCart(mealId) {
-  console.log(mealId);
+async function deleteMealFromCart(mealId) {
   //pass the meal id to deleteCartItems
   const deleteMeal = await cartData.deleteCartItem(mealId);
   //if its successful return true
   if (deleteMeal) {
+    //reload the page when item are deleted
+    location.reload();
     return deleteMeal;
-    //call display cart and display cartItems
-    // displayCartItems();
-    // displayCart();
   }
 }
 //Use the array map method to iterate through cart
@@ -142,6 +140,6 @@ let loadCart = async () => {
   }
 };
 
-//loading the meals
+//loading the cartItems and the cart
 loadCartItems();
 loadCart();

@@ -20,6 +20,7 @@ let displayCartItems = (cartItems) => {
          </div>
          <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
              <h4 class="product-name">
+              <small id='mealId'>${cartItem.meal_id}</small>
                      <strong>${cartItem.meal_name}</strong>
              </h4>
              <h4>
@@ -46,36 +47,94 @@ let displayCartItems = (cartItems) => {
              
              <div class="col-4 col-sm-4 col-md-4">
                  <div class="quantity">
-                     <input type="button" value="+" class="plus">
+                     <input type="button" value="+" class="plus qtyInc" id="${cartItem.meal_id}">
                      <input
                          type="number"
                          step="1"
                          max="99"
+                         max-length="3"
                          min="1"
                          value="${cartItem.quantity}"
                          title="Qty"
                          class="qty"
                          size="4"
-                     >
-                     <input type="button" value="-" class="minus">
+                         id="${cartItem.meal_id}"
+                         class="qty">
+                     <input type="button" value="-" class="minus qtyDec" id="${cartItem.meal_id}">
                  </div>
                  </div>
              <div class="col-2 col-sm-2 col-md-2 text-right">
-                 <button id=${cartItem._id} type="button" class="btn btn-outline-danger btn-xs">
+                 <button id="${cartItem._id}" type="button" class="btn btn-outline-danger btn-xs deleteCartItem">
                      <i class="fa fa-trash" aria-hidden="true"></i>
                  </button>
              </div>
          </div>
      </div>
-     <hr>
-    
-     `;
+     <hr>`;
     //return the card
     return card;
   });
   //add to cart page
   document.getElementById("cartCard").innerHTML = rows.join("");
+  //Find button all elements with matching class name
+  const increaseQuantity = document.getElementsByClassName("qtyInc");
+  const decreaseQuantity = document.getElementsByClassName("qtyDec");
+  const deleteCartItem = document.getElementsByClassName("deleteCartItem");
+  //add event listeners
+
+  for (let i = 0; i < deleteCartItem.length; i++) {
+    increaseQuantity[i].addEventListener("click", changeQuantityCartItem);
+    decreaseQuantity[i].addEventListener("click", changeQuantityCartItem);
+    deleteCartItem[i].addEventListener("click", deleteItem);
+  }
 };
+
+//add the changes form the cart quantity
+let changeQuantity = async (quantity, mealId) => {
+  //pass the meal data to an objects
+  let mealData = {
+    _id: mealId,
+    quantity: quantity,
+  };
+  // add the new quantities
+  const changedQuantity = await cartData.changeQuantity(mealData);
+
+  //pass json data for display
+  if (changedQuantity) {
+    //reload the page when new quantities are added
+    loadCartItems();
+    loadCart();
+  }
+};
+
+//function changes the quantity of the shopping cart
+async function changeQuantityCartItem() {
+  //constants or variables
+  let quantityInput = document.getElementsByClassName("qty");
+  //loop trough the inputs
+  for (let i = 0; i < quantityInput.length; i++) {
+    //if the id of the increment or decrement matches the id
+    // of the quantity box
+    if (this.id === quantityInput[i].id) {
+      //if the plus is clicked
+      if (this.value == "+") {
+        //increase the quantity
+        quantityInput[i].value++;
+        //call the change quantity function passing in the changed value
+        //and meal id
+        changeQuantity(quantityInput[i].value, this.id);
+      }
+      //if the minus is clicked
+      else if (this.value == "-") {
+        //decrease the quantity
+        quantityInput[i].value--;
+        //call the change quantity function passing in the changed value
+        //and meal id
+        changeQuantity(quantityInput[i].value, this.id);
+      }
+    }
+  }
+}
 
 // Get all meals and then display
 let loadCartItems = async () => {
@@ -87,32 +146,16 @@ let loadCartItems = async () => {
     displayCartItems(cartItems);
   }
 };
-// find parent of button elements
-const cartCardBody = document.getElementById("cartCard");
-//
-// add event listener
-cartCardBody.addEventListener("click", handleEvents);
 
-// add mealToCartFunction
-function handleEvents(event) {
-  //if the button is clicked
-  if (event.target && event.target.nodeName == "BUTTON") {
-    //pass the event form the button id element
-    deleteMealFromCart(event.target.id);
+let loadCart = async () => {
+  // get meals data - note only one parameter in function call
+  const cart = await cartData.getCart();
+  console.log(cart);
+  //pass json data for display
+  if (cart) {
+    displayCart(cart);
   }
-}
-
-//add meals to cart function
-async function deleteMealFromCart(mealId) {
-  //pass the meal id to deleteCartItems
-  const deleteMeal = await cartData.deleteCartItem(mealId);
-  //if its successful return true
-  if (deleteMeal) {
-    //reload the page when item are deleted
-    location.reload();
-    return deleteMeal;
-  }
-}
+};
 //Use the array map method to iterate through cart
 let displayCart = (cart) => {
   const rows = cart.map((cart) => {
@@ -129,16 +172,18 @@ let displayCart = (cart) => {
   document.getElementById("cartCardLower").innerHTML = rows.join("");
 };
 
-// Get all meals and then display
-let loadCart = async () => {
-  // get meals data - note only one parameter in function call
-  const cart = await cartData.getCart();
-  console.log(cart);
-  //pass json data for display
-  if (cart) {
-    displayCart(cart);
+//add meals to cart function
+async function deleteItem() {
+  console.log("delete cart item", this.id);
+  //pass the meal id to deleteCartItems
+  const result = await cartData.deleteCartItem(this.id);
+  //if its successful return true
+  if (result === true) {
+    //reload the page when item are deleted
+    loadCartItems();
+    loadCart();
   }
-};
+}
 
 //loading the cartItems and the cart
 loadCartItems();

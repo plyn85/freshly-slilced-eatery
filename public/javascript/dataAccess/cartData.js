@@ -27,19 +27,42 @@ let getCart = async () => {
 // End Function
 
 // Get the cart
-let deleteCartItem = async (mealId) => {
-  // console.log(mealId);
+let deleteCartItem = async (id) => {
+  const url = `${api.BASE_URL}/cart/${id}`;
   //http method
   let httpMethod = "DELETE";
   //build the request method
   const request = api.fetchInit(httpMethod);
-  console.log(request);
+  //console.log(request);
+
+  if (confirm("Are you sure want to delete this meal from your cart?")) {
+    try {
+      // delete cartItem
+      let result = await api.getDataAsync(url, request);
+      return result;
+    } catch (err) {
+      // catch and log any errors
+      console.log(err);
+    }
+  }
+}; // End Functions
+
+// Get the cart
+let changeQuantity = async (mealData) => {
+  const url = `${api.BASE_URL}/cart/increaseQty`;
+  console.log("meal data", mealData);
+  //http method
+  let httpMethod = "PUT";
+  //build the request method
+  const request = api.fetchInit(httpMethod, JSON.stringify(mealData));
+
   try {
     // delete cartItem
-    return await api.getDataAsync(`${api.BASE_URL}/cart/${mealId}`, request);
+    let result = await api.getDataAsync(url, request);
+    return result;
   } catch (err) {
     // catch and log any errors
     console.log(err);
   }
 }; // End Functions
-export { getCartItems, getCart, deleteCartItem };
+export { getCartItems, getCart, deleteCartItem, changeQuantity };

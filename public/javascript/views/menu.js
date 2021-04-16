@@ -26,6 +26,14 @@ let displayMeals = (meals) => {
     return card;
   });
   document.getElementById("mealsCard").innerHTML = rows.join("");
+
+  // find the add meals btn classes
+  const mealsBtn = document.getElementsByClassName("addMealsBtn");
+  //loop through the classes
+  for (let i = 0; i < mealsBtn.length; i++) {
+    //add even listener
+    mealsBtn[i].addEventListener("click", addMealToCart);
+  }
 };
 
 // Get all meals and then display
@@ -38,35 +46,20 @@ let loadMeals = async () => {
   }
 };
 
-//
-// find parent of button elements
-const mealsCardBody = document.getElementById("mealsCard");
-//
-// add event listener
-mealsCardBody.addEventListener("click", handleEvents);
-
-// add mealToCartFunction
-function handleEvents(event) {
-  //if the button is clicked
-  if (event.target && event.target.nodeName == "BUTTON") {
-    //pass the meal id form the button id element
-    addMealToCart(event.target.id);
-  }
-}
-
 //add meals to cart function
-async function addMealToCart(mealId) {
+async function addMealToCart() {
   //get the quantity form the hidden input
   let quantity = document.getElementById("quantity").value;
   //add meal data to object
   let mealData = {
-    _id: mealId,
+    _id: this.id,
     quantity: quantity,
   };
   //pass the meals data to addMeals to cart
   const addMealToCart = await mealsData.addMealToCart(mealData);
   //if its successful return true
   if (addMealToCart) {
+    alert("A meal has been added to your cart");
     return addMealToCart;
   }
 }

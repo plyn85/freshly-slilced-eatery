@@ -87,6 +87,11 @@ let displayCartItems = (cartItems) => {
     decreaseQuantity[i].addEventListener("click", changeQuantityCartItem);
     deleteCartItem[i].addEventListener("click", deleteItem);
   }
+  //add the cart length to local storage so it can be used across all browsers
+  sessionStorage.setItem("cartItemsLen", cartItems.length);
+  let cartLength = sessionStorage.getItem("cartItemsLen");
+  //add the cart form the navigation bar
+  displayNavCart(cartLength);
 };
 
 //add the changes form the cart quantity
@@ -140,13 +145,23 @@ async function changeQuantityCartItem() {
 let loadCartItems = async () => {
   // get meals data - note only one parameter in function call
   const cartItems = await cartData.getCartItems();
-  console.log(cartItems);
+  // console.log(cartItems);
   //pass json data for display
   if (cartItems) {
     displayCartItems(cartItems);
   }
 };
+//displays the navigation bar on the cart page
+let displayNavCart = (cartItemsLength) => {
+  // the html for the shopping cart with the length of the cart items added
+  let navItem = `<a href="cart.html">
+  <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
+   </a><small>${cartItemsLength}</small>`;
+  //return the nav item
+  return (document.getElementById("shoppingCart").innerHTML = navItem);
+};
 
+//loads the cart
 let loadCart = async () => {
   // get meals data - note only one parameter in function call
   const cart = await cartData.getCart();
@@ -186,5 +201,7 @@ async function deleteItem() {
 }
 
 //loading the cartItems and the cart
+//calls the function
+displayNavCart();
 loadCartItems();
 loadCart();

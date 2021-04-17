@@ -74,19 +74,21 @@ let displayCartItems = (cartItems) => {
     const increaseQuantity = document.getElementsByClassName("qtyInc");
     const decreaseQuantity = document.getElementsByClassName("qtyDec");
     const deleteCartItem = document.getElementsByClassName("deleteCartItem");
+    const qtyInput = document.getElementsByClassName("qty");
     //add event listeners
 
     for (let i = 0; i < deleteCartItem.length; i++) {
       increaseQuantity[i].addEventListener("click", changeQuantityCartItem);
       decreaseQuantity[i].addEventListener("click", changeQuantityCartItem);
       deleteCartItem[i].addEventListener("click", deleteItem);
+      qtyInput[i].addEventListener("change", changeQuantityCartItemFromInput);
     }
   }
   //if the cartItems are returned as null
   else {
     document.getElementById(
       "cartCard"
-    ).innerHTML = `<h1>Your Cart is currently empty!<h5>`;
+    ).innerHTML = `<h1>Your Cart is currently empty!<h1>`;
   }
 };
 
@@ -102,16 +104,25 @@ let changeQuantity = async (quantity, mealId) => {
 
   //pass json data for display
   if (changedQuantity) {
-    //reload the page when new quantities are added
+    //reload the cart the cart Items and the navCart when the quantity is changed
     loadCartItems();
     loadCart();
   }
 };
 
+//function to handle if the users changes the input box with out the buttons
+//
+async function changeQuantityCartItemFromInput() {
+  //call the change quantity function passing in the id and changed value
+  changeQuantity(this.value, this.id);
+}
+
 //function changes the quantity of the shopping cart
 async function changeQuantityCartItem() {
   //constants or variables
+  let quantityUpdated = false;
   let quantityInput = document.getElementsByClassName("qty");
+
   //loop trough the inputs
   for (let i = 0; i < quantityInput.length; i++) {
     //if the id of the increment or decrement matches the id
@@ -124,6 +135,10 @@ async function changeQuantityCartItem() {
         //call the change quantity function passing in the changed value
         //and meal id
         changeQuantity(quantityInput[i].value, this.id);
+        //call the navCart to update the total items passing the value
+        // and quantity updated as true
+        quantityUpdated = true;
+        navCart.loadNavCart(quantityInput[i].value, quantityUpdated);
       }
       //if the minus is clicked
       else if (this.value == "-") {
@@ -132,6 +147,10 @@ async function changeQuantityCartItem() {
         //call the change quantity function passing in the changed value
         //and meal id
         changeQuantity(quantityInput[i].value, this.id);
+        //call the navCart to update the total items passing the value
+        // and quantity updated as true
+        quantityUpdated = true;
+        navCart.loadNavCart(quantityInput[i].value, quantityUpdated);
       }
     }
   }

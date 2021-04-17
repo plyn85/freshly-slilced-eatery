@@ -59,11 +59,13 @@ async function addMealToCart() {
   const addMealToCart = await mealsData.addMealToCart(mealData);
   //if its successful return true
   if (addMealToCart) {
-    // reload the navCart
-    navCart.loadNavCart();
     alert("A meal has been added to your cart");
 
+    // reload the navCart
+    navCart.loadNavCart();
     return addMealToCart;
+  } else {
+    alert("you already have that meal in you cart!");
   }
 }
 

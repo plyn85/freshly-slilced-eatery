@@ -140,8 +140,8 @@ let loadCartItems = async () => {
   // get meals data - note only one parameter in function call
   const cartItems = await cartData.getCartItems();
   // console.log(cartItems);
-  //pass json data for display
-  if (cartItems) {
+  //if the cartItems are not returned empty
+  if (cartItems != null) {
     displayCartItems(cartItems);
     // displayNavCart(cartItems);
   }
@@ -149,28 +149,33 @@ let loadCartItems = async () => {
 
 //loads the cart
 let loadCart = async () => {
+  //constants and variables
+  let cartSubTotal = 0;
   // get meals data - note only one parameter in function call
   const cart = await cartData.getCart();
-  console.log(cart);
-  //pass json data for display
-  if (cart) {
-    displayCart(cart);
+  //if the cart those not return empty
+  if (cart != null) {
+    //set the subTotal to the cartSubTotal
+    cartSubTotal = cart.subtotal;
+    displayCart(cartSubTotal);
+  }
+  //if cart returns empty reload the cart so the total price changed
+  else {
+    //pass in the subTotal as zero
+    displayCart(cartSubTotal);
   }
 };
 //Use the array map method to iterate through cart
-let displayCart = (cart) => {
-  const rows = cart.map((cart) => {
-    let card = `
-    <div>
-    Total price:
-    <b>${cart.subtotal}€</b>
-</div>
-       `;
-    //return the card
-    return card;
-  });
+let displayCart = (subTotal) => {
+  //add the html to be displayed with the subTotal
+  let cartSubTotal = `<div>
+        Total price:
+        <b>${subTotal}€</b>
+      </div>`;
+  //get the id of bottom section of the cartCard
+  let cartCardLower = document.getElementById("cartCardLower");
   //add to cart page
-  document.getElementById("cartCardLower").innerHTML = rows.join("");
+  return (cartCardLower.innerHTML = cartSubTotal);
 };
 
 //add meals to cart function

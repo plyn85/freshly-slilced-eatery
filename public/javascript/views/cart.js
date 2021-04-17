@@ -5,18 +5,12 @@ import * as navCart from "../views/navCart.js";
 //
 //Use the array map method to iterate through meals
 let displayCartItems = (cartItems) => {
-  const rows = cartItems.map((cartItem) => {
-    let card = `
+  //if the cartItems are not null
+  //
+  if (cartItems != null) {
+    const rows = cartItems.map((cartItem) => {
+      let card = `
      <div class="row">
-         <div class="col-12 col-sm-12 col-md-2 text-center">
-             <img
-                 class="img-responsive"
-                 src="http://placehold.it/120x80"
-                 alt="preview"
-                 width="120"
-                 height="80"
-             >
-         </div>
          <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
              <h4 class="product-name">
               <small id='mealId'>${cartItem.meal_id}</small>
@@ -70,21 +64,29 @@ let displayCartItems = (cartItems) => {
          </div>
      </div>
      <hr>`;
-    //return the card
-    return card;
-  });
-  //add to cart page
-  document.getElementById("cartCard").innerHTML = rows.join("");
-  //Find button all elements with matching class name
-  const increaseQuantity = document.getElementsByClassName("qtyInc");
-  const decreaseQuantity = document.getElementsByClassName("qtyDec");
-  const deleteCartItem = document.getElementsByClassName("deleteCartItem");
-  //add event listeners
+      //return the card
+      return card;
+    });
 
-  for (let i = 0; i < deleteCartItem.length; i++) {
-    increaseQuantity[i].addEventListener("click", changeQuantityCartItem);
-    decreaseQuantity[i].addEventListener("click", changeQuantityCartItem);
-    deleteCartItem[i].addEventListener("click", deleteItem);
+    //add to cart page
+    document.getElementById("cartCard").innerHTML = rows.join("");
+    //Find button all elements with matching class name
+    const increaseQuantity = document.getElementsByClassName("qtyInc");
+    const decreaseQuantity = document.getElementsByClassName("qtyDec");
+    const deleteCartItem = document.getElementsByClassName("deleteCartItem");
+    //add event listeners
+
+    for (let i = 0; i < deleteCartItem.length; i++) {
+      increaseQuantity[i].addEventListener("click", changeQuantityCartItem);
+      decreaseQuantity[i].addEventListener("click", changeQuantityCartItem);
+      deleteCartItem[i].addEventListener("click", deleteItem);
+    }
+  }
+  //if the cartItems are returned as null
+  else {
+    document.getElementById(
+      "cartCard"
+    ).innerHTML = `<h1>Your Cart is currently empty!<h5>`;
   }
 };
 
@@ -142,8 +144,13 @@ let loadCartItems = async () => {
   // console.log(cartItems);
   //if the cartItems are not returned empty
   if (cartItems != null) {
+    //display the items
     displayCartItems(cartItems);
-    // displayNavCart(cartItems);
+  }
+  //if there are no items left in the cart
+  else {
+    //the cartItems will be passed as null
+    displayCartItems(cartItems);
   }
 };
 
@@ -156,7 +163,7 @@ let loadCart = async () => {
   //if the cart those not return empty
   if (cart != null) {
     //set the subTotal to the cartSubTotal
-    cartSubTotal = cart.subtotal;
+    cartSubTotal = cart[0].subtotal;
     displayCart(cartSubTotal);
   }
   //if cart returns empty reload the cart so the total price changed

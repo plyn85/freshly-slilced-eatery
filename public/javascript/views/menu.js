@@ -1,6 +1,6 @@
 // Function used to update menu.html
 //
-
+import * as navCart from "../views/navCart.js";
 import * as mealsData from "../dataAccess/mealsData.js";
 // import { Product } from "../models/products.js";
 
@@ -59,7 +59,10 @@ async function addMealToCart() {
   const addMealToCart = await mealsData.addMealToCart(mealData);
   //if its successful return true
   if (addMealToCart) {
+    // reload the navCart
+    navCart.loadNavCart();
     alert("A meal has been added to your cart");
+
     return addMealToCart;
   }
 }

@@ -15,7 +15,7 @@ let displayNavCart = async (cartItemsLength) => {
   return (document.getElementById("shoppingCart").innerHTML = navItem);
 };
 //loads the nav cart
-let loadNavCart = async (quantityValue, quantityUpdated) => {
+let loadNavCart = async (quantityUpdated) => {
   //constants and variables
   let cartItemsLength = 0;
 
@@ -26,11 +26,14 @@ let loadNavCart = async (quantityValue, quantityUpdated) => {
   if (cartItems != null) {
     //cartItems length to the current cartItems length
     cartItemsLength = cartItems.length;
-    //if the quantity has beed updated add it quantity value
+    //if the quantity has beed updated and there is only one item
     if (quantityUpdated) {
-      cartItemsLength += quantityValue - 1;
+      cartItems.forEach((item) => {
+        cartItemsLength += item.quantity;
+      });
     }
   }
+  //add the total quantity
   //if there are not pass in zero as the length
   displayNavCart(cartItemsLength);
 };

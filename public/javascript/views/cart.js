@@ -135,10 +135,10 @@ async function changeQuantityCartItem() {
         //call the change quantity function passing in the changed value
         //and meal id
         changeQuantity(quantityInput[i].value, this.id);
-        //call the navCart to update the total items passing the value
+        //call the navCart to update the total items passing the meal id
         // and quantity updated as true
         quantityUpdated = true;
-        navCart.loadNavCart(quantityInput[i].value, quantityUpdated);
+        //navCart.loadNavCart(quantityUpdated);
       }
       //if the minus is clicked
       else if (this.value == "-") {
@@ -147,10 +147,10 @@ async function changeQuantityCartItem() {
         //call the change quantity function passing in the changed value
         //and meal id
         changeQuantity(quantityInput[i].value, this.id);
-        //call the navCart to update the total items passing the value
+        //call the navCart to update the total items passing the meal id
         // and quantity updated as true
         quantityUpdated = true;
-        navCart.loadNavCart(quantityInput[i].value, quantityUpdated);
+        // navCart.loadNavCart(squantityUpdated);
       }
     }
   }

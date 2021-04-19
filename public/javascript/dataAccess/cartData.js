@@ -64,5 +64,26 @@ let changeQuantity = async (mealData) => {
     // catch and log any errors
     console.log(err);
   }
-}; // End Functions
-export { getCartItems, getCart, deleteCartItem, changeQuantity };
+};
+
+//function to handle strip payments
+let stripePayment = async (token) => {
+  const url = `${api.BASE_URL}/cart/payment`;
+
+  //http method
+  let httpMethod = "POST";
+  //build the request method
+  const request = api.fetchInit(httpMethod, JSON.stringify(token));
+
+  try {
+    // delete cartItem
+    let result = await api.getDataAsync(url, request);
+    return result;
+  } catch (err) {
+    // catch and log any errors
+    console.log(err);
+  }
+};
+
+// End Functions
+export { getCartItems, getCart, deleteCartItem, changeQuantity, stripePayment };

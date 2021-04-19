@@ -11,6 +11,7 @@
             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
             crossorigin="anonymous"
         >
+        <script src="https://js.stripe.com/v3/"></script>
         <link rel="stylesheet" href="style.css">
         <title>Freshly-sliced-eatery-home</title>
     </head>
@@ -80,45 +81,22 @@
                                 <span>Name on card</span>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="inputbox mt-3 mr-2">
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            class="form-control"
-                                            required="required"
-                                        >
-                                        <i class="fa fa-credit-card"></i>
-                                        <span>Card Number</span>
+                                <form id="payment-form">
+                                    <div class="form-row">
+                                        <label for="card-element">
+                                            Credit or debit card
+                                        </label>
+                                        <div id="card-element">
+                                            <!-- A Stripe Element will be inserted here. --></div>
+                                        <!-- Used to display form errors. -->
+                                        <div id="card-errors" role="alert"></div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="d-flex flex-row">
-                                        <div class="inputbox mt-3 mr-2">
-                                            <input
-                                                type="text"
-                                                name="name"
-                                                class="form-control"
-                                                required="required"
-                                            >
-                                            <span>Expiry</span>
-                                        </div>
-                                        <div class="inputbox mt-3 mr-2">
-                                            <input
-                                                type="text"
-                                                name="name"
-                                                class="form-control"
-                                                required="required"
-                                            >
-                                            <span>CVV</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <button>Submit Payment</button>
+                                </form>
                             </div>
-                        </div>
-                        <div class="mt-4 mb-4 d-flex justify-content-between">
-                            <a href="cart.html">Back to Cart</a>
-                            <button class="btn btn-success px-3">Pay 840</button>
+                            <div class="mt-4 mb-4 d-flex justify-content-between">
+                                <a href="cart.html">Back to Cart</a>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -135,7 +113,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </main>
             <!-- start footer -->
             <section>
                 <footer class="mt-auto py-2 fixed-bottom text-center container-fluid">
@@ -187,9 +165,8 @@
                 </footer>
             </section>
             <!-- end footer -->
-        </main>
-        <!-- end main -->
-        <script src="script.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    </body>
-</html>
+            <!-- end main -->
+            <script src="./javascript/views/stripe.js" type="module"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        </body>
+    </html>

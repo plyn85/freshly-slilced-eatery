@@ -51,6 +51,7 @@ form.addEventListener("submit", function (event) {
   //get the email and name of user
   let name = document.getElementById("cardName").value;
   let email = document.getElementById("email").value;
+
   //and add to token when created
   stripe
     .createToken(card, { name: name, email: email })
@@ -62,8 +63,8 @@ form.addEventListener("submit", function (event) {
       } else {
         //get the result of the token
         let token = result.token;
-        console.log("token", token);
         stripeTokenHandler(token);
+        form.reset();
       }
     });
 });

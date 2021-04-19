@@ -57,13 +57,17 @@ async function addMealToCart() {
   };
   //pass the meals data to addMeals to cart
   const addMealToCart = await mealsData.addMealToCart(mealData);
-  //if its successful return true
+  //if its successful returns cartID if new cart created and
+  // returns true if cart already exists
   if (addMealToCart) {
+    //if the cart id is returned
+    if (typeof addMealToCart == "number") {
+      //add the id to session storage
+      sessionStorage.setItem("cartId", addMealToCart);
+    }
     alert("A meal has been added to your cart");
-
     // reload the navCart
     navCart.loadNavCart();
-    return addMealToCart;
   } else {
     alert("you already have that meal in you cart!");
   }

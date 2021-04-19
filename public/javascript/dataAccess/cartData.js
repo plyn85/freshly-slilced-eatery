@@ -69,7 +69,7 @@ let changeQuantity = async (mealData) => {
 //function to handle strip payments
 let stripePayment = async (token) => {
   const url = `${api.BASE_URL}/cart/payment`;
-
+  console.log("token", token);
   //http method
   let httpMethod = "POST";
   //build the request method

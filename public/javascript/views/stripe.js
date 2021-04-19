@@ -28,7 +28,7 @@ let style = {
 
 // Create an instance of the card Element.
 
-let card = elements.create("card", { style: style });
+let card = elements.create("card", { style: style, hidePostalCode: true });
 
 // Add an instance of the card Element into the `card-element` <div>.
 card.mount("#card-element");
@@ -44,21 +44,28 @@ card.addEventListener("change", function (event) {
 });
 
 // Handle form submission.
-var form = document.getElementById("payment-form");
+let form = document.getElementById("payment-form");
+
 form.addEventListener("submit", function (event) {
   event.preventDefault();
-
-  stripe.createToken(card).then(function (result) {
-    if (result.error) {
-      // Inform the user if there was an error.
-      var errorElement = document.getElementById("card-errors");
-      errorElement.textContent = result.error.message;
-    } else {
-      //get the result of the token
-      let token = result.token;
-      stripeTokenHandler(token);
-    }
-  });
+  //get the email and name of user
+  let name = document.getElementById("cardName").value;
+  let email = document.getElementById("email").value;
+  //and add to token when created
+  stripe
+    .createToken(card, { name: name, email: email })
+    .then(function (result) {
+      if (result.error) {
+        // Inform the user if there was an error.
+        let errorElement = document.getElementById("card-errors");
+        errorElement.textContent = result.error.message;
+      } else {
+        //get the result of the token
+        let token = result.token;
+        console.log("token", token);
+        stripeTokenHandler(token);
+      }
+    });
 });
 
 //send and recieve the stipe data

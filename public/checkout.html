@@ -69,34 +69,34 @@
                 </div>
                 <div class="row">
                     <div class="col-md-8">
+                        <h3>Payment information</h3>
                         <div class="card p-3">
-                            <h6 class="text-uppercase">Payment details</h6>
-                            <div class="inputbox mt-3">
-                                <input
-                                    type="text"
-                                    name="name"
-                                    class="form-control"
-                                    required="required"
-                                >
-                                <span>Name on card</span>
-                            </div>
-                            <div class="row">
-                                <form id="payment-form">
-                                    <div class="form-row">
-                                        <label for="card-element">
-                                            Credit or debit card
-                                        </label>
-                                        <div id="card-element">
-                                            <!-- A Stripe Element will be inserted here. --></div>
-                                        <!-- Used to display form errors. -->
-                                        <div id="card-errors" role="alert"></div>
-                                    </div>
-                                    <button>Submit Payment</button>
-                                </form>
-                            </div>
-                            <div class="mt-4 mb-4 d-flex justify-content-between">
-                                <a href="cart.html">Back to Cart</a>
-                            </div>
+                            <form id="payment-form">
+                                <div class="group">
+                                    <label>
+                                        <span>Name</span>
+                                        <input id="cardName" class="field" type="text">
+                                    </label>
+                                </div>
+                                <div class="group">
+                                    <label>
+                                        <span>Email</span>
+                                        <input id="email" class="field" type="email">
+                                    </label>
+                                </div>
+                                <div class="group">
+                                    <label>
+                                        <div id="card-element" class="field"></div>
+                                    </label>
+                                </div>
+                                <button type="submit">Pay $25</button>
+                                <div class="outcome">
+                                    <div class="error"></div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="mt-4 mb-4 d-flex justify-content-between">
+                            <a href="cart.html">Back to Cart</a>
                         </div>
                     </div>
                     <div class="col-md-4">

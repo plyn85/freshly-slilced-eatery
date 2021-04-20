@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+            crossorigin="anonymous"
+        >
+        <script src="https://js.stripe.com/v3/"></script>
+        <link rel="stylesheet" href="style.css">
+        <title>Confirm collection</title>
+    </head>
+    <body>
+        <!-- start navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top container-fluid">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav nav-fill w-100">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="our-story.html">Our Story</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="menu.html">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="location.html">Location</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- end navbar -->
+        <main>
+            <div class="container">
+                <div class="card mt-5 mx-auto" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Confirm your collection Time</h5>
+                        <p class="card-title">Collections times are every half hour form 900 till 430</p>
+                        <form id="collectionForm">
+                            <div class="form-group">
+                                <label for="collectionTime">Collection time</label>
+                                <select name="collectionTime" id="collectionTime" type="time">
+                                    <option value="" id="firstOption" selected>
+                                    </option >
+                                    <option value="9:00">9:00</option>
+                                    <option value="9:30">9:30</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="10:30">10:30</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="11:30">11:30</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="12:30">12:30</option>
+                                    <option value="13:30">13:30</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="14:30">14:30</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="15:30">15:30</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="16:30">16:30</option>
+                                </select>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="message">Leave a note for the restaurant with anything we need to know</label>
+                                <textarea
+                                    id="message"
+                                    type="text_area"
+                                    class="form-control"
+                                    name="text_area"
+                                    rows="4"
+                                    cols="50"
+                                    maxlength="300"
+                                    placeholder="Enter your note here"
+                                ></textarea>
+                            </div>
+                            <div class="row mt-3">
+                                <button id="submitBtn" class="col-3" type="button">submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- end main -->
+        <script src="./javascript/views/collection.js" type="module"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </body>
+</html>

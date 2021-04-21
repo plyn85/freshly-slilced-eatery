@@ -1,36 +1,37 @@
-//get the id of the contact form
-let contactForm = document.getElementById("submitContactForm");
-
 /* this function will
-   validate the contact form
+   validate the collection form
    */
 
-function validateForm(collectionTimeMenu, message) {
-  // //for first name
-  // if (firstName == "") {
-  //   alert("Please enter a value for first name");
-  //   // Ensures form is not submitted
-  //   return false;
-  // }
-
-  // For message box
-  if (message == "") {
-    confirm("you have not entered a message do you wish to continue?");
-    if (!confirm) {
-      return false;
-    }
-  }
-
-  if (collectionTimeMenu == "") {
-    alert("you have not entered a delivery time");
+function validateForm(collectionTime, name, email, message) {
+  console.log(collectionTime, name, email, message);
+  //for first name
+  if (name == "") {
+    alert("Please enter a value for your name");
+    // Ensures form is not submitted
+    console.log(name);
     return false;
   }
-  // //regular expression for email
-  // let regularExpressionEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-  // //for email
-  // if (!regularExpressionEmail.test(emailAddress)) {
-  //   alert("You email is invalid");
-  //   return false;
+  //regular expression for email
+  let regularExpressionEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  //for email
+  if (!regularExpressionEmail.test(email)) {
+    alert("You email is invalid");
+    console.log(email);
+    return false;
+  }
+
+  if (collectionTime == "") {
+    alert("you have not entered a delivery time");
+    console.log(collectionTime);
+    return false;
+  }
+  // // For message box
+  // if (message == "") {
+  //   console.log("failed");
+  //   confirm("you have not entered a message do you wish to continue?");
+  //   if (!confirm) {
+  //     return false;
+  //   }
   // }
   else {
     //if the all pass return true

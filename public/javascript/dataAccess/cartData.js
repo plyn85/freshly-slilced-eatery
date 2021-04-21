@@ -79,9 +79,16 @@ let stripePayment = async (token) => {
   const request = api.fetchInit(httpMethod, JSON.stringify(token));
 
   try {
-    // delete cartItem
+    // get stripe data
     let result = await api.getDataAsync(url, request);
-    return result;
+    //if the result comes back add to local storage
+    //and return true to stripeData.js
+    console.log(result, "rs");
+    if (result != null) {
+      return true;
+    } else {
+      console.log("no result returned");
+    }
   } catch (err) {
     // catch and log any errors
     console.log(err);

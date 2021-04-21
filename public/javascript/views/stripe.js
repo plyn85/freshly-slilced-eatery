@@ -1,6 +1,6 @@
 //imports
 import { stripePayment } from "../dataAccess/cartData.js";
-
+import { validateForm } from "../validation/formValidation.js";
 // Create a Stripe client.
 let stripe = Stripe("pk_test_OtuMpmziQFrVOnItNeA1NK8n00Pdyae7Qg");
 
@@ -51,8 +51,13 @@ form.addEventListener("submit", function (event) {
   //get the email and name of user
   let name = document.getElementById("cardName").value;
   let email = document.getElementById("email").value;
-
-  //and add to token when created
+  //validate before sending with stripe token
+  // validate the message and delivery time
+  let validatedInputs = validateForm(name, email);
+  //if the are validated
+  if (validatedInputs) {
+  }
+  //create the stripe token
   stripe
     .createToken(card, { name: name, email: email })
     .then(function (result) {
@@ -72,6 +77,9 @@ form.addEventListener("submit", function (event) {
 //send and recieve the stipe data
 let stripeTokenHandler = async (token) => {
   //pass the token to the stripe payment function in cartData
-  let result = stripePayment(token);
-  console.log(result);
+  const result = stripePayment(token);
+  //if the result is true reload the form and send the user to success page
+  if (result) {
+    window.location.replace("success.html");
+  }
 };

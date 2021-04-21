@@ -12,7 +12,7 @@
             crossorigin="anonymous"
         >
         <script src="https://js.stripe.com/v3/"></script>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
         <title>Confirm collection</title>
     </head>
     <body>
@@ -54,10 +54,34 @@
             <div class="container">
                 <div class="card mt-5 mx-auto" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Confirm your collection Time</h5>
+                        <h5 class="card-title">Confirm your collection Time and add some details</h5>
                         <p class="card-title">Collections times are every half hour form 900 till 430</p>
                         <form id="collectionForm">
-                            <div class="form-group">
+                            <div class="group">
+                                <label>
+                                    <span>Name</span>
+                                    <input
+                                        id="name"
+                                        class="field"
+                                        type="text"
+                                        name="name"
+                                        maxlength="40"
+                                    >
+                                </label>
+                            </div>
+                            <div class="group">
+                                <label>
+                                    <span>Email</span>
+                                    <input
+                                        id="email"
+                                        class="field"
+                                        type="email"
+                                        name="email"
+                                        maxlength="30"
+                                    >
+                                </label>
+                            </div>
+                            <div class="group">
                                 <label for="collectionTime">Collection time</label>
                                 <select name="collectionTime" id="collectionTime" type="time">
                                     <option value="" id="firstOption" selected>
@@ -79,7 +103,7 @@
                                     <option value="16:30">16:30</option>
                                 </select>
                             </div>
-                            <div class="form-group mt-3">
+                            <div class="group mt-3">
                                 <label for="message">Leave a note for the restaurant with anything we need to know</label>
                                 <textarea
                                     id="message"
@@ -93,7 +117,7 @@
                                 ></textarea>
                             </div>
                             <div class="row mt-3">
-                                <button id="submitBtn" class="col-3" type="button">submit</button>
+                                <button id="submitBtn" class="col-5" type="button">submit</button>
                             </div>
                         </form>
                     </div>

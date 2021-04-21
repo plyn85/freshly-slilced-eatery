@@ -1,6 +1,7 @@
 //imports
 import { validateForm } from "../validation/formValidation.js";
 import { addCollectionInfo } from "../dataAccess/collectionData.js";
+import { CollectionForm } from "../models/collectionForm.js";
 
 //add the days of the week to an array
 let weekDays = [
@@ -44,28 +45,47 @@ getCurrentDayAndTime();
 // //calls the function every 15 mins
 let interval = window.setInterval(getCurrentDayAndTime, 900000);
 
-let submitCollection = async () => {
-  //get the value of dropdown menu and convert to number
-  let collectionTimeMenu = document.getElementById("collectionTime").value;
-
-  //get the text of the message box
+let getCollectionForm = () => {
+  let collectionForm;
+  //get values from collection form
+  let collectionTime = document.getElementById("collectionTime").value;
   let message = document.getElementById("message").value;
-  // validate the message and delivery time
-  let validatedInputs = validateForm(collectionTimeMenu, message);
-  //if the are validated
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  ///validate the form inputs
+  let validatedInputs = validateForm(collectionTime, name, email, message);
+
+  // //if the validation returns true
   if (validatedInputs) {
-    //create and object with the values
-    let collectionData = {
-      collectionTimeMenu: collectionTimeMenu,
-      message: message,
-    };
-    //pass in the values add collection info function
-    const result = await addCollectionInfo(collectionData);
+    //create the form instance
+    collectionForm = new CollectionForm(
+      // read the form values and pass to the contact constructor
+      collectionTime,
+      name,
+      email,
+      message
+    );
+  } else {
+    console.log("form validation failed");
+  }
+  return collectionForm;
+};
+
+//send  the collection form
+let sendCollectionForm = async () => {
+  // Get the form data
+  const collectionForm = getCollectionForm();
+  //send to the collection info function
+  const result = await addCollectionInfo(collectionForm);
+
+  //if the result is true the send the user to payments page
+  if (result) {
+    window.location.replace("checkout.html");
   } else {
     alert("your order was not submitted");
   }
-};
+}; // End Function
 
 document
   .getElementById("submitBtn")
-  .addEventListener("click", submitCollection);
+  .addEventListener("click", sendCollectionForm);

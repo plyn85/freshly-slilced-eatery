@@ -3,20 +3,20 @@
 import * as api from "./fetchAPI.js";
 
 // send the collection data
-let addCollectionInfo = async (collectionData) => {
+let addCustomerInfo = async (customerData) => {
   const url = `${api.BASE_URL}/cart/collection`;
-  console.log(collectionData);
+  console.log(customerData);
   //http method
   let httpMethod = "POST";
   //build the request method
-  const request = api.fetchInit(httpMethod, JSON.stringify(collectionData));
+  const request = api.fetchInit(httpMethod, JSON.stringify(customerData));
   try {
     // delete cartItem
     let result = await api.getDataAsync(url, request);
     //if the result comes back
     //return true to collection data js
     if (result != null) {
-      return true;
+      return result;
     }
   } catch (err) {
     // catch and log any errors
@@ -24,4 +24,4 @@ let addCollectionInfo = async (collectionData) => {
   }
 };
 
-export { addCollectionInfo };
+export { addCustomerInfo };

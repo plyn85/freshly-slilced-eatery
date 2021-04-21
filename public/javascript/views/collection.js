@@ -1,7 +1,7 @@
 //imports
 import { validateForm } from "../validation/formValidation.js";
-import { addCollectionInfo } from "../dataAccess/collectionData.js";
-import { CollectionForm } from "../models/collectionForm.js";
+import { addCustomerInfo } from "../dataAccess/collectionData.js";
+import { CustomerForm } from "../models/customerForm.js";
 
 //add the days of the week to an array
 let weekDays = [
@@ -41,12 +41,12 @@ let getCurrentDayAndTime = () => {
     "firstOption"
   ).innerHTML = `${currentDayOfWeek} ${hours}:${mins}`;
 };
+//calls the function every time the page reloads
 getCurrentDayAndTime();
 // //calls the function every 15 mins
 let interval = window.setInterval(getCurrentDayAndTime, 900000);
 
-let getCollectionForm = () => {
-  let collectionForm;
+let getCustomerForm = () => {
   //get values from collection form
   let collectionTime = document.getElementById("collectionTime").value;
   let message = document.getElementById("message").value;
@@ -58,28 +58,31 @@ let getCollectionForm = () => {
   // //if the validation returns true
   if (validatedInputs) {
     //create the form instance
-    collectionForm = new CollectionForm(
+    return new CustomerForm(
       // read the form values and pass to the contact constructor
-      collectionTime,
       name,
       email,
+      collectionTime,
       message
     );
   } else {
     console.log("form validation failed");
   }
-  return collectionForm;
 };
 
 //send  the collection form
-let sendCollectionForm = async () => {
+let sendCustomerForm = async () => {
   // Get the form data
-  const collectionForm = getCollectionForm();
+  const customerForm = getCustomerForm();
   //send to the collection info function
-  const result = await addCollectionInfo(collectionForm);
+  const result = await addCustomerInfo(customerForm);
 
-  //if the result is true the send the user to payments page
-  if (result) {
+  //if the result is true
+  if (result != null) {
+    // and returned customer info to local storage
+    let customer = JSON.stringify(result);
+    window.localStorage.setItem("customer", customer);
+    //and send the customer to the payments page
     window.location.replace("checkout.html");
   } else {
     alert("your order was not submitted");
@@ -88,4 +91,20 @@ let sendCollectionForm = async () => {
 
 document
   .getElementById("submitBtn")
-  .addEventListener("click", sendCollectionForm);
+  .addEventListener("click", sendCustomerForm);
+
+// let getCus = () => {
+//   let obj = JSON.parse(window.localStorage.getItem("customer"));
+//   let card;
+//   for (let key in obj) {
+//     if (obj.hasOwnProperty(key)) {
+//       card = `<h1>${obj._id}<h1>
+//     <h1>${obj.name}<h1>
+//     <h1>${obj.email}<h1>
+
+//     `;
+//     }
+//   }
+//   document.getElementById("div").innerHTML = card;
+// };
+// getCus();

@@ -77,7 +77,7 @@ let sendCustomerForm = async () => {
   //send to the collection info function
   const result = await addCustomerInfo(customerForm);
 
-  //if the result is true
+  //if the result is not empty
   if (result != null) {
     // and returned customer info to local storage
     let customer = JSON.stringify(result);

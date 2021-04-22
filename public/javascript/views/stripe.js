@@ -1,6 +1,6 @@
 //imports
 import { stripePayment } from "../dataAccess/cartData.js";
-import { validateForm } from "../validation/formValidation.js";
+
 // Create a Stripe client.
 let stripe = Stripe("pk_test_OtuMpmziQFrVOnItNeA1NK8n00Pdyae7Qg");
 
@@ -48,38 +48,33 @@ let form = document.getElementById("payment-form");
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
-  //get the email and name of user
-  let name = document.getElementById("cardName").value;
-  let email = document.getElementById("email").value;
-  //validate before sending with stripe token
-  // validate the message and delivery time
-  let validatedInputs = validateForm(name, email);
-  //if the are validated
-  if (validatedInputs) {
-  }
   //create the stripe token
-  stripe
-    .createToken(card, { name: name, email: email })
-    .then(function (result) {
-      if (result.error) {
-        // Inform the user if there was an error.
-        let errorElement = document.getElementById("card-errors");
-        errorElement.textContent = result.error.message;
-      } else {
-        //get the result of the token
-        let token = result.token;
-        stripeTokenHandler(token);
-        form.reset();
-      }
-    });
+  stripe.createToken(card).then(function (result) {
+    if (result.error) {
+      // Inform the user if there was an error.
+      let errorElement = document.getElementById("card-errors");
+      errorElement.textContent = result.error.message;
+    } else {
+      //get the result of the token
+      let token = result.token;
+      stripeTokenHandler(token);
+      form.reset();
+    }
+  });
 });
 
 //send and recieve the stipe data
 let stripeTokenHandler = async (token) => {
+  console.log(token);
   //pass the token to the stripe payment function in cartData
   const result = stripePayment(token);
-  //if the result is true reload the form and send the user to success page
+  console.log("stripe", result);
+  //if the result returns true
   if (result) {
+    //and send the customer to the payments page
     window.location.replace("success.html");
+  } else {
+    alert("your Payment was not successful");
+    form.reset();
   }
 };

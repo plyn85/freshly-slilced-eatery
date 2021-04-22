@@ -56,15 +56,13 @@ async function addMealToCart() {
     quantity: quantity,
   };
   //pass the meals data to addMeals to cart
-  const addMealToCart = await mealsData.addMealToCart(mealData);
-  //if its successful returns cartID if new cart created and
-  // returns true if cart already exists
-  if (addMealToCart) {
-    //if the cart id is returned
-    if (typeof addMealToCart == "number") {
-      //add the id to session storage
-      sessionStorage.setItem("cartId", addMealToCart);
-    }
+  const userId = await mealsData.addMealToCart(mealData);
+  //returns random customer id and adds to local storage
+  //if the customer id is not empty
+  if (userId != "") {
+    //add the uniqueId to session storage
+    localStorage.setItem("userId", JSON.stringify(userId));
+
     alert("A meal has been added to your cart");
     // reload the navCart
     navCart.loadNavCart();

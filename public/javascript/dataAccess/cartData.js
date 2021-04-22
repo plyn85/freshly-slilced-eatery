@@ -69,7 +69,7 @@ let changeQuantity = async (mealData) => {
 //function to handle strip payments
 let stripePayment = async (token) => {
   //get the current sessions cart id
-  let cartId = sessionStorage.getItem("cartId");
+  let cartId = localStorage.getItem("cartId");
 
   const url = `${api.BASE_URL}/cart/payment/${cartId}`;
   console.log("token", token);
@@ -79,16 +79,16 @@ let stripePayment = async (token) => {
   const request = api.fetchInit(httpMethod, JSON.stringify(token));
 
   try {
-    // get stripe data
+    // stripe data
     let result = await api.getDataAsync(url, request);
-    //if the result comes back add to local storage
-    //and return true to stripeData.js
-    console.log(result, "rs");
-    if (result != null) {
-      return true;
-    } else {
-      console.log("no result returned");
-    }
+    console.log(result);
+    return result;
+    // //and return true to stripeData.js
+    // if (result) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
   } catch (err) {
     // catch and log any errors
     console.log(err);

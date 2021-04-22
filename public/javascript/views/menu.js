@@ -59,16 +59,8 @@ async function addMealToCart() {
   //pass the meals data to addMeals to cart
   const userId = await mealsData.addMealToCart(mealData);
 
-  //if the user is true
-  if (userId) {
-    alert("A meal has been added to your cart");
-    // reload the navCart
-    navCart.loadNavCart();
-  } else {
-    alert(
-      "meal not added to cart you may already have that meal, please check your cart or try again!"
-    );
-  }
+  // reload the navCart
+  navCart.loadNavCart();
 }
 
 //loading the meals

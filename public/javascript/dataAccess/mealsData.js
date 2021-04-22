@@ -17,6 +17,11 @@ let getMeals = async () => {
 
 // Get all meals
 let addMealToCart = async (mealData) => {
+  //get the user id if it exists in localStorage
+  if (typeof localStorage.getItem("userId") == "string") {
+    //if it does add to mealData to be sent it the request body
+    mealData.user_id = JSON.parse(localStorage.getItem("userId"));
+  }
   //http method is post
   let httpMethod = "POST";
   //build the request object
@@ -32,12 +37,16 @@ let addMealToCart = async (mealData) => {
     console.log(responseUserId);
     //if its a sting the id has been sent
     if (typeof responseUserId.user_id == "string") {
-      alert("true");
-      //add the uniqueId to session storage
+      //add the uniqueId to session storage and return true
       localStorage.setItem("userId", JSON.stringify(responseUserId.user_id));
-      return true;
-    } else {
-      return false;
+    }
+    // if the response is false the item is already in the cart
+    else if (responseUserId == false) {
+      alert("That item is already in your cart");
+    }
+    //if the response is either true or a sting an item has been added to the cart
+    else {
+      alert("A meal has been added to your cart");
     }
   } catch (err) {
     //catch the errors

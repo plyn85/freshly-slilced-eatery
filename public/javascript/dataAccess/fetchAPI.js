@@ -39,7 +39,7 @@ let fetchInit = (httpMethod = "GET", bodyContent = "") => {
 let getDataAsync = async (url, init = fetchInit()) => {
   console.log(url, init);
   try {
-    // Call fetch and await the respose
+    // Call fetch and await the response
     // returns a promise
     const response = await fetch(url, init);
     // As Response is dependant on the fetch call, await must also be used here

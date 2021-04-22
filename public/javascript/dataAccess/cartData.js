@@ -16,9 +16,15 @@ let getCartItems = async () => {
 
 // Get the cart
 let getCart = async () => {
+  //get the users unique id
+  let userId = localStorage.getItem("userId");
+  console.log("u", userId);
+  //convert to a number
   try {
     // get products data - note only one parameter in function call
-    return await api.getDataAsync(`${api.BASE_URL}/cart/get-cart`);
+    return await api.getDataAsync(
+      `${api.BASE_URL}/cart/get-cart/?id=${userId}`
+    );
   } catch (err) {
     // catch and log any errors
     console.log(err);
@@ -50,7 +56,7 @@ let deleteCartItem = async (id) => {
 // Get the cart
 let changeQuantity = async (mealData) => {
   const url = `${api.BASE_URL}/cart/increaseQty`;
-  console.log("meal data", mealData);
+
   //http method
   let httpMethod = "PUT";
   //build the request method

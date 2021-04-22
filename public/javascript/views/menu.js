@@ -54,20 +54,20 @@ async function addMealToCart() {
   let mealData = {
     _id: this.id,
     quantity: quantity,
+    user_id: 0,
   };
   //pass the meals data to addMeals to cart
   const userId = await mealsData.addMealToCart(mealData);
-  //returns random customer id and adds to local storage
-  //if the customer id is not empty
-  if (userId != "") {
-    //add the uniqueId to session storage
-    localStorage.setItem("userId", JSON.stringify(userId));
 
+  //if the user is true
+  if (userId) {
     alert("A meal has been added to your cart");
     // reload the navCart
     navCart.loadNavCart();
   } else {
-    alert("you already have that meal in you cart!");
+    alert(
+      "meal not added to cart you may already have that meal, please check your cart or try again!"
+    );
   }
 }
 

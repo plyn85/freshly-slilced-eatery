@@ -69,6 +69,12 @@ let deleteCartItem = async (id) => {
 
 // Get the cart
 let changeQuantity = async (mealData) => {
+  //get the user id form local storage
+  let userId = JSON.parse(localStorage.getItem("userId"));
+  //add to the mealData object
+  mealData.user_id = userId;
+  console.log(mealData);
+  //build the url
   const url = `${api.BASE_URL}/cart/increaseQty`;
 
   //http method

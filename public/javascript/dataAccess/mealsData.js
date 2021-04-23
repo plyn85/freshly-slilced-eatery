@@ -36,12 +36,12 @@ let addMealToCart = async (mealData) => {
     );
     console.log(responseUserId);
     //if its a sting the id has been sent
-    if (typeof responseUserId.user_id == "string") {
+    if (typeof responseUserId.user_id == "number") {
       //add the uniqueId to session storage and return true
       localStorage.setItem("userId", JSON.stringify(responseUserId.user_id));
     }
     // if the response is false the item is already in the cart
-    else if (responseUserId == false) {
+    if (responseUserId == false) {
       alert("That item is already in your cart");
     }
     //if the response is either true or a sting an item has been added to the cart

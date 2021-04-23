@@ -58,9 +58,11 @@ async function addMealToCart() {
   };
   //pass the meals data to addMeals to cart
   const userId = await mealsData.addMealToCart(mealData);
-
-  // reload the navCart
-  navCart.loadNavCart();
+  //if the return value is not false
+  if (!userId) {
+    // reload the navCart
+    navCart.loadNavCart();
+  }
 }
 
 //loading the meals

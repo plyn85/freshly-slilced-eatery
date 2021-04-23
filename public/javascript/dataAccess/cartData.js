@@ -5,9 +5,11 @@ import * as api from "./fetchAPI.js";
 //
 // Get all cartItems
 let getCartItems = async () => {
+  //get the users unique id
+  let userId = JSON.parse(localStorage.getItem("userId"));
   try {
-    // get products data - note only one parameter in function call
-    return await api.getDataAsync(`${api.BASE_URL}/cart`);
+    // get cartItems data - note only one parameter in function call
+    return await api.getDataAsync(`${api.BASE_URL}/cart/?id=${userId}`);
   } catch (err) {
     // catch and log any errors
     console.log(err);
@@ -16,12 +18,10 @@ let getCartItems = async () => {
 
 // Get the cart
 let getCart = async () => {
-  //get the users unique id
-  let userId = localStorage.getItem("userId");
-  console.log("u", userId);
+  let userId = JSON.parse(localStorage.getItem("userId"));
   //convert to a number
   try {
-    // get products data - note only one parameter in function call
+    // get cart data - note only one parameter in function call
     return await api.getDataAsync(
       `${api.BASE_URL}/cart/get-cart/?id=${userId}`
     );
@@ -34,7 +34,8 @@ let getCart = async () => {
 
 // Get the cart
 let deleteCartItem = async (id) => {
-  const url = `${api.BASE_URL}/cart/${id}`;
+  let userId = JSON.parse(localStorage.getItem("userId"));
+  const url = `${api.BASE_URL}/cart/${id}/${userId}`;
   //http method
   let httpMethod = "DELETE";
   //build the request method
@@ -44,8 +45,21 @@ let deleteCartItem = async (id) => {
   if (confirm("Are you sure want to delete this meal from your cart?")) {
     try {
       // delete cartItem
-      let result = await api.getDataAsync(url, request);
+      const result = await api.getDataAsync(url, request);
+      //return the if its true
+      if (result) {
+        alert("item deleted");
+      }
+      //if the result is zero cart is deleted
+      if (result == 0) {
+        alert("you cart is empty");
+        //remove the userId in local storage
+        localStorage.removeItem("userId");
+        //and create a new one thats zero as this will never be a real userId
+        localStorage.setItem("userId", 0);
+      }
       return result;
+      // return result;
     } catch (err) {
       // catch and log any errors
       console.log(err);

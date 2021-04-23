@@ -7,7 +7,7 @@ import * as navCart from "../views/navCart.js";
 let displayCartItems = (cartItems) => {
   //if the cartItems are not null
   //
-  if (cartItems != null) {
+  if (cartItems.length > 0) {
     const rows = cartItems.map((cartItem) => {
       let card = `
      <div class="row">
@@ -150,7 +150,7 @@ async function changeQuantityCartItem() {
         //call the navCart to update the total items passing the meal id
         // and quantity updated as true
         quantityUpdated = true;
-        // navCart.loadNavCart(squantityUpdated);
+        // navCart.loadNavCart(quantityUpdated);
       }
     }
   }
@@ -160,7 +160,6 @@ async function changeQuantityCartItem() {
 let loadCartItems = async () => {
   // get meals data - note only one parameter in function call
   const cartItems = await cartData.getCartItems();
-  // console.log(cartItems);
   //if the cartItems are not returned empty
   if (cartItems != null) {
     //display the items
@@ -182,7 +181,7 @@ let loadCart = async () => {
   //if the cart those not return empty
   if (cart != null) {
     //set the subTotal to the cartSubTotal
-    cartSubTotal = cart[0].subtotal;
+    cartSubTotal = cart.subtotal;
     displayCart(cartSubTotal);
   }
   //if cart returns empty reload the cart so the total price changed
@@ -209,14 +208,13 @@ async function deleteItem() {
   console.log("delete cart item", this.id);
   //pass the meal id to deleteCartItems
   const result = await cartData.deleteCartItem(this.id);
-  //if its successful return true
-  if (result === true) {
-    //after item is deleted reload the cartItems the cart and the navCart
-    // So every thing is updated on the cart page
+
+  //if the result is true or zero an item has beed deleted
+  if (result == 0 || result)
+    //reload every thing on the page
     loadCartItems();
-    loadCart();
-    navCart.loadNavCart();
-  }
+  loadCart();
+  navCart.loadNavCart();
 }
 
 //loading the cartItems and the cart

@@ -8,7 +8,7 @@ let displayNavCart = async (cartItemsLength) => {
   if (cartItemsLength == undefined) {
     cartItemsLength = 0;
   }
-  let navItem = `<a href="cart.html">
+  let navItem = `<a href="cart.html" id='hidden'>
   <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
    </a><small>${cartItemsLength}</small>`;
   //return the nav item
@@ -37,7 +37,7 @@ let loadNavCart = async (quantityUpdated) => {
   //if there are not pass in zero as the length
   displayNavCart(cartItemsLength);
 };
-//calls the function
-loadNavCart();
 
+//call the function
+loadNavCart();
 export { displayNavCart, loadNavCart };

@@ -10,6 +10,11 @@
 .white {
   color: #ffffff;
 }
+/* for hidden inputs */
+
+.hideContent {
+  display: none;
+}
 
 /* home page carousel */
 

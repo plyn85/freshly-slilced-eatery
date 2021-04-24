@@ -1,10 +1,27 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css");
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap:,300,500,600,700,800,900");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap:300,500,600,700,800,900");
 * {
   border: 1px solid red;
 }
 /* for body  */
 
+body,
+html {
+  height: 100%;
+  font-size: 16px;
+  scroll-behavior: smooth;
+  /* added for ios devices */
+  -webkit-overflow-scrolling: touch;
+}
+/* fonts  */
+
+.mont-font {
+  font-family: "Montserrat", sans-serif;
+}
+.bebas {
+  font-family: "Bebas Neue", cursive;
+}
 /* colors */
 
 .white {
@@ -36,13 +53,19 @@
   background: url("https://res.cloudinary.com/plyn85/image/upload/v1614533530/freshly-sliced-eatery/p3_MedDiet_W1806_gi667751254_qi6mzj.jpg")
     no-repeat fixed;
 }
+/* for home page */
+/* carousel images */
 
+.carousel-item .img-fluid {
+  width: 100%;
+  height: 100%;
+}
 /* our story page page images and carousel*/
 .carousel-item,
 .bg-img-div {
   color: #000;
   height: 100vh;
-  /* background-position-x: 50%; */
+  background-position-x: 50%;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -213,4 +236,27 @@ input::-webkit-inner-spin-button {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
+}
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 768px) {
+  /* giving carousel images 100% height on mobile */
+  .img-fluid {
+    height: 100%;
+  }
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/* // X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}
+
+/* // XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
 }

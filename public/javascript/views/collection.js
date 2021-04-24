@@ -92,19 +92,3 @@ let sendCustomerForm = async () => {
 document
   .getElementById("submitBtn")
   .addEventListener("click", sendCustomerForm);
-
-// let getCus = () => {
-//   let obj = JSON.parse(window.localStorage.getItem("customer"));
-//   let card;
-//   for (let key in obj) {
-//     if (obj.hasOwnProperty(key)) {
-//       card = `<h1>${obj._id}<h1>
-//     <h1>${obj.name}<h1>
-//     <h1>${obj.email}<h1>
-
-//     `;
-//     }
-//   }
-//   document.getElementById("div").innerHTML = card;
-// };
-// getCus();

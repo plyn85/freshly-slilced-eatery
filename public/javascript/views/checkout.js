@@ -1,6 +1,7 @@
 //imports
 import * as cartData from "../dataAccess/cartData.js";
-// import * as navCart from "../views/navCart.js";
+//passed in to numberFormat to change  to currency
+let options = { style: "currency", currency: "EUR" };
 
 //
 //Use the array map method to iterate through meals
@@ -20,7 +21,9 @@ let displayCartItems = (cartItems) => {
         </div>
         <div class="col-4">
             <strong>
-                total price:${cartItem.total}
+                total price:${new Intl.NumberFormat("en-US", options).format(
+                  cartItem.total
+                )}
             </strong>
         </div>
     </div>`;
@@ -66,7 +69,7 @@ let displayCart = (subTotal) => {
   //add the html to be displayed with the subTotal
   let cartSubTotal = `
         Total cost:
-        €${subTotal}
+        ${new Intl.NumberFormat("en-US", options).format(subTotal)}
       `;
   //get the id of bottom section of the cartCard
   let checkout = document.getElementById("checkout");

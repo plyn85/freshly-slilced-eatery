@@ -68,14 +68,14 @@ let stripeTokenHandler = async (token) => {
   console.log(token);
   //pass the token to the stripe payment function in cartData
   const result = await stripePayment(token);
-
+  console.log(result);
   //if the result returns true
   if (result == true) {
     alert("your payment was a success");
     //and send the customer to the success page
     window.location.replace("success.html");
   } else {
-    alert("your Payment was not successful");
+    alert("your Payment was not successful please enter your details again");
     form.reset();
   }
 };

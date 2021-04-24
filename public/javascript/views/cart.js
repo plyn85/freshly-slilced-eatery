@@ -1,7 +1,8 @@
 //imports
 import * as cartData from "../dataAccess/cartData.js";
 import * as navCart from "../views/navCart.js";
-
+//passed in to numberFormat to change  to currency
+let options = { style: "currency", currency: "EUR" };
 //
 //Use the array map method to iterate through meals
 let displayCartItems = (cartItems) => {
@@ -24,7 +25,9 @@ let displayCartItems = (cartItems) => {
              <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
                  <h6>
                      <strong>
-                         ${cartItem.price}
+                     ${new Intl.NumberFormat("en-US", options).format(
+                       cartItem.price
+                     )}
                          <span class="text-muted">x</span>
                      </strong>
                  </h6>
@@ -32,7 +35,10 @@ let displayCartItems = (cartItems) => {
              <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
                  <h6>
                      <strong>
-                        total price:  ${cartItem.total}
+                        total price:    ${new Intl.NumberFormat(
+                          "en-US",
+                          options
+                        ).format(cartItem.total)}
                          <span class="text-muted">x</span>
                      </strong>
                  </h6>
@@ -40,7 +46,9 @@ let displayCartItems = (cartItems) => {
              
              <div class="col-4 col-sm-4 col-md-4">
                  <div class="quantity">
-                     <input type="button" value="+" class="plus qtyInc" id="${cartItem.meal_id}">
+                     <input type="button" value="+" class="plus qtyInc" id="${
+                       cartItem.meal_id
+                     }">
                      <input
                          type="number"
                          step="1"
@@ -53,11 +61,15 @@ let displayCartItems = (cartItems) => {
                          size="4"
                          id="${cartItem.meal_id}"
                          class="qty">
-                     <input type="button" value="-" class="minus qtyDec" id="${cartItem.meal_id}">
+                     <input type="button" value="-" class="minus qtyDec" id="${
+                       cartItem.meal_id
+                     }">
                  </div>
                  </div>
              <div class="col-2 col-sm-2 col-md-2 text-right">
-                 <button id="${cartItem._id}" type="button" class="btn btn-outline-danger btn-xs deleteCartItem">
+                 <button id="${
+                   cartItem._id
+                 }" type="button" class="btn btn-outline-danger btn-xs deleteCartItem">
                      <i class="fa fa-trash" aria-hidden="true"></i>
                  </button>
              </div>
@@ -187,7 +199,7 @@ let displayCart = (subTotal) => {
   //add the html to be displayed with the subTotal
   let cartSubTotal = `<div>
         Total price:
-        <b>${subTotal}€</b>
+        <b>  ${new Intl.NumberFormat("en-US", options).format(subTotal)}</b>
       </div>`;
   //get the id of bottom section of the cartCard
   let cartCardLower = document.getElementById("cartCardLower");
@@ -197,7 +209,6 @@ let displayCart = (subTotal) => {
 
 //add meals to cart function
 async function deleteItem() {
-  console.log("delete cart item", this.id);
   //pass the meal id to deleteCartItems
   const result = await cartData.deleteCartItem(this.id);
 

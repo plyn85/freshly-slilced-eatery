@@ -108,12 +108,20 @@ let stripePayment = async (token) => {
   try {
     // stripe data
     let result = await api.getDataAsync(url, request);
-    //if the request returns true
-    if (result == true) {
+    //unless false is returned the payment was a success and an object with
+    // charge information is returned
+    if (result == false) {
+      return false;
+    } else {
+      //add the object to local storage
+      // and returned customer info to local storage
+      let chargeInfo = JSON.stringify(result);
+      window.localStorage.setItem("chargeInfo", chargeInfo);
       //reset the user id to 0
       localStorage.setItem("userId", JSON.stringify(0));
-      return result;
+      return true;
     }
+
     // //and return true to stripeData.js
     // if (result) {
     //   return true;

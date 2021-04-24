@@ -6,14 +6,17 @@ import * as mealsData from "../dataAccess/mealsData.js";
 
 //Use the array map method to iterate through meals
 let displayMeals = (meals) => {
+  //passed in to numberFormat to change meal price to currency
+  let options = { style: "currency", currency: "EUR" };
   const rows = meals.map((meal) => {
     //each meal added to a card
     let card = `
     <div class="card card-body">
     <p> ${meal._id}</p>
-        <span class="float-right font-weight-bold">${Number(
-          meal.meal_price
-        ).toFixed(2)}</span>
+        <span class="float-right font-weight-bold">${new Intl.NumberFormat(
+          "en-US",
+          options
+        ).format(meal.meal_price)}</span>
     
         <h6 class="text-truncate">  ${meal.meal_name}</h6>
         <p class="small">  ${meal.meal_description}

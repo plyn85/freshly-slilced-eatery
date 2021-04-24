@@ -85,7 +85,7 @@ let sendCustomerForm = async () => {
     //and send the customer to the payments page
     window.location.replace("checkout.html");
   } else {
-    alert("your order was not submitted");
+    alert("your information was not submitted");
   }
 }; // End Function
 

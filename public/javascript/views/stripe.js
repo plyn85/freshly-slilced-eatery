@@ -63,15 +63,16 @@ form.addEventListener("submit", function (event) {
   });
 });
 
-//send and recieve the stipe data
+//send and  the stipe data
 let stripeTokenHandler = async (token) => {
   console.log(token);
   //pass the token to the stripe payment function in cartData
-  const result = stripePayment(token);
-  console.log("stripe", result);
+  const result = await stripePayment(token);
+
   //if the result returns true
-  if (result) {
-    //and send the customer to the payments page
+  if (result == true) {
+    alert("your payment was a success");
+    //and send the customer to the success page
     window.location.replace("success.html");
   } else {
     alert("your Payment was not successful");

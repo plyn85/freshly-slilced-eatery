@@ -1,5 +1,6 @@
 // import everything from fetchAPI.js
 // This will allow resources to be referenced as api.BASE_URL, etc.
+
 import * as api from "./fetchAPI.js";
 
 //
@@ -73,7 +74,7 @@ let changeQuantity = async (mealData) => {
   let userId = JSON.parse(localStorage.getItem("userId"));
   //add to the mealData object
   mealData.user_id = userId;
-  console.log(mealData);
+  //console.log(mealData);
   //build the url
   const url = `${api.BASE_URL}/cart/increaseQty`;
 
@@ -95,9 +96,9 @@ let changeQuantity = async (mealData) => {
 //function to handle strip payments
 let stripePayment = async (token) => {
   //get the current sessions cart id
-  let cartId = localStorage.getItem("cartId");
+  let userId = localStorage.getItem("userId");
 
-  const url = `${api.BASE_URL}/cart/payment/${cartId}`;
+  const url = `${api.BASE_URL}/cart/payment/${userId}`;
   console.log("token", token);
   //http method
   let httpMethod = "POST";
@@ -107,8 +108,12 @@ let stripePayment = async (token) => {
   try {
     // stripe data
     let result = await api.getDataAsync(url, request);
-    console.log(result);
-    return result;
+    //if the request returns true
+    if (result == true) {
+      //reset the user id to 0
+      localStorage.setItem("userId", JSON.stringify(0));
+      return result;
+    }
     // //and return true to stripeData.js
     // if (result) {
     //   return true;

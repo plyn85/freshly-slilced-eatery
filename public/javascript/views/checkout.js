@@ -43,6 +43,36 @@ let loadCartItems = async () => {
     displayCartItems(cartItems);
   }
 };
-
+//loads the cart
+let loadCart = async () => {
+  //constants and variables
+  let cartSubTotal = 0;
+  // get meals data - note only one parameter in function call
+  const cart = await cartData.getCart();
+  //if the cart those not return empty
+  if (cart != null) {
+    //set the subTotal to the cartSubTotal
+    cartSubTotal = cart.subtotal;
+    displayCart(cartSubTotal);
+  }
+  //if cart returns empty reload the cart so the total price changed
+  else {
+    //pass in the subTotal as zero
+    displayCart(cartSubTotal);
+  }
+};
+//Use the array map method to iterate through cart
+let displayCart = (subTotal) => {
+  //add the html to be displayed with the subTotal
+  let cartSubTotal = `
+        Total cost:
+        €${subTotal}
+      `;
+  //get the id of bottom section of the cartCard
+  let checkout = document.getElementById("checkout");
+  //add to cart page
+  return (checkout.innerHTML = cartSubTotal);
+};
 //call the load cartItems function
 loadCartItems();
+loadCart();

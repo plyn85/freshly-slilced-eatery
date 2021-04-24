@@ -102,12 +102,9 @@ let changeQuantity = async (quantity, mealId) => {
   // add the new quantities
   const changedQuantity = await cartData.changeQuantity(mealData);
 
-  //pass json data for display
-  if (changedQuantity) {
-    //reload the cart the cart Items and the navCart when the quantity is changed
-    loadCartItems();
-    loadCart();
-  }
+  //reload the cart the cart Items and the navCart when the quantity is changed
+  loadCartItems();
+  loadCart();
 };
 
 //function to handle if the users changes the input box with out the buttons
@@ -160,16 +157,11 @@ async function changeQuantityCartItem() {
 let loadCartItems = async () => {
   // get meals data - note only one parameter in function call
   const cartItems = await cartData.getCartItems();
-  //if the cartItems are not returned empty
-  if (cartItems != null) {
-    //display the items
-    displayCartItems(cartItems);
+  if (cartItems == 0) {
+    localStorage.setItem("userId", JSON.parse(0));
   }
-  //if there are no items left in the cart
-  else {
-    //the cartItems will be passed as null
-    displayCartItems(cartItems);
-  }
+  //display the items
+  displayCartItems(cartItems);
 };
 
 //loads the cart

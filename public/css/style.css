@@ -11,7 +11,7 @@ html {
   height: 100%;
   font-size: 16px;
   scroll-behavior: smooth;
-  background-color: #f7f4f4;
+  background-color: #f3efef;
   /* added for ios devices */
   -webkit-overflow-scrolling: touch;
 }
@@ -34,6 +34,13 @@ html {
   display: none;
 }
 
+.green {
+  color: #80bd01;
+}
+/* for navbar */
+/* .navbar {
+  background-color: #679603;
+} */
 /* home page carousel */
 
 .carousel-control-next,
@@ -47,7 +54,7 @@ html {
 }
 /* for images on our story page */
 .bg-img-div-1 {
-  background: url("https://res.cloudinary.com/plyn85/image/upload/v1619278606/freshly-sliced-eatery/pexels-photo-4194610_zrlp8h.jpg")
+  background: url("https://res.cloudinary.com/plyn85/image/upload/v1619290169/freshly-sliced-eatery/pexels-photo-4916557_1_tyxed0.jpg")
     no-repeat fixed;
 }
 .bg-img-div-2 {
@@ -55,7 +62,7 @@ html {
     no-repeat fixed;
 }
 /* for home page */
-/* carousel images */
+/* carousel images and text */
 
 .carousel-item .img-fluid {
   width: 100%;
@@ -79,6 +86,19 @@ html {
   -ms-flex-align: center;
   align-items: center;
   position: relative;
+}
+/* our story page */
+/* about text */
+.about-text {
+  background-color: #eae9e93b;
+}
+/* for all about header */
+.about-header {
+  text-shadow: 0.02em 0 lightgray, 0 0.02em lightgray;
+}
+.our-story-text {
+  /* our story text  */
+  line-height: 2rem;
 }
 
 /* shopping cart css */
@@ -233,13 +253,7 @@ input::-webkit-inner-spin-button {
   padding: 15px;
   margin: 0 auto;
 }
-.our-story-text {
-  /* our story text  */
-  line-height: 2rem;
-}
-.our-story-text-white-bg {
-  color: rgb(28 121 28);
-}
+
 /* // Small devices (landscape phones, 576px and up) */
 @media (max-width: 768px) {
   /* giving carousel images 100% height on mobile */
@@ -253,6 +267,10 @@ input::-webkit-inner-spin-button {
   .our-story-text-header {
     font-size: 1.6rem;
   }
+  /* carousel text */
+  .carousel-caption p {
+    font-size: 3rem;
+  }
 }
 
 /* // Medium devices (tablets, 768px and up) */
@@ -263,6 +281,10 @@ input::-webkit-inner-spin-button {
   }
   .our-story-text-header {
     font-size: 3rem;
+  }
+  /* carousel text */
+  .carousel-caption p {
+    font-size: 5rem;
   }
 }
 

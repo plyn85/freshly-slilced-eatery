@@ -16,7 +16,7 @@ html {
   -webkit-overflow-scrolling: touch;
 }
 /* fonts  */
-
+.navbar,
 .mont-font {
   font-family: "Montserrat", sans-serif;
 }
@@ -39,8 +39,8 @@ html {
 }
 /* for navbar */
 /* .navbar {
-  background-color: #679603;
-} */
+  /* background-color: #679603; */
+
 /* home page carousel */
 
 .carousel-control-next,
@@ -52,13 +52,69 @@ html {
 .carousel-caption {
   margin-bottom: 15rem;
 }
-/* for images on our story page */
+/* background images */
 .bg-img-div-1 {
   background: url("https://res.cloudinary.com/plyn85/image/upload/v1619290169/freshly-sliced-eatery/pexels-photo-4916557_1_tyxed0.jpg")
     no-repeat fixed;
 }
 .bg-img-div-2 {
   background: url("https://res.cloudinary.com/plyn85/image/upload/v1619277905/freshly-sliced-eatery/pexels-photo-1435904_lur20p_gylolq.jpg")
+    no-repeat fixed;
+}
+.bg-img-div-3 {
+  background: url("https://res.cloudinary.com/plyn85/image/upload/v1619297484/freshly-sliced-eatery/pexels-photo-6210891_rz3lct.jpg")
+    no-repeat fixed;
+}
+.meal-1 {
+  background: url("https://res.cloudinary.com/plyn85/image/upload/v1619298700/freshly-sliced-eatery/meal1_nla3i8.jpg")
+    no-repeat;
+}
+.meal-2 {
+  background: url("https://res.cloudinary.com/plyn85/image/upload/c_scale,w_700/v1619300972/freshly-sliced-eatery/SATAYSFIED-CHICKEN-BOWL_srgsfb.jpg")
+    no-repeat;
+}
+.meal-3 {
+  background: url("https://res.cloudinary.com/plyn85/image/upload/c_scale,w_700/v1619301053/freshly-sliced-eatery/PAPRIKA-CHICA-SALAD-WRAP-1_oo5ugj.jpg")
+    no-repeat;
+}
+.meal-4 {
+  background: url("https://res.cloudinary.com/plyn85/image/upload/c_scale,w_700/v1619301053/freshly-sliced-eatery/PAPRIKA-CHICA-SALAD-WRAP-1_oo5ugj.jpg")
+    no-repeat;
+}
+.meal-5 {
+  background: url("https://res.cloudinary.com/plyn85/image/upload/c_scale,w_700/v1619301251/freshly-sliced-eatery/NEW-SPICY-MIDDLE-EASTERN-CHICKEN2_ac2krd.jpg")
+    no-repeat;
+}
+.meal-6 {
+  background: url("https://res.cloudinary.com/plyn85/image/upload/c_scale,w_700/v1619301364/freshly-sliced-eatery/VEGAN-HOISIN-SHROOMS-SALAD-1_wxq5l4.jpg")
+    no-repeat;
+}
+.meal-7 {
+  background: url("https://res.cloudinary.com/plyn85/image/upload/v1619300801/freshly-sliced-eatery/CHICKEN-TACO-SALAD-WRAP-1_xblclm.jpg")
+    no-repeat;
+}
+.meal-8 {
+  background: url("https://res.cloudinary.com/plyn85/image/upload/c_scale,w_700/v1619300836/freshly-sliced-eatery/JAPANESE-SALMON-SALAD-1_k17odm.jpg")
+    no-repeat;
+}
+.meal-12 {
+  background: url("https://res.cloudinary.com/plyn85/image/upload/c_scale,w_700/v1619302577/freshly-sliced-eatery/Gochujang-Korean-Plate-1_ud1h5c.jpg")
+    no-repeat;
+}
+.meal-13 {
+  background: url("https://res.cloudinary.com/plyn85/image/upload/c_scale,w_700/v1619302648/freshly-sliced-eatery/Warm-Miso-Plate-2_hn07kg.jpg")
+    no-repeat;
+}
+.meal-14 {
+  background: url("https://res.cloudinary.com/plyn85/image/upload/c_scale,w_700/v1619302698/freshly-sliced-eatery/Chimichurri-Chicken-Plate-1_u5rljh.jpg")
+    no-repeat;
+}
+.meal-15 {
+  background: url("https://res.cloudinary.com/plyn85/image/upload/c_scale,w_700/v1619302740/freshly-sliced-eatery/SPICED-HARISSA-DUKKAH-CAULI_q7empy.jpg")
+    no-repeat;
+}
+.location-page {
+  background: url("https://res.cloudinary.com/plyn85/image/upload/c_scale,w_1500/v1619304662/freshly-sliced-eatery/pexels-photo-1307698_xdeybg.jpg")
     no-repeat fixed;
 }
 /* for home page */
@@ -69,10 +125,11 @@ html {
   height: 100%;
 }
 /* our story page page images and carousel*/
+.location-page,
+.bg-img-div-3,
 .carousel-item,
 .bg-img-div {
   color: #000;
-  height: 100vh;
   background-position-x: 50%;
   background-size: cover;
   -webkit-background-size: cover;
@@ -87,8 +144,19 @@ html {
   align-items: center;
   position: relative;
 }
+
+/* setting view heights for background images */
+.carousel-item,
+.location-page,
+.bg-img-div {
+  height: 100vh;
+}
+.bg-img-div-3 {
+  height: 40vh;
+}
 /* our story page */
 /* about text */
+.company-info-row,
 .about-text {
   background-color: #eae9e93b;
 }
@@ -100,7 +168,16 @@ html {
   /* our story text  */
   line-height: 2rem;
 }
+/* for meals page cols */
+.meals-col {
+  height: 20rem;
+}
+/* location page */
 
+/* set height for row */
+/* .location-page-row {
+  height: 25rem;
+} */
 /* shopping cart css */
 
 .quantity {

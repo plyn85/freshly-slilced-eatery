@@ -8,27 +8,26 @@ import * as mealsData from "../dataAccess/mealsData.js";
 let displayMeals = (meals) => {
   //passed in to numberFormat to change meal price to currency
   let options = { style: "currency", currency: "EUR" };
-  const rows = meals.map((meal) => {
+  const col = meals.map((meal) => {
     //each meal added to a card
     let card = `
-    <div class="card card-body">
-    <p> ${meal._id}</p>
-        <span class="float-right font-weight-bold">${new Intl.NumberFormat(
+    <div class="col-12 col-md-6 meal-${meal._id} col-6 meals-col">
+        <span class="float-right font-weight-bold bebas">${new Intl.NumberFormat(
           "en-US",
           options
         ).format(meal.meal_price)}</span>
     
-        <h6 class="text-truncate">  ${meal.meal_name}</h6>
-        <p class="small">  ${meal.meal_description}
+        <h6 class="text-truncate mont-font fw-bold"> ${meal.meal_name}</h6>
+        <p class="mont-font fw-bold">  ${meal.meal_description}
         </p>
-       <button id="${
+       <a id="${
          meal._id
-       }"class="btn-sm btn-info p-2 col-5 col-md-4 col-lg-1 addMealsBtn">Add Meal</button>  
+       }"class="btn col-3 btn-outline-success p-2 addMealsBtn mt-5">Add Meal</a>  
     </div>`;
 
     return card;
   });
-  document.getElementById("mealsCard").innerHTML = rows.join("");
+  document.getElementById("mealsCard").innerHTML = col.join("");
 
   // find the add meals btn classes
   const mealsBtn = document.getElementsByClassName("addMealsBtn");

@@ -12,7 +12,7 @@
             crossorigin="anonymous"
         >
         <link rel="stylesheet" href="css/style.css">
-        <title>Freshly-sliced-eatery-home</title>
+        <title>Freshly-sliced-eatery-menu</title>
     </head>
     <body>
         <header>
@@ -45,9 +45,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="location.html">Location</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="order.html" class="btn btn-info p-2">Order now</a>
-                            </li>
                             <li class="nav-item" id="shoppingCart">
                                 <!-- shopping cart will be added here --></li>
                         </ul>
@@ -61,45 +58,21 @@
             <section>
                 <!-- container wrapping menu page -->
                 <div class="container-fluid">
-                    <div class="row py-3">
+                    <div class="row py-3  bg-img-div-3 justify-content-center">
                         <div class="col">
-                            <h1 class="text-center">Our Online Freshly sliced Eatery Menu</h1>
+                            <h1 class="text-center text-uppercase text-white mont-font">Signature salads</h1>
                         </div>
                     </div>
-                    <div class="container py-5">
-                        <div class="row">
-                            <div class="col-lg-10 mx-auto col-12 text-center mb-3">
-                                <h1 class="mt-0 text-primary">Our Menu</h1>
-                                <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas consequatur rem accusantium neque voluptatibus eaque repudiandae fugiat explicabo. Quia voluptatum nihil obcaecati quos delectus nesciunt id atque numquam sed a..</p>
-                            </div>
-                            <div class="col-12 mt-4">
-                                <h3 class="text-center">Meals choice 1</h3>
-                                <hr class="accent my-5">
-                            </div>
-                            <div class="card-columns" id="mealsCard">
-                                <!-- html cards added here from menu.js --></div>
-                            <!-- hidden input holds the quantity the same for all meals -->
-                            <input
-                                id="quantity"
-                                type="hidden"
-                                name="quantity"
-                                value="1"
-                            >
-                            <div class="col-6 mx-auto">
-                                <div class="card card-body text-center">
-                                    <h5 class="text-uppercase">Meal special</h5>
-                                    <h6>meal</h6>
-                                    <p class="small"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex error vel, amet fugiat temporibus perspiciatis doloremque labore porro commodi neque omnis eligendi nostrum quo est delectus consectetur obcaecati nemo incidunt!</p>
-                                    <span class="float-right font-weight-bold">$7</span>
-                                </div>
-                            </div>
-                            <div class="col-12 mt-5 border border-right-0 border-left-0">
-                                <div class="row">
-                                    <div class="col h5">freshly sliced Eatery</div>
-                                    <div class="col h5 text-right">1 800-889</div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="container-fluid py-5">
+                        <div class="row" id="mealsCard">
+                            <!-- html cards added here from menu.js --></div>
+                        <!-- hidden input holds the quantity the same for all meals -->
+                        <input
+                            id="quantity"
+                            type="hidden"
+                            name="quantity"
+                            value="1"
+                        >
                     </div>
                 </div>
             </section>

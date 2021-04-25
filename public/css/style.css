@@ -1,10 +1,6 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap:,300,500,600,700,800,900");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap:300,500,600,700,800,900");
-/* * {
-  border: 1px solid red;
-} */
-/* for body  */
 
 body,
 html {
@@ -118,6 +114,10 @@ html {
   background: url("https://res.cloudinary.com/plyn85/image/upload/c_scale,w_1500/v1619304662/freshly-sliced-eatery/pexels-photo-1307698_xdeybg.jpg")
     no-repeat fixed;
 }
+.bg-img-collection-form {
+  background: url("https://res.cloudinary.com/plyn85/image/upload/v1619342723/freshly-sliced-eatery/healthy-lunch-go-packed-lunch-box_1220-4541_d6qo39.jpg")
+    no-repeat fixed;
+}
 /* for home page */
 /* carousel images and text */
 
@@ -126,6 +126,7 @@ html {
   height: 100%;
 }
 /* our story page page images and carousel*/
+.bg-img-collection-form,
 .location-page,
 .bg-img-div-3,
 .carousel-item,
@@ -147,6 +148,7 @@ html {
 }
 
 /* setting view heights for background images */
+.bg-img-collection-form,
 .carousel-item,
 .location-page,
 .bg-img-div {
@@ -270,7 +272,7 @@ html {
   border-bottom: 2px solid blue !important;
 }
 
-.inputbox {
+/* .inputbox {
   position: relative;
   margin-bottom: 20px;
   width: 100%;
@@ -289,9 +291,9 @@ html {
   right: 8px;
   transition: 0.5s;
   color: #3f51b5;
-}
+} */
 
-input::-webkit-outer-spin-button,
+/* input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
@@ -305,7 +307,7 @@ input::-webkit-inner-spin-button {
 .inputbox input:valid ~ span {
   transform: translateX(-0px) translateY(-15px);
   font-size: 12px;
-}
+} */
 
 .card-blue {
   background-color: #575658;

@@ -39,7 +39,7 @@ let getCurrentDayAndTime = () => {
 
   document.getElementById(
     "firstOption"
-  ).innerHTML = `${currentDayOfWeek} ${hours}:${mins}`;
+  ).innerHTML = `Today is ${currentDayOfWeek} It,s currently ${hours}:${mins}`;
 };
 //calls the function every time the page reloads
 getCurrentDayAndTime();

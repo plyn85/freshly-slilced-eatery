@@ -52,75 +52,90 @@
         <!-- end navbar -->
         <main>
             <div class="container">
-                <div id="div"></div>
-                <div class="card mt-5 mx-auto" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Confirm your collection Time and add some details</h5>
-                        <p class="card-title">Collections times are every half hour form 900 till 430</p>
-                        <form id="collectionForm">
-                            <div class="group">
-                                <label>
-                                    <span>Name</span>
-                                    <input
-                                        id="name"
-                                        class="field"
-                                        type="text"
-                                        name="name"
-                                        maxlength="40"
-                                    >
-                                </label>
-                            </div>
-                            <div class="group">
-                                <label>
-                                    <span>Email</span>
-                                    <input
-                                        id="email"
-                                        class="field"
-                                        type="email"
-                                        name="email"
-                                        maxlength="30"
-                                    >
-                                </label>
-                            </div>
-                            <div class="group">
-                                <label for="collectionTime">Collection time</label>
-                                <select name="collectionTime" id="collectionTime" type="time">
-                                    <option value="" id="firstOption" selected>
-                                    </option >
-                                    <option value="9:00">9:00</option>
-                                    <option value="9:30">9:30</option>
-                                    <option value="10:00">10:00</option>
-                                    <option value="10:30">10:30</option>
-                                    <option value="11:00">11:00</option>
-                                    <option value="11:30">11:30</option>
-                                    <option value="12:00">12:00</option>
-                                    <option value="12:30">12:30</option>
-                                    <option value="13:30">13:30</option>
-                                    <option value="14:00">14:00</option>
-                                    <option value="14:30">14:30</option>
-                                    <option value="15:00">15:00</option>
-                                    <option value="15:30">15:30</option>
-                                    <option value="16:00">16:00</option>
-                                    <option value="16:30">16:30</option>
-                                </select>
-                            </div>
-                            <div class="group mt-3">
-                                <label for="message">Leave a note for the restaurant with anything we need to know</label>
-                                <textarea
-                                    id="message"
-                                    type="text_area"
-                                    class="form-control"
-                                    name="text_area"
-                                    rows="4"
-                                    cols="50"
-                                    maxlength="300"
-                                    placeholder="Enter your note here"
-                                ></textarea>
-                            </div>
-                            <div class="row mt-3">
-                                <button id="submitBtn" class="col-5" type="button">submit</button>
-                            </div>
-                        </form>
+                <div class="row mt-5">
+                    <div class="col-md-12">
+                        <div class="well well-sm">
+                            <form class="form-horizontal" id="collectionForm">
+                                <fieldset>
+                                    <legend class="text-center header mont-font mb-5">Place your order</legend>
+                                    <div class="form-group row">
+                                        <span class="col-md-1 text-center">
+                                            <i class="fa fa-user bigicon green fa-lg"></i>
+                                        </span>
+                                        <div class="col-md-8">
+                                            <input
+                                                id="name"
+                                                name="name"
+                                                type="text"
+                                                placeholder="First Name"
+                                                class="form-control"
+                                                maxlength="40"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mt-3">
+                                        <span class="col-md-1 text-center fa-lg">
+                                            <i class="fas fa-envelope-open-text green"></i>
+                                        </span>
+                                        <div class="col-md-8">
+                                            <input
+                                                id="email"
+                                                name="email"
+                                                type="email"
+                                                placeholder="Email Address"
+                                                class="form-control"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <span class="col-md-1 text-center fa-lg">
+                                            <i class="fas fa-utensils green"></i>
+                                        </span>
+                                        <div class="col-md-8">
+                                            <label for="collectionTime" class="mont-font mt-4 small text-secondary"> Choose a time to collect you meal</label>
+                                            <select name="collectionTime" id="collectionTime" class="form-control text-secondary">
+                                                <option value="" id="firstOption" selected></option>
+                                                <option value="9:00">9:00</option>
+                                                <option value="9:30">9:30</option>
+                                                <option value="10:00">10:00</option>
+                                                <option value="10:30">10:30</option>
+                                                <option value="11:00">11:00</option>
+                                                <option value="11:30">11:30</option>
+                                                <option value="12:00">12:00</option>
+                                                <option value="12:30">12:30</option>
+                                                <option value="13:30">13:30</option>
+                                                <option value="14:00">14:00</option>
+                                                <option value="14:30">14:30</option>
+                                                <option value="15:00">15:00</option>
+                                                <option value="15:30">15:30</option>
+                                                <option value="16:00">16:00</option>
+                                                <option value="16:30">16:30</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mt-3">
+                                        <span class="col-md-1 text-center">
+                                            <i class="fas fa-pencil-alt green fa-lg"></i>
+                                        </span>
+                                        <div class="col-md-8">
+                                            <textarea
+                                                class="form-control"
+                                                id="message"
+                                                name="message"
+                                                maxlength="200"
+                                                placeholder="Enter any special request here."
+                                                rows="7"
+                                            ></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 text-center mt-2">
+                                            <button type="button" id="submitBtn" class="btn btn-outline-success btn-lg">Submit</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

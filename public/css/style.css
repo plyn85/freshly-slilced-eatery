@@ -17,7 +17,8 @@ html {
 }
 /* fonts  */
 .navbar,
-.mont-font {
+.mont-font,
+.btn {
   font-family: "Montserrat", sans-serif;
 }
 .bebas {

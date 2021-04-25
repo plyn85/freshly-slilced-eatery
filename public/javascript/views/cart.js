@@ -25,21 +25,19 @@ let displayCartItems = (cartItems) => {
              <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
                  <h6>
                      <strong>
-                     ${new Intl.NumberFormat("en-US", options).format(
-                       cartItem.price
-                     )}
-                         <span class="text-muted">x</span>
+                    Meal Price:${new Intl.NumberFormat("en-US", options).format(
+                      cartItem.price
+                    )}
                      </strong>
                  </h6>
              </div>
              <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
                  <h6>
                      <strong>
-                        total price:    ${new Intl.NumberFormat(
+                        Total price:${new Intl.NumberFormat(
                           "en-US",
                           options
                         ).format(cartItem.total)}
-                         <span class="text-muted">x</span>
                      </strong>
                  </h6>
              </div>
@@ -197,10 +195,10 @@ let loadCart = async () => {
 //Use the array map method to iterate through cart
 let displayCart = (subTotal) => {
   //add the html to be displayed with the subTotal
-  let cartSubTotal = `<div>
-        Total price:
-        <b>  ${new Intl.NumberFormat("en-US", options).format(subTotal)}</b>
-      </div>`;
+  let cartSubTotal = `
+        SubTotal:
+         ${new Intl.NumberFormat("en-US", options).format(subTotal)}
+      `;
   //get the id of bottom section of the cartCard
   let cartCardLower = document.getElementById("cartCardLower");
   //add to cart page

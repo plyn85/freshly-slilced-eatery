@@ -3,7 +3,7 @@
 //
 
 // API Base URL - the server address
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://freshly-sliced-api.azurewebsites.net";
 
 // Get HTTP headers for requests to the api
 let getHeaders = () => {

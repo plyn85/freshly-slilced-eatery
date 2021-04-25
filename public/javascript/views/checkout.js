@@ -10,23 +10,19 @@ let displayCartItems = (cartItems) => {
   //
   if (cartItems != null) {
     const rows = cartItems.map((cartItem) => {
-      let card = `<div class="row">
-        <div class="product-name col-4">
-            <strong>${cartItem.meal_name}</strong>
-        </div>
-        <div class="col-4">
-            <strong>
-                quantity:${cartItem.quantity}
-            </strong>
-        </div>
-        <div class="col-4">
-            <strong>
+      let card = `
+        <small class="product-name col-12 col-md-4">
+           ${cartItem.meal_name}
+        </small>
+        <small class="col-12 col-md-4">
+                quantity: ${cartItem.quantity}
+        </small>
+        <small class="col-12 col-md-4">
                 total price:${new Intl.NumberFormat("en-US", options).format(
                   cartItem.total
                 )}
-            </strong>
-        </div>
-    </div>`;
+        </small>
+    `;
       return card;
     });
 

@@ -1,7 +1,9 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap:,300,500,600,700,800,900");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap:300,500,600,700,800,900");
-
+* {
+  border: 1px solid red;
+}
 body,
 html {
   height: 100%;
@@ -37,6 +39,11 @@ html {
 /* for navbar */
 /* .navbar {
   /* background-color: #679603; */
+
+/* hr on order page */
+.hr-order {
+  border: 2px solid green;
+}
 
 /* home page carousel */
 
@@ -159,6 +166,7 @@ html {
 }
 /* our story page */
 /* about text */
+.bg-checkout-cartItems,
 .company-info-row,
 .about-text {
   background-color: #eae9e93b;
@@ -251,11 +259,39 @@ html {
   margin-top: 20px;
 }
 
-/* css for checkout  */
+/* css for checkout */
+.social-icon-footer-links {
+  color: #5cb85c;
+  border: 2px solid green;
+  padding: 0;
+  border-radius: 50px;
+  margin: 5px;
+}
+
+#checkout,
+button {
+  background: none;
+  color: #5cb85c;
+  border: 2px solid #5cb85c;
+  border-radius: 10px;
+  padding: 4px;
+}
+.social-icon-footer-links:hover,
+#checkout:hover,
+button:hover {
+  background: #5cb85c;
+  transition: all 0.6s ease 0s;
+  color: #ffffff;
+}
 .card {
   border: none;
 }
-
+#card-element {
+  width: 1rem;
+}
+.payment-form {
+  overflow: hidden;
+}
 .form-control {
   border-bottom: 2px solid #eee !important;
   border: none;
@@ -272,67 +308,7 @@ html {
   border-bottom: 2px solid blue !important;
 }
 
-/* .inputbox {
-  position: relative;
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-.inputbox span {
-  position: absolute;
-  top: 7px;
-  left: 11px;
-  transition: 0.5s;
-}
-
-.inputbox i {
-  position: absolute;
-  top: 13px;
-  right: 8px;
-  transition: 0.5s;
-  color: #3f51b5;
-} */
-
-/* input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.inputbox input:focus ~ span {
-  transform: translateX(-0px) translateY(-15px);
-  font-size: 12px;
-}
-
-.inputbox input:valid ~ span {
-  transform: translateX(-0px) translateY(-15px);
-  font-size: 12px;
-} */
-
-.card-blue {
-  background-color: #575658;
-}
-
-.hightlight {
-  background-color: #575658;
-  padding: 10px;
-  border-radius: 10px;
-  margin-top: 15px;
-  font-size: 14px;
-}
-
-.decoration {
-  text-decoration: none;
-  font-size: 14px;
-}
-
 /* for login form */
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
 
 /* // Small devices (landscape phones, 576px and up) */
 @media (max-width: 768px) {
@@ -366,16 +342,4 @@ input::-webkit-inner-spin-button {
   .carousel-caption p {
     font-size: 5rem;
   }
-}
-
-/* // Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-}
-
-/* // X-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-}
-
-/* // XX-Large devices (larger desktops, 1400px and up) */
-@media (min-width: 1400px) {
 }

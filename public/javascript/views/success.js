@@ -8,12 +8,25 @@ let getCusInfo = () => {
     if (obj.hasOwnProperty(key)) {
       customerInfo = `
         
-      
-          <h2>Order id: ${obj._id}<h2>
-          <h3>Name: ${obj.name}<h3>
-          <h4>Email: ${obj.email}<h4> 
-          <h4>Order at: ${obj.time_created}<h4>
-          <h4>Collection time: ${obj.collection_time}<h4>`;
+        
+          <h2 class="text-center">Order id: ${
+            obj._id
+          }</h2><hr class="green hr-order">
+          <h3 class="text-center">Name: ${
+            obj.name
+          }</h3><hr class="green hr-order">
+          <h4 class="text-center">Email: ${
+            obj.email
+          }</h4><hr class="green hr-order">
+          <h4 class="text-center">Ordered on: ${obj.time_created.substring(
+            0,
+            10
+          )}</h4>
+          <h4 class="text-center">Collection time: ${
+            obj.collection_time
+          }</h4><hr class="green hr-order">
+          
+          `;
     }
   }
   document.getElementById("successInfo").innerHTML = customerInfo;
@@ -31,10 +44,13 @@ let getPaymentInfo = () => {
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
       PaymentInfo = `
-          <h4>invoice_num: ${obj.invoice_num}<h4>
-          <h3>Amount charged: ${new Intl.NumberFormat("en-US", options).format(
-            obj.amount_charged / 100
-          )} <h3>
+          <h4 class="text-center">invoice number: ${
+            obj.invoice_num
+          }</h4><hr class="green hr-order">
+          <h4 class="text-center">Amount charged: ${new Intl.NumberFormat(
+            "en-US",
+            options
+          ).format(obj.amount_charged / 100)} </h4><hr class="green hr-order">
          
          `;
     }

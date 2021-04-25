@@ -12,7 +12,7 @@ let displayCartItems = (cartItems) => {
     const rows = cartItems.map((cartItem) => {
       let card = `
      <div class="row">
-         <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+         <div class="col-12  col-md-6">
              <h4 class="product-name">
               <small id='mealId'>${cartItem.meal_id}</small>
                      <strong>${cartItem.meal_name}</strong>
@@ -21,8 +21,8 @@ let displayCartItems = (cartItems) => {
                  <small>${cartItem.meal_description}</small>
              </h4>
          </div>
-         <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
-             <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
+         <div class="col-12 col-md-6 row">
+             <div class="col-12 col-md-6 text-md-right">
                  <h6>
                      <strong>
                     Meal Price:${new Intl.NumberFormat("en-US", options).format(
@@ -31,7 +31,7 @@ let displayCartItems = (cartItems) => {
                      </strong>
                  </h6>
              </div>
-             <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
+             <div class="col-12 col-md-6 text-md-right">
                  <h6>
                      <strong>
                         Total price:${new Intl.NumberFormat(
@@ -42,7 +42,7 @@ let displayCartItems = (cartItems) => {
                  </h6>
              </div>
              
-             <div class="col-4 col-sm-4 col-md-4">
+             <div class="col-4">
                  <div class="quantity">
                      <input type="button" value="+" class="plus qtyInc" id="${
                        cartItem.meal_id
@@ -64,7 +64,7 @@ let displayCartItems = (cartItems) => {
                      }">
                  </div>
                  </div>
-             <div class="col-2 col-sm-2 col-md-2 text-right">
+             <div class="col-2 text-right">
                  <button id="${
                    cartItem._id
                  }" type="button" class="btn btn-outline-danger btn-xs deleteCartItem">
@@ -217,6 +217,47 @@ async function deleteItem() {
   loadCart();
   navCart.loadNavCart();
 }
+
+//function to check if the user info is already in local storage
+let checkUserInLocalStorage = () => {
+  //check if the user information is in local storage
+  if (typeof localStorage.getItem("customer") === "string") {
+    //if it exists get it from the local storage
+    let obj = JSON.parse(window.localStorage.getItem("customer"));
+    //loop through the object
+    for (let key in obj) {
+      //if it has a collection time
+      if (obj.hasOwnProperty("collection_time")) {
+        if (
+          confirm(
+            `You have previously entered information of
+            name: ${obj.name} 
+            email: ${obj.email}
+            collection time: ${obj.collection_time}
+            do you wish to use this for your current order?`
+          )
+        ) {
+          //if the user wants to use the collection time already entered
+          //send them to checkout page
+          window.location.replace("checkout.html");
+        }
+        //if the do not
+        else {
+          //send them to the form to renter there info
+          window.location.replace("confirmCollection.html");
+        }
+        //break out of the loop if collection type is confirmed or rejected
+        break;
+      }
+    }
+  }
+};
+//adding event listener to checkout button if the user has already entered their information
+// that will be directed to checkout page after clicking and as their information is already in
+//local storage
+document
+  .getElementById("checkoutBtn")
+  .addEventListener("click", checkUserInLocalStorage);
 
 //loading the cartItems and the cart
 //calls the function

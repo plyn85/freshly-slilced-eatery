@@ -8,8 +8,8 @@ let displayNavCart = async (cartItemsLength) => {
   if (cartItemsLength == undefined) {
     cartItemsLength = 0;
   }
-  let navItem = `<a href="cart.html" id='hidden'>
-  <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
+  let navItem = `<a href="cart.html" id='hidden' class="green">
+  <i class="fa fa-shopping-cart fa-lg green" aria-hidden="true"></i>
    </a><small>${cartItemsLength}</small>`;
   //return the nav item
   return (document.getElementById("shoppingCart").innerHTML = navItem);

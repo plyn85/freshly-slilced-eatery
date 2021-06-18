@@ -250,6 +250,10 @@ let checkUserInLocalStorage = () => {
         break;
       }
     }
+  } //if the do not
+  else {
+    //send them to the form to enter there info
+    window.location.replace("confirmCollection.html");
   }
 };
 //adding event listener to checkout button if the user has already entered their information

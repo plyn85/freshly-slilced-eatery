@@ -92,3 +92,20 @@ let sendCustomerForm = async () => {
 document
   .getElementById("submitBtn")
   .addEventListener("click", sendCustomerForm);
+
+//check if customer has chosen delivery
+let checkDel = () => {
+  //get the id
+  let colOrDel = document.getElementById("collectOrDel");
+  //if the users delivery address is in local storage
+  if (typeof localStorage.getItem("addressInfo") === "string") {
+    colOrDel.innerHTML = `have your meal delivered`;
+  }
+  //if it is not
+  else {
+    colOrDel.innerHTML = `to collect your meal`;
+  }
+};
+
+//call the checkDel function
+checkDel();

@@ -11,6 +11,12 @@ html {
   /* added for ios devices */
   -webkit-overflow-scrolling: touch;
 }
+
+/* class to hide elements */
+.hide {
+  display: none;
+}
+
 /* fonts  */
 .navbar,
 .mont-font,

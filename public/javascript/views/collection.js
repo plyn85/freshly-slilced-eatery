@@ -93,19 +93,20 @@ document
   .getElementById("submitBtn")
   .addEventListener("click", sendCustomerForm);
 
-//check if customer has chosen delivery
-let checkDel = () => {
-  //get the id
-  let colOrDel = document.getElementById("collectOrDel");
-  //if the users delivery address is in local storage
-  if (typeof localStorage.getItem("addressInfo") === "string") {
-    colOrDel.innerHTML = `have your meal delivered`;
-  }
-  //if it is not
-  else {
-    colOrDel.innerHTML = `to collect your meal`;
-  }
-};
-
 //call the checkDel function
 checkDel();
+let colOrDel = document.getElementById("collectOrDel");
+let delOption = document.getElementById("deliveryOption");
+let colOption = document.getElementById("collectionOption");
+let addressField = document.getElementById("addressField");
+delOption.addEventListener("click", function () {
+  colOrDel.innerHTML = `delivered`;
+  colOption.checked = false;
+  addressField.classList.remove("hide");
+});
+
+colOption.addEventListener("click", function () {
+  colOrDel.innerHTML = `collected`;
+  delOption.checked = false;
+  addressField.classList.add("hide");
+});

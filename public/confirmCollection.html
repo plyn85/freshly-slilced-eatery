@@ -91,14 +91,42 @@
                                     >
                                 </div>
                             </div>
+                            <div class="form-group row mt-3">
+                                <span class="col-1 text-center fa-lg">
+                                    <i class="fas fa-truck green"></i>
+                                </span>
+                                <div class="col-11 text-center mont-font">
+                                    <p class="text-secondary small">Please select delivery or collection option for your order</p>
+                                    <input id="deliveryOption" name="deliveryOption" type="radio">
+                                    <label for="deliveryOption">Delivery</label>
+                                    <input id="collectionOption" name="collectionOption" type="radio">
+                                    <label for="collectionOption">Collection</label>
+                                </div>
+                            </div>
+                            <!-- address field will only be showed if user has selected the delivery option -->
+                            <div class="form-group  row mt-3 hide" id="addressField">
+                                <span class="col-1 text-center fa-lg">
+                                    <i class="fas fa-envelope-open-text green"></i>
+                                </span>
+                                <div class="col-11">
+                                    <input
+                                        id="address"
+                                        name="address"
+                                        type="address"
+                                        placeholder="Delivery Address"
+                                        class="form-control"
+                                    >
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <span class="col-1 text-center fa-lg mt-3">
                                     <i class="fas fa-utensils green"></i>
                                 </span>
                                 <div class="col-11">
                                     <label for="collectionTime" class="mont-font mt-4 small text-secondary">
-                                        Choose a time
-                                        <span id="collectOrDel"></span>
+                                        Choose a time have your meal
+                                        <span id="collectOrDel">
+                                            <!-- the information on collection or delivery will be added here  --></span>
                                     </label>
                                     <select name="collectionTime" id="collectionTime" class="form-control text-secondary">
                                         <option value="" id="firstOption" selected></option>

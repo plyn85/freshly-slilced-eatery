@@ -52,8 +52,15 @@ let getCustomerForm = () => {
   let message = document.getElementById("message").value;
   let name = document.getElementById("name").value;
   let email = document.getElementById("email").value;
+  let addressField = document.getElementById("address").value;
   ///validate the form inputs
-  let validatedInputs = validateForm(collectionTime, name, email, message);
+  let validatedInputs = validateForm(
+    collectionTime,
+    name,
+    email,
+    message,
+    addressField
+  );
 
   // //if the validation returns true
   if (validatedInputs) {
@@ -93,20 +100,24 @@ document
   .getElementById("submitBtn")
   .addEventListener("click", sendCustomerForm);
 
-//call the checkDel function
-checkDel();
+//get the id for the delivery and collection option events
 let colOrDel = document.getElementById("collectOrDel");
 let delOption = document.getElementById("deliveryOption");
 let colOption = document.getElementById("collectionOption");
 let addressField = document.getElementById("addressField");
-delOption.addEventListener("click", function () {
+//function if delivery option is selected
+let delOptionSelected = () => {
   colOrDel.innerHTML = `delivered`;
   colOption.checked = false;
   addressField.classList.remove("hide");
-});
+};
 
-colOption.addEventListener("click", function () {
+//function if collection option is selected
+let colOptionSelected = () => {
   colOrDel.innerHTML = `collected`;
   delOption.checked = false;
   addressField.classList.add("hide");
-});
+};
+//add the event listeners
+delOption.addEventListener("click", delOptionSelected);
+colOption.addEventListener("click", colOptionSelected);

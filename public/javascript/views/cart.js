@@ -224,48 +224,31 @@ let checkUserInLocalStorage = () => {
   if (typeof localStorage.getItem("customer") === "string") {
     //if it exists get it from the local storage
     let obj = JSON.parse(window.localStorage.getItem("customer"));
-    //loop through the object
-    for (let key in obj) {
-      //if it has a collection time
-      if (obj.hasOwnProperty("collection_time")) {
-        if (
-          confirm(
-            `You have previously entered information of
+    if (
+      confirm(
+        `You have previously entered information of
             name: ${obj.name} 
             email: ${obj.email}
             collection time: ${obj.collection_time}
             do you wish to use this for your current order?`
-          )
-        ) {
-          //if the user wants to use the collection time already entered
-          //send them to checkout page
-          window.location.replace("checkout.html");
-        }
-        //if the do not
-        else {
-          //send them to the form to renter there info
-          window.location.replace("confirmCollection.html");
-        }
-        //break out of the loop if collection type is confirmed or rejected
-        break;
-      }
+      )
+    ) {
+      //if the user wants to use the information already entered
+      //send them to checkout page
+      window.location.replace("checkout.html");
     }
-  } //if the do not
-  else {
-    //send them to the form to enter there info
-    window.location.replace("confirmCollection.html");
   }
+
+  //unless the user has chosen to use the previous loaded information
+  // they should be sent to the form to submit there details
+  window.location.replace("confirmCollection.html");
 };
-//adding event listener to checkout button if the user has already entered their information
-// that will be directed to checkout page after clicking and as their information is already in
-//local storage
+//adding eventListener
 document
   .getElementById("checkoutBtn")
   .addEventListener("click", checkUserInLocalStorage);
 
-//loading the cartItems and the cart
-//calls the function
-// displayNavCart();
+//calls the functions
 loadCartItems();
 loadCart();
 

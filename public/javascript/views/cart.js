@@ -222,20 +222,23 @@ async function deleteItem() {
 let checkUserInLocalStorage = () => {
   //check if the user information is in local storage
   let obj = JSON.parse(window.localStorage.getItem("customer"));
-  //if the customer object is not empty
+  //if the customer object exists
   if (obj != null) {
-    if (
-      confirm(
-        `You have previously entered information of
+    //and if it is not empty
+    if (Object.entries(obj).length != 0) {
+      if (
+        confirm(
+          `You have previously entered information of
             name: ${obj.name} 
             email: ${obj.email}
             collection time: ${obj.collection_time}
             do you wish to use this for your current order?`
-      )
-    ) {
-      //if the user wants to use the information already entered
-      //send them to checkout page
-      window.location.replace("checkout.html");
+        )
+      ) {
+        //if the user wants to use the information already entered
+        //send them to checkout page
+        window.location.replace("checkout.html");
+      }
     }
   }
   //unless the user has chosen to use the previous loaded information

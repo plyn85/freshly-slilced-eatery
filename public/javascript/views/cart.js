@@ -221,9 +221,9 @@ async function deleteItem() {
 //function to check if the user info is already in local storage
 let checkUserInLocalStorage = () => {
   //check if the user information is in local storage
-  if (typeof localStorage.getItem("customer") === "string") {
-    //if it exists get it from the local storage
-    let obj = JSON.parse(window.localStorage.getItem("customer"));
+  let obj = JSON.parse(window.localStorage.getItem("customer"));
+  //if the customer object is not empty
+  if (obj != null) {
     if (
       confirm(
         `You have previously entered information of
@@ -238,7 +238,6 @@ let checkUserInLocalStorage = () => {
       window.location.replace("checkout.html");
     }
   }
-
   //unless the user has chosen to use the previous loaded information
   // they should be sent to the form to submit there details
   window.location.replace("confirmCollection.html");

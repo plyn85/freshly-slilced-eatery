@@ -20,7 +20,8 @@ let getCustomerForm = () => {
   let name = document.getElementById("name").value;
   let email = document.getElementById("email").value;
   let addressValue = address.value;
-  let validatedAddress;
+  // this remains true unless false is returned from the validator
+  let validatedAddress = true;
   ///validate the form inputs
   let validatedInputs = validateForm(
     collectionOrDeliveryTime,
@@ -47,7 +48,6 @@ let getCustomerForm = () => {
   } else {
     console.log("form validation failed");
   }
-  alert("cust form", CustomerForm);
 };
 
 //send  the collection form

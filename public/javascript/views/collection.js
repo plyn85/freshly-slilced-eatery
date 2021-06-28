@@ -11,7 +11,6 @@ let colOption = document.getElementById("collectionOption");
 let addressField = document.getElementById("addressFieldDiv");
 let address = document.getElementById("address");
 let subBtn = document.getElementById("submitBtn");
-
 let getCustomerForm = () => {
   //get values from collection form
   let collectionOrDeliveryTime =
@@ -22,6 +21,9 @@ let getCustomerForm = () => {
   let addressValue = address.value;
   // this remains true unless false is returned from the validator
   let validatedAddress = true;
+  //both delivery and collection set to false;
+  let delivery = false;
+  let collection = false;
   ///validate the form inputs
   let validatedInputs = validateForm(
     collectionOrDeliveryTime,
@@ -33,6 +35,13 @@ let getCustomerForm = () => {
   if (delOption.checked == true) {
     //validate address
     validatedAddress = validateAddress(addressValue);
+    //set delivery to true;
+    delivery = true;
+  }
+  //if the option was not chosen then the collection option was
+  else {
+    //so set the collection to true;
+    collection = true;
   }
   //if the validation returns true
   if ((validatedInputs, validatedAddress)) {
@@ -43,7 +52,9 @@ let getCustomerForm = () => {
       email,
       collectionOrDeliveryTime,
       addressValue,
-      message
+      message,
+      collection,
+      delivery
     );
   } else {
     console.log("form validation failed");

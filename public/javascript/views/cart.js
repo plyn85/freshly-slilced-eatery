@@ -252,12 +252,13 @@ let checkUserInLocalStorage = () => {
         //if the user wants to use the information already entered
         //send them to checkout page
         window.location.replace("checkout.html");
+      } else {
+        //unless the user has chosen to use the previous loaded information
+        // they should be sent to the form to submit there details
+        window.location.replace("confirmCollection.html");
       }
     }
   }
-  //unless the user has chosen to use the previous loaded information
-  // they should be sent to the form to submit there details
-  window.location.replace("confirmCollection.html");
 };
 //adding eventListener
 document

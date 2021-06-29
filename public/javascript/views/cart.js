@@ -220,18 +220,32 @@ async function deleteItem() {
 
 //function to check if the user info is already in local storage
 let checkUserInLocalStorage = () => {
+  //variables
+  let collectionOrDelivery = "";
+  let address = "";
   //check if the user information is in local storage
   let obj = JSON.parse(window.localStorage.getItem("customer"));
   //if the customer object exists
   if (obj != null) {
     //and if it is not empty
     if (Object.entries(obj).length != 0) {
+      //check if collection chosen
+      if (obj.collection == "yes") {
+        collectionOrDelivery = `Collection`;
+      }
+      //check if delivery has been chosen
+      else {
+        collectionOrDelivery = "Delivery";
+        //add the customer address if it has
+        address = `delivery address: ${obj.address}`;
+      }
       if (
         confirm(
           `You have previously entered information of
             name: ${obj.name} 
             email: ${obj.email}
-            collection time: ${obj.collection_time}
+            ${collectionOrDelivery} time: ${obj.collection_delivery_time}
+            ${address}
             do you wish to use this for your current order?`
         )
       ) {

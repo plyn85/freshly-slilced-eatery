@@ -133,14 +133,22 @@ let addCustomerInfoToForm = () => {
       collectionOrDeliveryTime[i].selected = true;
     }
   }
+  //check if a message has been previously left
+  if (obj.message != "no message") {
+    //then fill the message with the previous message left
+    message.value = obj.message;
+  }
 };
 
 //check if the user has chosen to fill the form
 let checkUserOption = () => {
   let obj = JSON.parse(window.localStorage.getItem("fillUserForm"));
-  //if they have call the function the fills the form for them
-  if (obj) {
-    addCustomerInfoToForm();
+  //check object is not null
+  if (obj != null) {
+    //if they have call the function the fills the form for them
+    if (obj) {
+      addCustomerInfoToForm();
+    }
   }
 };
 

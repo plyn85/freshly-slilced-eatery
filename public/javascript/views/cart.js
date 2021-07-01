@@ -1,6 +1,7 @@
 //imports
 import * as cartData from "../dataAccess/cartData.js";
 import * as navCart from "../views/navCart.js";
+
 //passed in to numberFormat to change  to currency
 let options = { style: "currency", currency: "EUR" };
 //
@@ -223,6 +224,7 @@ let checkUserInLocalStorage = () => {
   //variables
   let collectionOrDelivery = "";
   let address = "";
+  let fillUserForm = false;
   //check if the user information is in local storage
   let obj = JSON.parse(window.localStorage.getItem("customer"));
   //if the customer object exists
@@ -241,24 +243,32 @@ let checkUserInLocalStorage = () => {
       }
       if (
         confirm(
-          `You have previously entered information of
-            name: ${obj.name} 
-            email: ${obj.email}
-            ${collectionOrDelivery} time: ${obj.collection_delivery_time}
-            ${address}
-            do you wish to use this for your current order?`
+          `You have previously entered order details
+          name: ${obj.name} 
+          email: ${obj.email}
+          ${collectionOrDelivery} time: ${obj.collection_delivery_time}
+          ${address}
+          
+          do you wish to use some or all of these details for
+          your current order?`
         )
       ) {
-        //if the user wants to use the information already entered
-        //send them to checkout page
-        window.location.replace("checkout.html");
+        //set fill user form to true and add to local storage
+        fillUserForm = true;
+        JSON.stringify(
+          window.localStorage.setItem("fillUserForm", fillUserForm)
+        );
       } else {
-        //unless the user has chosen to use the previous loaded information
-        // they should be sent to the form to submit there details
-        window.location.replace("confirmCollection.html");
+        //and fill user form should be false
+        fillUserForm = false;
+        JSON.stringify(
+          window.localStorage.setItem("fillUserForm", fillUserForm)
+        );
       }
     }
   }
+  //send the user to confirmCollection form
+  window.location.replace("confirmCollection.html");
 };
 //adding eventListener
 document

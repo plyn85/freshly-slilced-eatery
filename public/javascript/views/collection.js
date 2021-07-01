@@ -11,14 +11,20 @@ let colOption = document.getElementById("collectionOption");
 let addressField = document.getElementById("addressFieldDiv");
 let address = document.getElementById("address");
 let subBtn = document.getElementById("submitBtn");
+//get ids from the collection form
+let collectionOrDeliveryTime = document.getElementById("collectionTime");
+let message = document.getElementById("message");
+let name = document.getElementById("name");
+let email = document.getElementById("email");
+
+//get the customer form values
 let getCustomerForm = () => {
-  //get values from collection form
-  let collectionOrDeliveryTime =
-    document.getElementById("collectionTime").value;
-  let message = document.getElementById("message").value;
-  let name = document.getElementById("name").value;
-  let email = document.getElementById("email").value;
+  //get the values from the form
+  let collectionOrDeliveryTimeValue = collectionOrDeliveryTime.value;
+  let messageValue = message.value;
+  let nameValue = name.value;
   let addressValue = address.value;
+  let emailValue = email.value;
   // this remains true unless false is returned from the validator
   let validatedAddress = true;
   //both delivery and collection set to false;
@@ -26,10 +32,10 @@ let getCustomerForm = () => {
   let collection = false;
   ///validate the form inputs
   let validatedInputs = validateForm(
-    collectionOrDeliveryTime,
-    name,
-    email,
-    message
+    collectionOrDeliveryTimeValue,
+    nameValue,
+    emailValue,
+    messageValue
   );
   //check if the delivery option has been selected
   if (delOption.checked == true) {
@@ -48,11 +54,11 @@ let getCustomerForm = () => {
     //create the form instance
     return new CustomerForm(
       // read the form values and pass to the contact constructor
-      name,
-      email,
-      collectionOrDeliveryTime,
+      nameValue,
+      emailValue,
+      collectionOrDeliveryTimeValue,
       addressValue,
-      message,
+      messageValue,
       collection,
       delivery
     );
@@ -93,6 +99,48 @@ let colOptionSelected = () => {
   delOption.checked = false;
   addressField.classList.add("hide");
 };
+// //write a function to fill confirm collection form for the user if that option is chosen
+let addCustomerInfoToForm = () => {
+  //get the customers info
+  let obj = JSON.parse(window.localStorage.getItem("customer"));
+  //add the info to the form fields
+  name.value = `${obj.name}`;
+  email.value = `${obj.email}`;
+  //check if the user chose the delivery option
+  if (obj.delivery == "yes") {
+    //call the function for a selected delivery option
+    delOptionSelected();
+    address.value = `${obj.address}`;
+  }
+  //if they chose the collection option
+  else {
+    //call the function for collection option selected
+    colOptionSelected();
+  }
+  //add the delivery or collection time chosen
+  //first loop through the select options
+  for (let i = 0; i < collectionOrDeliveryTime.length; i++) {
+    //if the select option is the same as one in local storage
+    if (
+      collectionOrDeliveryTime[i].value == `${obj.collection_delivery_time}`
+    ) {
+      //then select that option
+      collectionOrDeliveryTime[i].selected = true;
+    }
+  }
+};
+
+//check if the user has chosen to fill the form
+let checkUserOption = () => {
+  let obj = JSON.parse(window.localStorage.getItem("fillUserForm"));
+  //if they have call the function the fills the form for them
+  if (obj) {
+    addCustomerInfoToForm();
+  }
+};
+
+//call the check user option function
+checkUserOption();
 //add the event listeners
 delOption.addEventListener("click", delOptionSelected);
 colOption.addEventListener("click", colOptionSelected);

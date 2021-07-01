@@ -108,12 +108,17 @@ let addCustomerInfoToForm = () => {
   email.value = `${obj.email}`;
   //check if the user chose the delivery option
   if (obj.delivery == "yes") {
+    //auto select the delivery option
+    delOption.checked = true;
     //call the function for a selected delivery option
     delOptionSelected();
     address.value = `${obj.address}`;
   }
   //if they chose the collection option
   else {
+    //auto select the selection option
+    colOption.checked = true;
+
     //call the function for collection option selected
     colOptionSelected();
   }

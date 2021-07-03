@@ -103,8 +103,11 @@ let addCustomerInfoToForm = () => {
   //get the customers info from local storage
   let obj = JSON.parse(window.localStorage.getItem("customer"));
   //add the info to the form fields
-  name.value = `${obj.name}`;
-  email.value = `${obj.email}`;
+  //check the fields are not undefined
+  if (obj.name != undefined && obj.email != undefined) {
+    name.value = `${obj.name}`;
+    email.value = `${obj.email}`;
+  }
   //check if the user chose the delivery option or an address has been added
   if (obj.delivery == "yes" || obj.address != "") {
     //auto select the delivery option
@@ -132,10 +135,13 @@ let addCustomerInfoToForm = () => {
       collectionOrDeliveryTime[i].selected = true;
     }
   }
-  //check if a message has been previously left
-  if (obj.message != "no message") {
-    //then fill the message with the previous message left
-    message.value = obj.message;
+  alert(obj.message != "no message");
+  if (obj.message != undefined) {
+    //check if a message has been previously left
+    if (obj.message != "no message") {
+      //then fill the message with the previous message left
+      message.value = obj.message;
+    }
   }
 };
 
@@ -144,7 +150,6 @@ let checkUserOption = () => {
   //get the objects from local storage
   let fillFormObj = JSON.parse(window.localStorage.getItem("fillUserForm"));
   let customerObj = JSON.parse(window.localStorage.getItem("customer"));
-  alert(customerObj.address != "");
   //check customer object is not null
   if (customerObj != null) {
     //and if it is not empty

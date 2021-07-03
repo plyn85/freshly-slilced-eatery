@@ -1,9 +1,15 @@
 let getAddressInfo = async () => {
   //get the user address info
   let addressInfo = document.getElementById("address").value;
-  //add it to local storage
-  JSON.stringify(addressInfo);
-  window.localStorage.setItem("addressInfo", addressInfo);
+  //add the address info to an object to copy the address that will be
+  // adding from collection form submission
+  let customer = {
+    address: addressInfo,
+  };
+
+  //then add the address info to local storage
+  window.localStorage.setItem("customer", JSON.stringify(customer));
+
   //alert the user that there address has been added
   if (typeof localStorage.getItem("addressInfo") === "string") {
     alert("Your delivery information has been added");

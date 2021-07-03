@@ -73,16 +73,15 @@ let sendCustomerForm = async () => {
   const customerForm = getCustomerForm();
   //send to the collection info function
   const result = await addCustomerInfo(customerForm);
-
   //if the result is not empty
   if (result != null) {
-    // and returned customer info to local storage
+    // add returned customer info to local storage
     let customer = JSON.stringify(result);
     window.localStorage.setItem("customer", customer);
     //and send the customer to the payments page
     window.location.replace("checkout.html");
   } else {
-    alert("your information was not submitted");
+    alert("your information was not submitted please try again");
   }
 }; // End Function
 
@@ -101,13 +100,13 @@ let colOptionSelected = () => {
 };
 // //write a function to fill confirm collection form for the user if that option is chosen
 let addCustomerInfoToForm = () => {
-  //get the customers info
+  //get the customers info from local storage
   let obj = JSON.parse(window.localStorage.getItem("customer"));
   //add the info to the form fields
   name.value = `${obj.name}`;
   email.value = `${obj.email}`;
-  //check if the user chose the delivery option
-  if (obj.delivery == "yes") {
+  //check if the user chose the delivery option or an address has been added
+  if (obj.delivery == "yes" || obj.address != "") {
     //auto select the delivery option
     delOption.checked = true;
     //call the function for a selected delivery option
@@ -142,12 +141,19 @@ let addCustomerInfoToForm = () => {
 
 //check if the user has chosen to fill the form
 let checkUserOption = () => {
-  let obj = JSON.parse(window.localStorage.getItem("fillUserForm"));
-  //check object is not null
-  if (obj != null) {
-    //if they have call the function the fills the form for them
-    if (obj) {
-      addCustomerInfoToForm();
+  //get the objects from local storage
+  let fillFormObj = JSON.parse(window.localStorage.getItem("fillUserForm"));
+  let customerObj = JSON.parse(window.localStorage.getItem("customer"));
+  alert(customerObj.address != "");
+  //check customer object is not null
+  if (customerObj != null) {
+    //and if it is not empty
+    if (Object.entries(customerObj).length != 0) {
+      //check the user has chosen to auto fill the form or if address has already been added from delivery.html
+      if (fillFormObj || customerObj.address != "") {
+        //if they have call the function the fills the form for them
+        addCustomerInfoToForm();
+      }
     }
   }
 };

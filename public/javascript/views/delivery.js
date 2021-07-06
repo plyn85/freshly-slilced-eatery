@@ -20,8 +20,22 @@ let getAddressInfo = async () => {
     delForm.reset();
   }
 };
-
-//add the event listener
+//function to add the collection option to local storage
+let addCollectionOptionDelPage = () => {
+  //add the collection option copying what will be added
+  // when collection form is submitted
+  let customer = {
+    collection: "yes",
+  };
+  //then add the collection info to local storage
+  window.localStorage.setItem("customer", JSON.stringify(customer));
+};
+//add the event listeners
+//for the address
 document
   .getElementById("submitBtnDel")
   .addEventListener("click", getAddressInfo);
+//for the collection option
+document
+  .getElementById("collectionOptionDelPage")
+  .addEventListener("click", addCollectionOptionDelPage);

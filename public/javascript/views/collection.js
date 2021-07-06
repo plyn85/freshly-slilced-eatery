@@ -109,7 +109,7 @@ let addCustomerInfoToForm = () => {
     email.value = `${obj.email}`;
   }
   //check if the user chose the delivery option or an address has been added
-  if (obj.delivery == "yes" || obj.address != "") {
+  if (obj.delivery == "yes" || obj.address != undefined) {
     //auto select the delivery option
     delOption.checked = true;
     //call the function for a selected delivery option
@@ -117,7 +117,7 @@ let addCustomerInfoToForm = () => {
     address.value = `${obj.address}`;
   }
   //if they chose the collection option
-  else {
+  else if (obj.collection == "yes") {
     //auto select the selection option
     colOption.checked = true;
 
@@ -135,7 +135,8 @@ let addCustomerInfoToForm = () => {
       collectionOrDeliveryTime[i].selected = true;
     }
   }
-  alert(obj.message != "no message");
+
+  //check if the message is undefined
   if (obj.message != undefined) {
     //check if a message has been previously left
     if (obj.message != "no message") {

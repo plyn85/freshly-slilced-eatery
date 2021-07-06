@@ -241,9 +241,11 @@ let checkUserInLocalStorage = () => {
         //add the customer address if it has
         address = `delivery address: ${obj.address}`;
       }
-      if (
-        confirm(
-          `You have previously entered order details
+      //do not show the alert box if it only contains the customers address
+      if (Object.entries(obj).length != 1) {
+        if (
+          confirm(
+            `You have previously entered order details
           name: ${obj.name} 
           email: ${obj.email}
           ${collectionOrDelivery} time: ${obj.collection_delivery_time}
@@ -251,19 +253,20 @@ let checkUserInLocalStorage = () => {
           
           do you wish to use some or all of these details for
           your current order?`
-        )
-      ) {
-        //set fill user form to true and add to local storage
-        fillUserForm = true;
-        JSON.stringify(
-          window.localStorage.setItem("fillUserForm", fillUserForm)
-        );
-      } else {
-        //and fill user form should be false
-        fillUserForm = false;
-        JSON.stringify(
-          window.localStorage.setItem("fillUserForm", fillUserForm)
-        );
+          )
+        ) {
+          //set fill user form to true and add to local storage
+          fillUserForm = true;
+          JSON.stringify(
+            window.localStorage.setItem("fillUserForm", fillUserForm)
+          );
+        } else {
+          //and fill user form should be false
+          fillUserForm = false;
+          JSON.stringify(
+            window.localStorage.setItem("fillUserForm", fillUserForm)
+          );
+        }
       }
     }
   }

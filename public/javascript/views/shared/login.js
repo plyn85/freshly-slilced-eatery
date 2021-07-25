@@ -1,9 +1,9 @@
 // Get User log in status and update Login links.
 
-// Assign event listeners to login, logout, and profile links
+// Assign event listeners to logi, logout, and profile links
 
 // Import dependencies required to manage user login, etc.
-//public\javascript\auth\authO-variables.js
+
 import {
   auth0WebAuth,
   auth0Authentication,
@@ -15,6 +15,28 @@ import {
   saveAuthResult,
   checkStatus,
 } from "../../auth/jwtAuth.js";
+
+// Show hide menu links based on logged in state
+
+function toggleLinks(loggedIn) {
+  // true
+
+  if (loggedIn) {
+    document.getElementById("login").style.display = "none";
+
+    document.getElementById("logout").style.display = "block";
+
+    document.getElementById("get-profile").style.display = "block";
+  } else {
+    document.getElementById("login").style.display = "block";
+
+    document.getElementById("logout").style.display = "none";
+
+    document.getElementById("get-profile").style.display = "none";
+
+    document.getElementById("AddProductButton").style.display = "none";
+  }
+} // End Function
 
 // Add Event Handlers for links
 
@@ -38,35 +60,53 @@ document.getElementById("login").addEventListener(
   false
 );
 
-// get user profile from Auth0
+// Logout
 
-document.getElementById("get-profile").addEventListener(
+// Call Auth0 to handle logout (then return to the callback url – http://localhost:3000)
+
+document.getElementById("logout").addEventListener(
   "click",
-  async function (event) {
-    event.preventDefault();
+  function () {
+    // remove tokens from session storage
 
-    auth0Authentication.userInfo(getAccessToken(), (err, usrInfo) => {
-      if (err) {
-        // handle error
+    sessionStorage.clear();
 
-        console.error("Failed to get userInfo");
+    auth0WebAuth.logout({ returnTo: auth0WebAuth.redirectUri });
 
-        return;
-      }
-
-      // Output result to console (for testing purposes)
-
-      console.log(usrInfo);
-
-      document.getElementById("results").innerHTML = `<pre>${JSON.stringify(
-        usrInfo,
-        null,
-        2
-      )}</pre>`;
-    });
+    console.log("Logged out");
   },
   false
 );
+
+// get user profile from Auth0
+
+// document.getElementById("get-profile").addEventListener(
+//   "click",
+//   async function (event) {
+//     event.preventDefault();
+
+//     auth0Authentication.userInfo(getAccessToken(), (err, usrInfo) => {
+//       if (err) {
+//         // handle error
+
+//         console.error("Failed to get userInfo");
+
+//         return;
+//       }
+
+//       // Output result to console (for testing purposes)
+
+//       console.log(usrInfo);
+
+//       document.getElementById("results").innerHTML = `<pre>${JSON.stringify(
+//         usrInfo,
+//         null,
+//         2
+//       )}</pre>`;
+//     });
+//   },
+//   false
+// );
 
 // When page is loaded
 
@@ -76,6 +116,16 @@ window.onload = (event) => {
   auth0WebAuth.parseHash(function (err, result) {
     if (result) {
       saveAuthResult(result);
+
+      toggleLinks(true);
     }
   });
+
+  // check login status after page loads
+
+  // show and hide login/ logout links
+  toggleLinks(checkStatus());
 };
+
+let a = checkStatus();
+console.log(a);

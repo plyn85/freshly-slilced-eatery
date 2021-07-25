@@ -3,7 +3,7 @@
 //
 
 // API Base URL - the server address
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "http://localhost:8000";
 
 // Get HTTP headers for requests to the api
 let getHeaders = () => {
@@ -12,7 +12,7 @@ let getHeaders = () => {
   return new Headers({
     Accept: "application/json",
     "Content-Type": "application/json",
-    //"Authorization": "Bearer " + getAccessToken()
+    Authorization: "Bearer " + sessionStorage.getItem("accessToken"),
   });
 }; // end function
 

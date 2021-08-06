@@ -1,13 +1,13 @@
 // Get User log in status and update Login links.
 
-// Assign event listeners to logi, logout, and profile links
+// Assign event listeners to login, logout, and profile links
 
 // Import dependencies required to manage user login, etc.
 
 import {
   auth0WebAuth,
   auth0Authentication,
-} from "../../auth/authO-variables.js";
+} from "../../auth/auth0-variables.js";
 
 import {
   getAccessToken,
@@ -15,12 +15,12 @@ import {
   saveAuthResult,
   checkStatus,
 } from "../../auth/jwtAuth.js";
+//
+import { callLoginApi } from "../../dataAccess/loginData.js";
 
 // Show hide menu links based on logged in state
 
 function toggleLinks(loggedIn) {
-  // true
-
   if (loggedIn) {
     document.getElementById("login").style.display = "none";
 
@@ -46,20 +46,22 @@ function toggleLinks(loggedIn) {
 
 // Call Auth0 to handle login (then return to the callback url – http://localhost:3000)
 
-document.getElementById("login").addEventListener(
-  "click",
-  function () {
-    // Call the Auth0 authorize function
+document.getElementById("login").addEventListener("click", async function () {
+  // Call the Auth0 authorize function
 
-    // auth0WebAuth is defined in auth0-variables.js
+  // auth0WebAuth is defined in auth0-variables.js
 
-    auth0WebAuth.authorize({ returnTo: auth0WebAuth.redirectUri });
+  auth0WebAuth.authorize({ returnTo: auth0WebAuth.redirectUri });
+});
+//sign up
 
-    console.log("Logged in");
-  },
-  false
-);
+document.getElementById("signUp").addEventListener("click", async function () {
+  // Call the Auth0 authorize function
 
+  // auth0WebAuth is defined in auth0-variables.js
+
+  auth0WebAuth.signupAndAuthorize({ callback: auth0WebAuth.redirectUri });
+});
 // Logout
 
 // Call Auth0 to handle logout (then return to the callback url – http://localhost:3000)
@@ -78,35 +80,33 @@ document.getElementById("logout").addEventListener(
   false
 );
 
-// get user profile from Auth0
+//get user profile from Auth0
 
-// document.getElementById("get-profile").addEventListener(
-//   "click",
-//   async function (event) {
-//     event.preventDefault();
+document.getElementById("get-profile").addEventListener(
+  "click",
+  async function () {
+    auth0Authentication.userInfo(getAccessToken(), (err, usrInfo) => {
+      if (err) {
+        // handle error
 
-//     auth0Authentication.userInfo(getAccessToken(), (err, usrInfo) => {
-//       if (err) {
-//         // handle error
+        console.error("Failed to get userInfo");
 
-//         console.error("Failed to get userInfo");
+        return;
+      }
 
-//         return;
-//       }
+      // Output result to console (for testing purposes)
 
-//       // Output result to console (for testing purposes)
+      console.log(usrInfo.email);
 
-//       console.log(usrInfo);
-
-//       document.getElementById("results").innerHTML = `<pre>${JSON.stringify(
-//         usrInfo,
-//         null,
-//         2
-//       )}</pre>`;
-//     });
-//   },
-//   false
-// );
+      document.getElementById("results").innerHTML = `<pre>${JSON.stringify(
+        usrInfo,
+        null,
+        2
+      )}</pre>`;
+    });
+  },
+  false
+);
 
 // When page is loaded
 
@@ -116,16 +116,12 @@ window.onload = (event) => {
   auth0WebAuth.parseHash(function (err, result) {
     if (result) {
       saveAuthResult(result);
-
+      //call the login api after successful login
+      callLoginApi();
       toggleLinks(true);
     }
   });
 
-  // check login status after page loads
-
   // show and hide login/ logout links
   toggleLinks(checkStatus());
 };
-
-let a = checkStatus();
-console.log(a);

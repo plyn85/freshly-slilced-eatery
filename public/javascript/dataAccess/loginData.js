@@ -7,10 +7,15 @@ import * as api from "./fetchAPI.js";
 let callLoginApi = async (url) => {
   console.log(url);
   try {
-    console.log("got here");
     // call the login Api route
     const result = await api.getDataAsync(`${api.BASE_URL}/user/login`);
     console.log(result);
+    //add the email to customer object
+    // let customer = {
+    //   email: result.email,
+    // };
+    //add then add the customer object to local storage
+    window.localStorage.setItem("customer", JSON.stringify(result));
   } catch (err) {
     // catch and log any errors
     console.log(err);

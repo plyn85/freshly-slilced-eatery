@@ -213,70 +213,16 @@ async function deleteItem() {
 
   //if the result is true or zero an item has beed deleted
   if (result == 0 || result)
-    //reload every thing on the page
+    //reload everything on the page
     loadCartItems();
   loadCart();
   navCart.loadNavCart();
 }
 
-//function to check if the user info is already in local storage
-let checkUserInLocalStorage = () => {
-  //variables
-  let collectionOrDelivery = "";
-  let address = "";
-  let fillUserForm = false;
-  //check if the user information is in local storage
-  let obj = JSON.parse(window.localStorage.getItem("customer"));
-  //if the customer object exists
-  if (obj != null) {
-    //and if it is not empty
-    if (Object.entries(obj).length != 0) {
-      //check if collection chosen
-      if (obj.collection == "yes") {
-        collectionOrDelivery = `Collection`;
-      }
-      //check if delivery has been chosen
-      else {
-        collectionOrDelivery = "Delivery";
-        //add the customer address if it has
-        address = `delivery address: ${obj.address}`;
-      }
-      //do not show the alert box if it only contains the customers address
-      if (Object.entries(obj).length != 1) {
-        if (
-          confirm(
-            `You have previously entered order details
-          name: ${obj.name} 
-          email: ${obj.email}
-          ${collectionOrDelivery} time: ${obj.collection_delivery_time}
-          ${address}
-          
-          do you wish to use some or all of these details for
-          your current order?`
-          )
-        ) {
-          //set fill user form to true and add to local storage
-          fillUserForm = true;
-          JSON.stringify(
-            window.localStorage.setItem("fillUserForm", fillUserForm)
-          );
-        } else {
-          //and fill user form should be false
-          fillUserForm = false;
-          JSON.stringify(
-            window.localStorage.setItem("fillUserForm", fillUserForm)
-          );
-        }
-      }
-    }
-  }
-  //send the user to confirmCollection form
-  window.location.replace("confirmCollection.html");
-};
-//adding eventListener
-document
-  .getElementById("checkoutBtn")
-  .addEventListener("click", checkUserInLocalStorage);
+// //adding eventListener
+// document
+//   .getElementById("checkoutBtn")
+//   .addEventListener("click", checkUserInLocalStorage);
 
 //calls the functions
 loadCartItems();

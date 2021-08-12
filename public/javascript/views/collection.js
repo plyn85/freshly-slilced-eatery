@@ -212,3 +212,72 @@ let getCurrentDayAndTime = () => {
 getCurrentDayAndTime();
 // //calls the function every 15 mins
 let interval = window.setInterval(getCurrentDayAndTime, 900000);
+
+//function to check if the user info is already in local storage
+let checkUserInLocalStorage = () => {
+  //variables
+  let collectionOrDelivery = "";
+  let address = "";
+  let fillUserForm = false;
+  //check if the user information is in local storage
+  let obj = JSON.parse(window.localStorage.getItem("customer"));
+  //if the customer object exists
+  if (obj != null) {
+    //and if it is not empty
+    if (Object.entries(obj).length != 0) {
+      //check if collection chosen
+      if (obj.collection == "yes") {
+        collectionOrDelivery = `Collection`;
+      }
+      //check if delivery has been chosen
+      else {
+        collectionOrDelivery = "Delivery";
+        //add the customer address if it has
+        address = `Delivery address: ${obj.address}`;
+      }
+      //check if the delivery time is null or undefined
+      if (
+        obj.collection_delivery_time == null ||
+        obj.collection_delivery_time == undefined
+      ) {
+        //if it is change it to not available
+        obj.collection_delivery_time = `not available`;
+      }
+      //check if the address is null or undefined
+      if (obj.address == null || obj.address == undefined) {
+        //if it is change it to not available
+        obj.address = `not available`;
+      }
+      //do not show the alert box if it only contains the customers address
+      if (Object.entries(obj).length != 1) {
+        if (
+          confirm(
+            `You have previously entered order details
+          Name: ${obj.name} 
+          Email: ${obj.email}
+          ${collectionOrDelivery} time: ${obj.collection_delivery_time}
+          ${address}
+          
+          Do you wish to use these details
+          your current order?`
+          )
+        ) {
+          //set fill user form to true and add to local storage
+          fillUserForm = true;
+          JSON.stringify(
+            window.localStorage.setItem("fillUserForm", fillUserForm)
+          );
+        } else {
+          //and fill user form should be false
+          fillUserForm = false;
+          JSON.stringify(
+            window.localStorage.setItem("fillUserForm", fillUserForm)
+          );
+        }
+      }
+    }
+  }
+};
+
+//call the function when the page loads
+checkUserInLocalStorage();

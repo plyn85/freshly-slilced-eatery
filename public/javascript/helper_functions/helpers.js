@@ -6,11 +6,15 @@
  */
 let addToLocalStorageObject = function (name, key, value) {
   // Get the existing data
-  var existing = localStorage.getItem(name);
+  let existing = localStorage.getItem(name);
 
-  //convert the localStorage string to an object
-  existing = JSON.parse(existing);
-
+  //convert the localStorage string to an object if it exists if
+  // it does not create the object
+  if (existing != null) {
+    existing = JSON.parse(existing);
+  } else {
+    existing = {};
+  }
   // Add new data to localStorage object
   existing[key] = value;
 

@@ -1,14 +1,15 @@
+//imports
+import * as helperFunctions from "../helper_functions/helpers.js";
+
 let getAddressInfo = async () => {
   //get the user address info
   let addressInfo = document.getElementById("address").value;
-  //add the address info to an object to copy the address that will be
-  // adding from collection form submission
-  let customer = {
-    address: addressInfo,
-  };
-
-  //then add the address info to local storage
-  window.localStorage.setItem("customer", JSON.stringify(customer));
+  //add the amount charged to local storage
+  helperFunctions.addToLocalStorageObject(
+    "customerOrder",
+    "address",
+    addressInfo
+  );
 
   //alert the user that there address has been added
   if (typeof localStorage.getItem("addressInfo") === "string") {

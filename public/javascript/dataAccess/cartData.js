@@ -1,7 +1,6 @@
-// import everything from fetchAPI.js
-// This will allow resources to be referenced as api.BASE_URL, etc.
-
+// imports
 import * as api from "./fetchAPI.js";
+import * as helperFunctions from "../helper_functions/helpers.js";
 
 //
 // Get all cartItems
@@ -52,12 +51,12 @@ let deleteCartItem = async (id) => {
         alert("item deleted");
       }
       //if the result is zero cart is deleted
-      if (result == 0) {
+      if (result === 0) {
         alert("you cart is empty");
         //remove the userId in local storage
-        localStorage.removeItem("userId");
+        window.localStorage.removeItem("userId");
         //and create a new one thats zero as this will never be a real userId
-        localStorage.setItem("userId", 0);
+        window.localStorage.setItem("userId", 0);
       }
       return result;
       // return result;
@@ -113,10 +112,19 @@ let stripePayment = async (token) => {
     if (result == false) {
       return false;
     } else {
-      //add the object to local storage
-      // and returned customer info to local storage
-      let chargeInfo = JSON.stringify(result);
-      window.localStorage.setItem("chargeInfo", chargeInfo);
+      let customerOrder = "customerOrder";
+      //add the invoice number to local storage
+      helperFunctions.addToLocalStorageObject(
+        customerOrder,
+        "invoice_number",
+        result.invoice_num
+      );
+      //add the amount charged to local storage
+      helperFunctions.addToLocalStorageObject(
+        customerOrder,
+        "amount",
+        result.amount_charged
+      );
       //reset the user id to 0
       localStorage.setItem("userId", JSON.stringify(0));
       return true;

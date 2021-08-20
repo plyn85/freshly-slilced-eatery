@@ -43,8 +43,8 @@ let deleteCartItem = async (id) => {
   //console.log(request);
 
   if (confirm("Are you sure want to delete this meal from your cart?")) {
+    // delete cartItem
     try {
-      // delete cartItem
       const result = await api.getDataAsync(url, request);
       //return the if its true
       if (result) {
@@ -70,7 +70,7 @@ let deleteCartItem = async (id) => {
 // Get the cart
 let changeQuantity = async (mealData) => {
   //get the user id form local storage
-  let userId = JSON.parse(localStorage.getItem("userId"));
+  let userId = helperFunctions.getObjectFromLocalStorage("userId");
   //add to the mealData object
   mealData.user_id = userId;
   //console.log(mealData);
@@ -94,11 +94,10 @@ let changeQuantity = async (mealData) => {
 
 //function to handle strip payments
 let stripePayment = async (token) => {
-  //get the current sessions cart id
-  let userId = localStorage.getItem("userId");
-
+  //get the user id form local storage
+  let userId = helperFunctions.getObjectFromLocalStorage("userId");
   const url = `${api.BASE_URL}/cart/payment/${userId}`;
-  console.log("token", token);
+  // console.log("token", token);
   //http method
   let httpMethod = "POST";
   //build the request method
@@ -107,35 +106,24 @@ let stripePayment = async (token) => {
   try {
     // stripe data
     let result = await api.getDataAsync(url, request);
-    //unless false is returned the payment was a success and an object with
-    // charge information is returned
-    if (result == false) {
-      return false;
-    } else {
-      let customerOrder = "customerOrder";
+    //check the result of the API call
+    if (helperFunctions.checkFetchRequestResult(result)) {
       //add the invoice number to local storage
       helperFunctions.addToLocalStorageObject(
-        customerOrder,
+        "customerOrder",
         "invoice_number",
         result.invoice_num
       );
       //add the amount charged to local storage
       helperFunctions.addToLocalStorageObject(
-        customerOrder,
+        "customerOrder",
         "amount",
         result.amount_charged
       );
       //reset the user id to 0
-      localStorage.setItem("userId", JSON.stringify(0));
+      helperFunctions.addObjectToLocalStorage("userId", 0);
       return true;
-    }
-
-    // //and return true to stripeData.js
-    // if (result) {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
+    } else return false;
   } catch (err) {
     // catch and log any errors
     console.log(err);

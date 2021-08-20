@@ -1,10 +1,10 @@
 /**
  * Add an item to a localStorage() object
- * @param {String} name  The localStorage() key //customerOrder
- * @param {String} key   The localStorage() value object key//invoice_num
+ * @param {String} name  The localStorage() key
+ * @param {String} key   The localStorage() value object
  * @param {String} value The localStorage() value object value
  */
-let addToLocalStorageObject = function (name, key, value) {
+let addToLocalStorageObject = (name, key, value) => {
   // Get the existing data
   let existing = localStorage.getItem(name);
 
@@ -23,4 +23,40 @@ let addToLocalStorageObject = function (name, key, value) {
 };
 //end function
 
-export { addToLocalStorageObject };
+/**
+ * Add an object to local storage
+ * @param {String} objName  The localStorage() object name
+ * @param {obj} obj The localStorage() object
+ */
+let addObjectToLocalStorage = (objName, obj) => {
+  localStorage.setItem(objName, JSON.stringify(obj));
+};
+//end function
+
+/**
+ * Get an  object to local storage
+ * @param {String} objName  The localStorage() object name
+ */
+let getObjectFromLocalStorage = (objName) => {
+  return JSON.parse(localStorage.getItem(objName));
+};
+
+/**
+ * Check the returned response is valid from the api call
+ * @param {obj} fetchRequestResult  The fetchRequest result
+ */
+let checkFetchRequestResult = (fetchRequestResult) => {
+  if (
+    Object.entries(fetchRequestResult).length === 0 ||
+    fetchRequestResult.message === "Failed to fetch"
+  ) {
+    return false;
+  } else return true;
+};
+//end function
+export {
+  addToLocalStorageObject,
+  addObjectToLocalStorage,
+  getObjectFromLocalStorage,
+  checkFetchRequestResult,
+};

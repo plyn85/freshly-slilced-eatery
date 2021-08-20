@@ -1,22 +1,25 @@
 // import everything from fetchAPI.js
 // This will allow resources to be referenced as api.BASE_URL, etc.
 import * as api from "./fetchAPI.js";
+import * as helperFunctions from "../helper_functions/helpers.js";
 
 // send the collection data
-let addCustomerInfo = async (customerData) => {
-  const url = `${api.BASE_URL}/cart/collection`;
-  console.log(customerData);
+let addCustomerOrderData = async (customerOrderData) => {
+  const url = `${api.BASE_URL}/user/create-customer-order`;
+
   //http method
   let httpMethod = "POST";
   //build the request method
-  const request = api.fetchInit(httpMethod, JSON.stringify(customerData));
+  const request = api.fetchInit(httpMethod, JSON.stringify(customerOrderData));
   try {
     // delete cartItem
     let result = await api.getDataAsync(url, request);
-    //if the result comes back
-    //return true to collection data js
-    if (result != null) {
-      return result;
+    //if the request is successful
+    if (helperFunctions.checkFetchRequestResult(result)) {
+      //add the returned data to local storage
+      helperFunctions.addObjectToLocalStorage(result);
+      //return true to the stipe page as the order is complete
+      return true;
     }
   } catch (err) {
     // catch and log any errors
@@ -24,4 +27,4 @@ let addCustomerInfo = async (customerData) => {
   }
 };
 
-export { addCustomerInfo };
+export { addCustomerOrderData };

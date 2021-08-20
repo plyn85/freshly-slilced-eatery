@@ -1,6 +1,7 @@
 //imports
-import { stripePayment } from "../dataAccess/cartData.js";
-
+import { stripePayment } from "../dataAccess/stripePayment.js";
+import { addCustomerOrderData } from "../dataAccess/collectionData.js";
+import * as helperFunctions from "../helper_functions/helpers.js";
 // Create a Stripe client.
 let stripe = Stripe("pk_test_OtuMpmziQFrVOnItNeA1NK8n00Pdyae7Qg");
 
@@ -63,17 +64,26 @@ form.addEventListener("submit", function (event) {
   });
 });
 
-//send and  the stipe data
+//send the stipe data
 let stripeTokenHandler = async (token) => {
-  console.log(token);
   //pass the token to the stripe payment function in cartData
   const result = await stripePayment(token);
-  console.log(result);
-  //if the result returns true
+  // console.log(result);
+  //if the result returns true the payment was a success
   if (result == true) {
-    alert("your payment was a success");
-    //and send the customer to the success page
-    window.location.replace("success.html");
+    //get the order information form localStorage
+    let customerOrderInfoFromLocalStorage =
+      helperFunctions.getObjectFromLocalStorage("customerOrder");
+
+    //send it to the API
+    let customerOrderAdded = addCustomerOrderData(
+      customerOrderInfoFromLocalStorage
+    );
+    //if the order has been added send the customer to the success page
+    if (customerOrderAdded) {
+      alert("your order was a success");
+      window.location.replace("success.html");
+    }
   } else {
     alert("your Payment was not successful please enter your details again");
     form.reset();

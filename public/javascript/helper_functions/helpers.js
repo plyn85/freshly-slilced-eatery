@@ -50,6 +50,7 @@ let checkFetchRequestResult = (fetchRequestResult) => {
     Object.entries(fetchRequestResult).length === 0 ||
     fetchRequestResult.message === "Failed to fetch"
   ) {
+    console.log("The request was not successful");
     return false;
   } else return true;
 };

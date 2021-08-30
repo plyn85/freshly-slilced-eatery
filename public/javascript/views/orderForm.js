@@ -114,8 +114,7 @@ let checkUserIsLoggedIn = () => {
     addCustomerInfoAfterLogin();
   }
 };
-//call the function to check if the user is logged in
-checkUserIsLoggedIn();
+
 //
 //add the event listeners
 delOption.addEventListener("click", delOptionSelected);
@@ -126,3 +125,6 @@ subBtn.addEventListener("click", addCustomerInfoToLocalStorage);
 let getCurrentDayAndTime = helperFunctions.getCurrentDayAndTime("firstOption");
 //calls the function every 15 mins
 let interval = window.setInterval(getCurrentDayAndTime, 900000);
+
+//exports
+export { checkUserIsLoggedIn };

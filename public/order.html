@@ -11,7 +11,7 @@
             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
             crossorigin="anonymous"
         >
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
         <title>Freshly-sliced-eatery-home</title>
     </head>
     <body>
@@ -45,14 +45,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="location.html">Location</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="order.html" class="btn btn-info p-2">Order now</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="cart.html">
-                                    <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -61,98 +53,132 @@
         </header>
         <!-- start main -->
         <main>
-            <!-- container div wrapping order page -->
-            <div class="container-fluid">
-                <h1 class="text-center">Order Page</h1>
-                <h2 class="text-center">How do you want to order?</h2>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="row mt-5 justify-content-center">
-                            <div class="col-12 py-3 my-3">
-                                <div class="card text-center">
-                                    <div class="card-header display-4">
-                                        Delivery
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">I want to order for delivery</h5>
-                                        <a href="delivery.html" class="btn btn-primary">Place Order</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="row mt-5 justify-content-center">
-                            <div class="col-12 py-3 my-3">
-                                <div class="card text-center">
-                                    <div class="card-header display-4">
-                                        Collection
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">I want to order for collection</h5>
-                                        <a href="menu.html" class="btn btn-primary">Place Order</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end container-->
-            <!-- start footer -->
+            <!-- container div wrapping home page -->
             <section>
-                <footer class="mt-auto py-2 fixed-bottom text-center container-fluid">
+                <!-- start container -->
+                <div class="container-fluid">
+                    <!-- row wraps header -->
                     <div class="row">
-                        <div class="col-9">
-                            <div class="row justify-content-center">
-                                <!-- facebook -->
-                                <a
-                                    class="btn-floating btn-lg btn-fb col-2 col-lg-1 social-icon-footer-links"
-                                    href="https://www.facebook.com/patrick.lynch.505"
-                                    aria-label="a link to a facebook account"
-                                    target="blank"
-                                >
-                                    <i class="fab fa-facebook-f social-icon-footer-icon"></i>
-                                </a>
-                                <!--Twitter-->
-                                <a
-                                    class="btn-floating btn-lg btn-tw col-2 col-lg-1 social-icon-footer-links"
-                                    href="https://twitter.com/gregplitt?lang=en"
-                                    aria-label="a link to a twitter account"
-                                    target="blank"
-                                >
-                                    <i class="fab fa-twitter social-icon-footer-icon"></i>
-                                </a>
-                                <!--YouTube -->
-                                <a
-                                    class="btn-floating btn-lg btn-youtube col-2 col-lg-1 social-icon-footer-links"
-                                    href="https://www.youtube.com/channel/UCe0TLA0EsQbE-MjuHXevj2A"
-                                    aria-label="a link to a youtube account"
-                                    target="blank"
-                                >
-                                    <i class="fab fa-youtube  social-icon-footer-icon"></i>
-                                </a>
-                                <!--Linkedin-->
-                                <a
-                                    class="btn-floating btn-lg btn-ins col-2 col-lg-1 social-icon-footer-links"
-                                    href="https://www.linkedin.com/in/daryllynch"
-                                    aria-label="a link to a linkedin account"
-                                    target="blank"
-                                >
-                                    <i class="fab fa-linkedin-in  social-icon-footer-icon"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <a href="order.html" class="btn btn-info p-2">Order now</a>
+                        <div class="col">
+                            <h1 class="text-center">Delivery Page</h1>
                         </div>
                     </div>
-                </footer>
-            </section>
-            <!-- end footer -->
-        </main>
-        <!-- end main -->
-        <script src="script.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    </body>
-</html>
+                    <!-- end row -->
+                    <!-- row wraps main page content -->
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body display-6">
+                                            Delivery -
+                                            Delivery To
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- col for address form -->
+                                <div class="col-12">
+                                    <form id="delForm">
+                                        <div class="mb-3">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="address"
+                                                placeholder="Enter Address Here"
+                                            >
+                                        </div>
+                                        <button type="button" id="submitBtnDel" class="btn btn-outline-success btn-lg">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body display-6">
+                                            Collection
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a href="menu.html" id="collectionOptionDelPage">Order For collection</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card" style="width: 18rem;">
+                                <div class="card-body">
+                                    <p class="card-text">Click to log in and use an Address you have used before</p>
+                                    <button type="button" class="btn btn-primary" id="login">Login/Sign up</button>
+                                    <br>
+                                    <br>
+                                    <button type="button" class="btn btn-primary" id="logout">Logout</button>
+                                </div>
+                                <p id="results"></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- end container-->
+                <!-- start footer -->
+                <section>
+                    <footer class="mt-auto py-2 fixed-bottom text-center container-fluid">
+                        <div class="row">
+                            <div class="col-9">
+                                <div class="row justify-content-center">
+                                    <!-- facebook -->
+                                    <a
+                                        class="btn-floating btn-lg btn-fb col-2 col-lg-1 social-icon-footer-links"
+                                        href="https://www.facebook.com/patrick.lynch.505"
+                                        aria-label="a link to a facebook account"
+                                        target="blank"
+                                    >
+                                        <i class="fab fa-facebook-f social-icon-footer-icon"></i>
+                                    </a>
+                                    <!--Twitter-->
+                                    <a
+                                        class="btn-floating btn-lg btn-tw col-2 col-lg-1 social-icon-footer-links"
+                                        href="https://twitter.com/gregplitt?lang=en"
+                                        aria-label="a link to a twitter account"
+                                        target="blank"
+                                    >
+                                        <i class="fab fa-twitter social-icon-footer-icon"></i>
+                                    </a>
+                                    <!--YouTube -->
+                                    <a
+                                        class="btn-floating btn-lg btn-youtube col-2 col-lg-1 social-icon-footer-links"
+                                        href="https://www.youtube.com/channel/UCe0TLA0EsQbE-MjuHXevj2A"
+                                        aria-label="a link to a youtube account"
+                                        target="blank"
+                                    >
+                                        <i class="fab fa-youtube  social-icon-footer-icon"></i>
+                                    </a>
+                                    <!--Linkedin-->
+                                    <a
+                                        class="btn-floating btn-lg btn-ins col-2 col-lg-1 social-icon-footer-links"
+                                        href="https://www.linkedin.com/in/daryllynch"
+                                        aria-label="a link to a linkedin account"
+                                        target="blank"
+                                    >
+                                        <i class="fab fa-linkedin-in  social-icon-footer-icon"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </section>
+                <!-- end footer -->
+            </main>
+            <!-- end main -->
+            <!-- end main -->
+            <!-- scripts -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+            <!-- Auth0 JavaScript -->
+            <script src="https://cdn.auth0.com/js/auth0/9.14.0/auth0.min.js"></script>
+            <script src="./javascript/views/shared/login.js" type="module"></script>
+            <script src="./javascript/views/delivery.js" type="module"></script>
+        </body>
+    </html>

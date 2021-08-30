@@ -99,11 +99,14 @@ let addCustomerInfoAfterLogin = () => {
   let customerOrder =
     helperFunctions.getObjectFromLocalStorage("customerOrder");
   //then add the name email and address to the enter address box
-  address.value = customerOrder.address;
   name.value = customerOrder.name;
   email.value = customerOrder.email;
-  //call the delOptionSelected function so the address displays
-  delOptionSelected();
+  //check if the address key exists
+  if (Object.keys(customerOrder.address)) {
+    address.value = customerOrder.address;
+    //call the delOptionSelected function so the address displays
+    delOptionSelected();
+  }
 };
 
 //check if the user is logged in

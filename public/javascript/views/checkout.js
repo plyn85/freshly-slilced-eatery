@@ -1,5 +1,6 @@
 //imports
 import * as cartData from "../dataAccess/cartData.js";
+import { getObjectFromLocalStorage } from "../helper_functions/helpers.js";
 //passed in to numberFormat to change  to currency
 let options = { style: "currency", currency: "EUR" };
 
@@ -60,7 +61,7 @@ let loadCart = async () => {
     displayCart(cartSubTotal);
   }
 };
-//Use the array map method to iterate through cart
+//function to the display the cart
 let displayCart = (subTotal) => {
   //add the html to be displayed with the subTotal
   let cartSubTotal = `
@@ -72,6 +73,30 @@ let displayCart = (subTotal) => {
   //add to cart page
   return (checkout.innerHTML = cartSubTotal);
 };
-//call the load cartItems function
+
+//function will display the users delivery or collection info
+let displayUsersDelOrColInfo = () => {
+  //get the info from local storage
+  let customerOrderObj = getObjectFromLocalStorage("customerOrder");
+  //get the id of the div from checkout page
+  let delOrColInfoDiv = document.getElementById("deliveryOrCollectionInfo");
+  //add the user info to checkout page
+  delOrColInfoDiv.innerHTML = `<h5>Name: ${customerOrderObj.name}</h5><br> 
+                               <h5>Email: ${customerOrderObj.email}</h5><br>
+                              `;
+  //check if user has chosen collection or delivery
+  if (customerOrderObj.delivery) {
+    delOrColInfoDiv.innerHTML += `<h5>Delivery address: ${customerOrderObj.address}</h5><br>
+                                  <h5>Delivery time: ${customerOrderObj.collectionOrDeliveryTime}</h5>`;
+  } else {
+    delOrColInfoDiv.innerHTML += `<h5>Collection time: ${customerOrderObj.collectionOrDeliveryTime}</h5>`;
+  }
+  //check if the user has added a message
+  if (customerOrderObj.message !== "") {
+    delOrColInfoDiv.innerHTML += `<h5>Message : ${customerOrderObj.message}</h5>`;
+  }
+};
+//call the load cartItems and load cart function
 loadCartItems();
 loadCart();
+displayUsersDelOrColInfo();

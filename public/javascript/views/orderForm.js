@@ -18,7 +18,7 @@ let name = document.getElementById("name");
 let email = document.getElementById("email");
 
 //get the customer form values
-let getCustomerForm = () => {
+let getAndAddCustomerFormCusFormToLocalStorage = () => {
   //get the values from the form
   let collectionOrDeliveryTimeValue = collectionOrDeliveryTime.value;
   let messageValue = message.value;
@@ -50,9 +50,9 @@ let getCustomerForm = () => {
     collection = true;
   }
   //if the validation returns true
-  if ((validatedInputs, validatedAddress)) {
+  if (validatedInputs && validatedAddress) {
     //create the form instance
-    return new CustomerForm(
+    let customerOrder = new CustomerForm(
       // read the form values and pass to the contact constructor
       nameValue,
       emailValue,
@@ -62,20 +62,14 @@ let getCustomerForm = () => {
       collection,
       delivery
     );
+    //add the customers order to local storage
+    helperFunctions.addObjectToLocalStorage("customerOrder", customerOrder);
+    //and send the customer to the payments page
+    window.location.replace("checkout.html");
   } else {
     console.log("form validation failed");
   }
 };
-
-//send  the collection form
-let addCustomerInfoToLocalStorage = async () => {
-  // Get the form data
-  const customerOrder = getCustomerForm();
-  //add the order to local storage
-  helperFunctions.addObjectToLocalStorage("customerOrder", customerOrder);
-  //and send the customer to the payments page
-  window.location.replace("checkout.html");
-}; // End Function
 
 //function if delivery option is selected
 let delOptionSelected = () => {
@@ -94,27 +88,31 @@ let colOptionSelected = () => {
 
 //
 //adds customer info to form if they are logged in
-let addCustomerInfoAfterLogin = () => {
+let addCustomerInfoToForm = () => {
   //get the customerOrder form local storage
   let customerOrder =
     helperFunctions.getObjectFromLocalStorage("customerOrder");
-  //then add the name email and address to the enter address box
-  name.value = customerOrder.name;
-  email.value = customerOrder.email;
-  //check if the address key exists
-  if (Object.keys(customerOrder.address)) {
-    address.value = customerOrder.address;
-    //call the delOptionSelected function so the address displays
-    delOptionSelected();
+  //check if the customer order object exists
+  if (customerOrder !== null) {
+    //then add the name email and address to the enter address box
+    name.value = customerOrder.name;
+    email.value = customerOrder.email;
+    //check if the address key exists
+    if (Object.keys(customerOrder.address)) {
+      address.value = customerOrder.address;
+      //call the delOptionSelected function so the address displays
+      delOptionSelected();
+    }
   }
 };
-
+//call this function every time the page reloads
+addCustomerInfoToForm();
 //check if the user is logged in
 let checkUserIsLoggedIn = () => {
   //if the user logged in checkStatus will return true
   if (checkStatus) {
     //call the function to add address
-    addCustomerInfoAfterLogin();
+    addCustomerInfoToForm();
   }
 };
 
@@ -122,12 +120,13 @@ let checkUserIsLoggedIn = () => {
 //add the event listeners
 delOption.addEventListener("click", delOptionSelected);
 colOption.addEventListener("click", colOptionSelected);
-subBtn.addEventListener("click", addCustomerInfoToLocalStorage);
+subBtn.addEventListener("click", getAndAddCustomerFormCusFormToLocalStorage);
 
 //function gets the current day and time
 let getCurrentDayAndTime = helperFunctions.getCurrentDayAndTime("firstOption");
 //calls the function every 15 mins
 let interval = window.setInterval(getCurrentDayAndTime, 900000);
 
+//
 //exports
 export { checkUserIsLoggedIn };

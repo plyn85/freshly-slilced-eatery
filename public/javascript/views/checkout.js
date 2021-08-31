@@ -1,9 +1,13 @@
 //imports
 import * as cartData from "../dataAccess/cartData.js";
 import { getObjectFromLocalStorage } from "../helper_functions/helpers.js";
+import { addObjectToLocalStorage } from "../helper_functions/helpers.js";
+
 //passed in to numberFormat to change  to currency
 let options = { style: "currency", currency: "EUR" };
+//consts and variables
 
+let changeOrder = document.getElementById("changeOrder");
 //
 //Use the array map method to iterate through meals
 let displayCartItems = (cartItems) => {
@@ -96,7 +100,14 @@ let displayUsersDelOrColInfo = () => {
     delOrColInfoDiv.innerHTML += `<h5>Message : ${customerOrderObj.message}</h5>`;
   }
 };
+//function to add that customer has chosen to change order to localStorage
+let changeOrderChosen = () => {
+  addObjectToLocalStorage("changeOrder", true);
+};
+
 //call the load cartItems and load cart function
 loadCartItems();
 loadCart();
 displayUsersDelOrColInfo();
+//add eventListener
+changeOrder.addEventListener("click", changeOrderChosen);

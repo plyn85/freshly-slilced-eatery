@@ -1,7 +1,7 @@
 //imports
 import * as cartData from "../dataAccess/cartData.js";
 import * as navCart from "../views/navCart.js";
-
+import { getObjectFromLocalStorage } from "../helper_functions/helpers.js";
 //passed in to numberFormat to change  to currency
 let options = { style: "currency", currency: "EUR" };
 //
@@ -82,10 +82,10 @@ let displayCartItems = (cartItems) => {
     //add to cart page
     document.getElementById("cartCard").innerHTML = rows.join("");
     //Find button all elements with matching class name
-    const increaseQuantity = document.getElementsByClassName("qtyInc");
-    const decreaseQuantity = document.getElementsByClassName("qtyDec");
-    const deleteCartItem = document.getElementsByClassName("deleteCartItem");
-    const qtyInput = document.getElementsByClassName("qty");
+    let increaseQuantity = document.getElementsByClassName("qtyInc");
+    let decreaseQuantity = document.getElementsByClassName("qtyDec");
+    let deleteCartItem = document.getElementsByClassName("deleteCartItem");
+    let qtyInput = document.getElementsByClassName("qty");
     //add event listeners
 
     for (let i = 0; i < deleteCartItem.length; i++) {
@@ -218,13 +218,21 @@ async function deleteItem() {
   loadCart();
   navCart.loadNavCart();
 }
-
-// //adding eventListener
-// document
-//   .getElementById("checkoutBtn")
-//   .addEventListener("click", checkUserInLocalStorage);
-
-//calls the functions
+//function which will decide which page to send the user after
+// check out button is clicked
+let sendUserAfterCheckOutBtnClicked = () => {
+  let changeOrder = getObjectFromLocalStorage("changeOrder");
+  if (changeOrder) {
+    window.location.replace("checkout.html");
+  } else {
+    window.location.replace("orderForm.html");
+  }
+};
+//add the eventListener for the checkout button
+document
+  .getElementById("checkoutBtn")
+  .addEventListener("click", sendUserAfterCheckOutBtnClicked);
+//call the functions
 loadCartItems();
 loadCart();
 

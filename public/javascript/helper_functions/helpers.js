@@ -40,7 +40,6 @@ let addObjectToLocalStorage = (objName, obj) => {
 let getObjectFromLocalStorage = (objName) => {
   return JSON.parse(localStorage.getItem(objName));
 };
-
 /**
  * Check the returned response is valid from the api call
  * @param {obj} fetchRequestResult  The fetchRequest result
@@ -54,10 +53,61 @@ let checkFetchRequestResult = (fetchRequestResult) => {
     return false;
   } else return true;
 };
+/**
+ * increase the total of the navCart
+ */
+let increaseNavCartTotal = () => {
+  //increase the navCartTotal
+  let navTotal = getObjectFromLocalStorage("navCartTotal");
+  addObjectToLocalStorage("navCartTotal", `${++navTotal}`);
+};
+
+/**
+ * gets the current day and time
+ * @param {String} elementId  the Id of the element to add the current date and time to
+ */
+let getCurrentDayAndTime = (elementId) => {
+  //add the days of the week to an array
+  let weekDays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  //constants and variables
+  let currentDayOfWeek;
+  //get the date
+  let currentDate = new Date();
+  //get the day
+  let currentDay = currentDate.getDay();
+  //loop through the array and get the day
+  for (let day in weekDays) {
+    //match to the current day
+    if (day == currentDay) {
+      currentDayOfWeek = weekDays[day];
+    }
+  }
+  //get the current time
+  let hours = currentDate.getHours();
+  let mins = currentDate.getMinutes();
+  if (mins < 10) {
+    mins = `0${mins}`;
+  }
+
+  document.getElementById(
+    elementId
+  ).innerHTML = `Today is ${currentDayOfWeek} It,s currently ${hours}:${mins}`;
+};
+
 //end function
 export {
   addToLocalStorageObject,
   addObjectToLocalStorage,
   getObjectFromLocalStorage,
   checkFetchRequestResult,
+  getCurrentDayAndTime,
+  increaseNavCartTotal,
 };

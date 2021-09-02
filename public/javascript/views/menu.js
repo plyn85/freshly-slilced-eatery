@@ -1,8 +1,11 @@
 // Function used to update menu.html
 //
 import * as navCart from "../views/navCart.js";
-import * as mealsData from "../dataAccess/mealsData.js";
-// import { Product } from "../models/products.js";
+import * as mealsData from "../dataAccess/menuData.js";
+import {
+  addObjectToLocalStorage,
+  getObjectFromLocalStorage,
+} from "../helper_functions/helpers.js";
 
 //Use the array map method to iterate through meals
 let displayMeals = (meals) => {
@@ -60,10 +63,13 @@ async function addMealToCart() {
   };
   //pass the meals data to addMeals to cart
   const userId = await mealsData.addMealToCart(mealData);
-  //if the return value is not false
-  if (!userId) {
+  //if the return value is true the item is not already in the cart
+  if (userId) {
     // reload the navCart
     navCart.loadNavCart();
+    //increase the navCartTotal
+    let navTotal = getObjectFromLocalStorage("navCartTotal");
+    addObjectToLocalStorage("navCartTotal", `${++navTotal}`);
   }
 }
 

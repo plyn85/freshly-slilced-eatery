@@ -85,6 +85,7 @@ let changeQuantity = async (mealData) => {
   try {
     // delete cartItem
     let result = await api.getDataAsync(url, request);
+    //return result
     return result;
   } catch (err) {
     // catch and log any errors

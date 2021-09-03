@@ -1,7 +1,7 @@
 //imports
 import * as cartData from "../dataAccess/cartData.js";
 import * as navCart from "../views/navCart.js";
-import { getObjectFromLocalStorage } from "../helper_functions/helpers.js";
+import * as helperFunctions from "../helper_functions/helpers.js";
 //passed in to numberFormat to change  to currency
 let options = { style: "currency", currency: "EUR" };
 //
@@ -112,6 +112,8 @@ let changeQuantity = async (quantity, mealId) => {
   };
   // add the new quantities
   const changedQuantity = await cartData.changeQuantity(mealData);
+  //will return true if successful
+  return changedQuantity;
 
   //reload the cart the cart Items and the navCart when the quantity is changed
   loadCartItems();
@@ -128,7 +130,6 @@ async function changeQuantityCartItemFromInput() {
 //function changes the quantity of the shopping cart
 async function changeQuantityCartItem() {
   //constants or variables
-  let quantityUpdated = false;
   let quantityInput = document.getElementsByClassName("qty");
 
   //loop trough the inputs
@@ -142,11 +143,15 @@ async function changeQuantityCartItem() {
         quantityInput[i].value++;
         //call the change quantity function passing in the changed value
         //and meal id
-        changeQuantity(quantityInput[i].value, this.id);
-        //call the navCart to update the total items passing the meal id
-        // and quantity updated as true
-        quantityUpdated = true;
-        //navCart.loadNavCart(quantityUpdated);
+        let quantityIncreased = await changeQuantity(
+          quantityInput[i].value,
+          this.id
+        );
+        //if returns true
+        if (quantityIncreased === true) {
+          //increase the navCart total
+          helperFunctions.increaseNavCartTotal();
+        }
       }
       //if the minus is clicked
       else if (this.value == "-") {
@@ -154,11 +159,15 @@ async function changeQuantityCartItem() {
         quantityInput[i].value--;
         //call the change quantity function passing in the changed value
         //and meal id
-        changeQuantity(quantityInput[i].value, this.id);
-        //call the navCart to update the total items passing the meal id
-        // and quantity updated as true
-        quantityUpdated = true;
-        // navCart.loadNavCart(quantityUpdated);
+        let quantityDecreased = await changeQuantity(
+          quantityInput[i].value,
+          this.id
+        );
+        //if returns true
+        if (quantityDecreased === true) {
+          //decrease the navCart
+          helperFunctions.decreaseNavCartTotal();
+        }
       }
     }
   }
@@ -169,7 +178,7 @@ let loadCartItems = async () => {
   // get meals data - note only one parameter in function call
   const cartItems = await cartData.getCartItems();
   if (cartItems == 0) {
-    localStorage.setItem("userId", JSON.parse(0));
+    helperFunctions.addObjectToLocalStorage("userId", 0);
   }
   //display the items
   displayCartItems(cartItems);
@@ -200,6 +209,10 @@ let displayCart = (subTotal) => {
         SubTotal:
          ${new Intl.NumberFormat("en-US", options).format(subTotal)}
       `;
+  //check if the subtotal is equal to NaN
+  if (cartSubTotal == NaN) {
+    cartSubTotal = 0;
+  }
   //get the id of bottom section of the cartCard
   let cartCardLower = document.getElementById("cartCardLower");
   //add to cart page
@@ -221,10 +234,14 @@ async function deleteItem() {
 //function which will decide which page to send the user after
 // check out button is clicked
 let sendUserAfterCheckOutBtnClicked = () => {
-  let changeOrder = getObjectFromLocalStorage("changeOrder");
+  //get objects from local storage
+  let changeOrder = helperFunctions.getObjectFromLocalStorage("changeOrder");
+
   if (changeOrder) {
     window.location.replace("checkout.html");
-  } else {
+  }
+  //if the order exists and the customer has not chosen to change it
+  else {
     window.location.replace("orderForm.html");
   }
 };

@@ -1,18 +1,20 @@
 /**
  * Add an item to a localStorage() object
  * @param {String} name  The localStorage() key
- * @param {String} key   The localStorage() value object
+ * @param {String} key   The localStorage() value object key
  * @param {String} value The localStorage() value object value
  */
 let addToLocalStorageObject = (name, key, value) => {
   // Get the existing data
   let existing = localStorage.getItem(name);
 
-  //convert the localStorage string to an object if it exists if
-  // it does not create the object
+  //convert the localStorage string to an object if it exists
+
   if (existing != null) {
     existing = JSON.parse(existing);
-  } else {
+  }
+  // it does not create the object
+  else {
     existing = {};
   }
   // Add new data to localStorage object
@@ -22,7 +24,22 @@ let addToLocalStorageObject = (name, key, value) => {
   localStorage.setItem(name, JSON.stringify(existing));
 };
 //end function
+let addMealToLocalStorage = (objName, mealData) => {
+  // Get the existing data
+  let existing = JSON.parse(localStorage.getItem(objName));
 
+  if (existing != null) {
+    //add to the array of objects that exists
+    existing.push(mealData);
+    //then add to local storage
+    localStorage.setItem(objName, JSON.stringify(existing));
+  }
+  // it does not create the object
+  else {
+    existing = [mealData];
+    localStorage.setItem(objName, JSON.stringify(existing));
+  }
+};
 /**
  * Add an object to local storage
  * @param {String} objName  The localStorage() object name
@@ -49,10 +66,11 @@ let checkFetchRequestResult = (fetchRequestResult) => {
     Object.entries(fetchRequestResult).length === 0 ||
     fetchRequestResult.message === "Failed to fetch"
   ) {
-    console.log("The request was not successful");
+    //console.log("The request was not successful");
     return false;
   } else return true;
 };
+
 /**
  * increase the total of the navCart
  */
@@ -60,6 +78,15 @@ let increaseNavCartTotal = () => {
   //increase the navCartTotal
   let navTotal = getObjectFromLocalStorage("navCartTotal");
   addObjectToLocalStorage("navCartTotal", `${++navTotal}`);
+};
+
+/**
+ * increase the total of the navCart
+ */
+let decreaseNavCartTotal = () => {
+  //increase the navCartTotal
+  let navTotal = getObjectFromLocalStorage("navCartTotal");
+  addObjectToLocalStorage("navCartTotal", `${--navTotal}`);
 };
 
 /**
@@ -110,4 +137,6 @@ export {
   checkFetchRequestResult,
   getCurrentDayAndTime,
   increaseNavCartTotal,
+  decreaseNavCartTotal,
+  addMealToLocalStorage,
 };

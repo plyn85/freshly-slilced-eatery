@@ -102,7 +102,7 @@ let displayCartItems = (cartItems) => {
     ).innerHTML = `<h1>Your Cart is currently empty!<h1>`;
   }
 };
-
+//
 //add the changes form the cart quantity
 let changeQuantity = async (quantity, mealId) => {
   //pass the meal data to an objects
@@ -111,22 +111,23 @@ let changeQuantity = async (quantity, mealId) => {
     quantity: quantity,
   };
   // add the new quantities
-  const changedQuantity = await cartData.changeQuantity(mealData);
-  //will return true if successful
-  return changedQuantity;
-
+  let changedQuantity = await cartData.changeQuantity(mealData);
+  //if it return true
+  if (changedQuantity) {
+  }
   //reload the cart the cart Items and the navCart when the quantity is changed
   loadCartItems();
   loadCart();
+  //will return true if successful
+  return changedQuantity;
 };
-
-//function to handle if the users changes the input box with out the buttons
 //
+//function to handle if the users changes the input box with out the buttons
 async function changeQuantityCartItemFromInput() {
   //call the change quantity function passing in the id and changed value
   changeQuantity(this.value, this.id);
 }
-
+//
 //function changes the quantity of the shopping cart
 async function changeQuantityCartItem() {
   //constants or variables
@@ -172,8 +173,8 @@ async function changeQuantityCartItem() {
     }
   }
 }
-
-// Get all meals and then display
+//
+//Function gets all meals and then display
 let loadCartItems = async () => {
   // get meals data - note only one parameter in function call
   const cartItems = await cartData.getCartItems();
@@ -183,8 +184,8 @@ let loadCartItems = async () => {
   //display the items
   displayCartItems(cartItems);
 };
-
-//loads the cart
+//
+//function loads the cart
 let loadCart = async () => {
   //constants and variables
   let cartSubTotal = 0;
@@ -202,7 +203,8 @@ let loadCart = async () => {
     displayCart(cartSubTotal);
   }
 };
-//Use the array map method to iterate through cart
+//
+//Function to display the cart
 let displayCart = (subTotal) => {
   //add the html to be displayed with the subTotal
   let cartSubTotal = `
@@ -222,14 +224,15 @@ let displayCart = (subTotal) => {
 //add meals to cart function
 async function deleteItem() {
   //pass the meal id to deleteCartItems
-  const result = await cartData.deleteCartItem(this.id);
+  let result = await cartData.deleteCartItem(this.id);
 
-  //if the result is true or zero an item has beed deleted
-  if (result == 0 || result)
+  //if the result is true or zero an item has been deleted
+  if (result) {
     //reload everything on the page
     loadCartItems();
-  loadCart();
-  navCart.loadNavCart();
+    loadCart();
+    navCart.loadNavCart();
+  }
 }
 //function which will decide which page to send the user after
 // check out button is clicked
@@ -249,6 +252,8 @@ let sendUserAfterCheckOutBtnClicked = () => {
 document
   .getElementById("checkoutBtn")
   .addEventListener("click", sendUserAfterCheckOutBtnClicked);
+
+//
 //call the functions
 loadCartItems();
 loadCart();

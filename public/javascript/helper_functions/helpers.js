@@ -24,6 +24,13 @@ let addToLocalStorageObject = (name, key, value) => {
   localStorage.setItem(name, JSON.stringify(existing));
 };
 //end function
+
+/**
+ * Add an item to a localStorage() object
+ * @param {String} objName  The localStorage() object name
+ * @param {obj} mealData  The mealData object to be added to local storage
+ *
+ */
 let addMealToLocalStorage = (objName, mealData) => {
   // Get the existing data
   let existing = JSON.parse(localStorage.getItem(objName));
@@ -36,9 +43,21 @@ let addMealToLocalStorage = (objName, mealData) => {
   }
   // it does not create the object
   else {
-    existing = [mealData];
+    existing = [];
+    existing.push(mealData);
     localStorage.setItem(objName, JSON.stringify(existing));
   }
+  //get the navCartObject
+  let navTotal = getObjectFromLocalStorage("navCartTotal");
+  if (navTotal != null) {
+    //increase the navCartTotal by one if it exists
+    navTotal++;
+  } else {
+    //and set it to one if it does not
+    navTotal = 1;
+  }
+  //add the total
+  addObjectToLocalStorage("navCartTotal", `${navTotal}`);
 };
 /**
  * Add an object to local storage
@@ -74,10 +93,37 @@ let checkFetchRequestResult = (fetchRequestResult) => {
 /**
  * increase the total of the navCart
  */
-let increaseNavCartTotal = () => {
-  //increase the navCartTotal
+let changeNavCartTotal = (mealId, value) => {
+  //get the objects from local storage
   let navTotal = getObjectFromLocalStorage("navCartTotal");
-  addObjectToLocalStorage("navCartTotal", `${++navTotal}`);
+  let mealData = getObjectFromLocalStorage("mealData");
+  //loop through the mealData
+  mealData.forEach((item) => {
+    //if the meal id matches the item id
+    if (item._id == mealId) {
+      //check the value
+      if (value == "+") {
+        //increase the quantity
+        item.quantity++;
+        //increase the navCartTotal
+        navTotal++;
+      } else if (value == "-") {
+        //decrease the quantity
+        item.quantity--;
+        //decrease the navCartTotal
+        navTotal--;
+      }
+      //if the quantity of an item reaches zero delete the item
+      if (item.quantity == 0) {
+        console.log("index", mealData.indexOf(item));
+        mealData.splice(mealData.indexOf(item), 1);
+      }
+    }
+  });
+  console.log({ mealData });
+  //add objects back to local storage
+  addObjectToLocalStorage("navCartTotal", navTotal);
+  addObjectToLocalStorage("mealData", mealData);
 };
 
 /**
@@ -136,7 +182,7 @@ export {
   getObjectFromLocalStorage,
   checkFetchRequestResult,
   getCurrentDayAndTime,
-  increaseNavCartTotal,
+  changeNavCartTotal,
   decreaseNavCartTotal,
   addMealToLocalStorage,
 };

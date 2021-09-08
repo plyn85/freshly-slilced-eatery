@@ -151,7 +151,7 @@ async function changeQuantityCartItem() {
         //if returns true
         if (quantityIncreased === true) {
           //increase the navCart total
-          helperFunctions.increaseNavCartTotal();
+          helperFunctions.changeNavCartTotal(this.id, this.value);
         }
       }
       //if the minus is clicked
@@ -166,8 +166,8 @@ async function changeQuantityCartItem() {
         );
         //if returns true
         if (quantityDecreased === true) {
-          //decrease the navCart
-          helperFunctions.decreaseNavCartTotal();
+          //decrease the navCart total
+          helperFunctions.changeNavCartTotal(this.id, this.value);
         }
       }
     }

@@ -48,95 +48,100 @@
                                 <a class="nav-link" href="location.html">Location</a>
                             </li>
                             <li class="nav-item green" id="shoppingCart">
-                                <!-- shopping cart will be added here --></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <!-- end navbar -->
-        </header>
-        <!-- start main -->
-        <main>
-            <section>
-                <!-- container wrapping menu page -->
-                <div class="container-fluid">
-                    <div class="row py-3  bg-img-div-3 justify-content-center">
-                        <div class="col">
-                            <h1 class="text-center text-uppercase text-white mont-font">Signature salads</h1>
+                                `
+                                <a href="cart.html" id="hidden" class="green">
+                                    <i class="fa fa-shopping-cart fa-lg green" aria-hidden="true"></i>
+                                </a>
+                                <!-- navCarTotal will go here  -->
+                                <span id="navCartTotal"></span>
+                            </li>
                         </div>
                     </div>
-                    <div class="container-fluid py-5">
-                        <div class="row" id="mealsCard">
-                            <!-- html cards added here from menu.js --></div>
-                        <!-- hidden input holds the quantity the same for all meals -->
-                        <input
-                            id="quantity"
-                            type="hidden"
-                            name="quantity"
-                            value="1"
-                        >
-                    </div>
-                </div>
-            </section>
-            <!-- container div wrapping home page -->
-            <div class="container-fluid">
-                <!-- start carousel -->
-                <!-- start footer -->
+                </nav>
+                <!-- end navbar -->
+            </header>
+            <!-- start main -->
+            <main>
                 <section>
-                    <footer class="mt-auto py-2 sticky-bottom text-center container-fluid">
-                        <div class="row">
-                            <div class="col-9">
-                                <div class="row justify-content-center">
-                                    <!-- facebook -->
-                                    <a
-                                        class="btn-floating btn-lg btn-fb col-2 col-lg-1 social-icon-footer-links"
-                                        href="https://www.facebook.com/patrick.lynch.505"
-                                        aria-label="a link to a facebook account"
-                                        target="blank"
-                                    >
-                                        <i class="fab fa-facebook-f social-icon-footer-icon"></i>
-                                    </a>
-                                    <!--Twitter-->
-                                    <a
-                                        class="btn-floating btn-lg btn-tw col-2 col-lg-1 social-icon-footer-links"
-                                        href="https://twitter.com/gregplitt?lang=en"
-                                        aria-label="a link to a twitter account"
-                                        target="blank"
-                                    >
-                                        <i class="fab fa-twitter social-icon-footer-icon"></i>
-                                    </a>
-                                    <!--YouTube -->
-                                    <a
-                                        class="btn-floating btn-lg btn-youtube col-2 col-lg-1 social-icon-footer-links"
-                                        href="https://www.youtube.com/channel/UCe0TLA0EsQbE-MjuHXevj2A"
-                                        aria-label="a link to a youtube account"
-                                        target="blank"
-                                    >
-                                        <i class="fab fa-youtube  social-icon-footer-icon"></i>
-                                    </a>
-                                    <!--Linkedin-->
-                                    <a
-                                        class="btn-floating btn-lg btn-ins col-2 col-lg-1 social-icon-footer-links"
-                                        href="https://www.linkedin.com/in/daryllynch"
-                                        aria-label="a link to a linkedin account"
-                                        target="blank"
-                                    >
-                                        <i class="fab fa-linkedin-in  social-icon-footer-icon"></i>
-                                    </a>
-                                </div>
+                    <!-- container wrapping menu page -->
+                    <div class="container-fluid">
+                        <div class="row py-3  bg-img-div-3 justify-content-center">
+                            <div class="col">
+                                <h1 class="text-center text-uppercase text-white mont-font">Signature salads</h1>
                             </div>
                         </div>
-                    </footer>
+                        <div class="container-fluid py-5">
+                            <div class="row" id="mealsCard">
+                                <!-- html cards added here from menu.js --></div>
+                            <!-- hidden input holds the quantity the same for all meals -->
+                            <input
+                                id="quantity"
+                                type="hidden"
+                                name="quantity"
+                                value="1"
+                            >
+                        </div>
+                    </div>
                 </section>
-                <!-- end footer -->
-            </main>
-            <!-- end main -->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-            <!-- Load view script -->
-            <!-- validator js -->
-            <script src="https://cdn.jsdelivr.net/npm/validator-js@0.2.1/src/validator.min.js"></script>
-            <!-- load view shopping cart in the navigation bar-->
-            <script src="./javascript/views/navCart.js" type="module"></script>
-            <script src="./javascript/views/menu.js" type="module"></script>
-        </body>
-    </html>
+                <!-- container div wrapping home page -->
+                <div class="container-fluid">
+                    <!-- start carousel -->
+                    <!-- start footer -->
+                    <section>
+                        <footer class="mt-auto py-2 sticky-bottom text-center container-fluid">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="row justify-content-center">
+                                        <!-- facebook -->
+                                        <a
+                                            class="btn-floating btn-lg btn-fb col-2 col-lg-1 social-icon-footer-links"
+                                            href="https://www.facebook.com/patrick.lynch.505"
+                                            aria-label="a link to a facebook account"
+                                            target="blank"
+                                        >
+                                            <i class="fab fa-facebook-f social-icon-footer-icon"></i>
+                                        </a>
+                                        <!--Twitter-->
+                                        <a
+                                            class="btn-floating btn-lg btn-tw col-2 col-lg-1 social-icon-footer-links"
+                                            href="https://twitter.com/gregplitt?lang=en"
+                                            aria-label="a link to a twitter account"
+                                            target="blank"
+                                        >
+                                            <i class="fab fa-twitter social-icon-footer-icon"></i>
+                                        </a>
+                                        <!--YouTube -->
+                                        <a
+                                            class="btn-floating btn-lg btn-youtube col-2 col-lg-1 social-icon-footer-links"
+                                            href="https://www.youtube.com/channel/UCe0TLA0EsQbE-MjuHXevj2A"
+                                            aria-label="a link to a youtube account"
+                                            target="blank"
+                                        >
+                                            <i class="fab fa-youtube  social-icon-footer-icon"></i>
+                                        </a>
+                                        <!--Linkedin-->
+                                        <a
+                                            class="btn-floating btn-lg btn-ins col-2 col-lg-1 social-icon-footer-links"
+                                            href="https://www.linkedin.com/in/daryllynch"
+                                            aria-label="a link to a linkedin account"
+                                            target="blank"
+                                        >
+                                            <i class="fab fa-linkedin-in  social-icon-footer-icon"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </footer>
+                    </section>
+                    <!-- end footer -->
+                </main>
+                <!-- end main -->
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+                <!-- Load view script -->
+                <!-- validator js -->
+                <script src="https://cdn.jsdelivr.net/npm/validator-js@0.2.1/src/validator.min.js"></script>
+                <!-- load view shopping cart in the navigation bar-->
+                <script src="./javascript/views/navCart.js" type="module"></script>
+                <script src="./javascript/views/menu.js" type="module"></script>
+            </body>
+        </html>

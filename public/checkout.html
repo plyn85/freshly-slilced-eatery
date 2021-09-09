@@ -47,8 +47,14 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="location.html">Location</a>
                             </li>
-                            <li class="nav-item" id="shoppingCart">
-                                <!-- add the shopping cart here --></li>
+                            <li class="nav-item green" id="shoppingCart">
+                                `
+                                <a href="cart.html" id="hidden" class="green">
+                                    <i class="fa fa-shopping-cart fa-lg green" aria-hidden="true"></i>
+                                </a>
+                                <!-- navCarTotal will go here  -->
+                                <span id="navCartTotal"></span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -81,9 +87,6 @@
                                 <div id="card-errors" class="card-errors"></div>
                             </div>
                         </form>
-                        <!-- <div class="col-12 mt-4 mb-4 d-flex justify-content-between">
-                            <a href="cart.html">Back to Cart</a>
-                        </div> -->
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="card card-blue p-3 text-white mb-3">
@@ -115,5 +118,7 @@
             </main>
             <script src="./javascript/views/checkout.js" type="module"></script>
             <script src="./javascript/views/stripe.js" type="module"></script>
+            <!-- load view shopping cart in the navigation bar-->
+            <script src="./javascript/views/navCart.js" type="module"></script>
         </body>
     </html>

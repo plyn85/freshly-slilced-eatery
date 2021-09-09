@@ -59,6 +59,7 @@ let addMealToLocalStorage = (objName, mealData) => {
   //add the total
   addObjectToLocalStorage("navCartTotal", `${navTotal}`);
 };
+
 /**
  * Add an object to local storage
  * @param {String} objName  The localStorage() object name
@@ -91,7 +92,7 @@ let checkFetchRequestResult = (fetchRequestResult) => {
 };
 
 /**
- * increase the total of the navCart
+ * change the total of the navCart
  */
 let changeNavCartTotal = (mealId, value) => {
   //get the objects from local storage
@@ -105,7 +106,7 @@ let changeNavCartTotal = (mealId, value) => {
       if (value == "+") {
         //increase the quantity
         item.quantity++;
-        //increase the navCartTotal
+        //decrease the navCartTotal
         navTotal++;
       } else if (value == "-") {
         //decrease the quantity
@@ -115,7 +116,6 @@ let changeNavCartTotal = (mealId, value) => {
       }
       //if the quantity of an item reaches zero delete the item
       if (item.quantity == 0) {
-        console.log("index", mealData.indexOf(item));
         mealData.splice(mealData.indexOf(item), 1);
       }
     }
@@ -126,15 +126,28 @@ let changeNavCartTotal = (mealId, value) => {
   addObjectToLocalStorage("mealData", mealData);
 };
 
-/**
- * increase the total of the navCart
- */
-let decreaseNavCartTotal = () => {
-  //increase the navCartTotal
-  let navTotal = getObjectFromLocalStorage("navCartTotal");
-  addObjectToLocalStorage("navCartTotal", `${--navTotal}`);
+let changeNavCartTotalAfterItemDeleted = (mealId) => {
+  //variables
+  let quantity = 0;
+  //get the meal data and navTotal
+  let mealData = getObjectFromLocalStorage("mealData");
+  let currentNavTotal = getObjectFromLocalStorage("navCartTotal");
+  //loop through the meal data
+  mealData.forEach((item) => {
+    //if the meal id matches the item id
+    if (mealId == item._id) {
+      //get the quantity of the item
+      quantity = item.quantity;
+      //remove the item
+      mealData.splice(mealData.indexOf(item), 1);
+    }
+  });
+  //delete the quantity from the nav total
+  let newNavTotal = currentNavTotal - quantity;
+  //add the new navTotal to local storage
+  addObjectToLocalStorage("navCartTotal", newNavTotal);
+  addObjectToLocalStorage("mealData", mealData);
 };
-
 /**
  * gets the current day and time
  * @param {String} elementId  the Id of the element to add the current date and time to
@@ -183,6 +196,6 @@ export {
   checkFetchRequestResult,
   getCurrentDayAndTime,
   changeNavCartTotal,
-  decreaseNavCartTotal,
   addMealToLocalStorage,
+  changeNavCartTotalAfterItemDeleted,
 };

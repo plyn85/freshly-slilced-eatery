@@ -1,6 +1,5 @@
 //imports
 import * as cartData from "../dataAccess/cartData.js";
-import * as navCart from "../views/navCart.js";
 import * as helperFunctions from "../helper_functions/helpers.js";
 //passed in to numberFormat to change  to currency
 let options = { style: "currency", currency: "EUR" };
@@ -66,9 +65,9 @@ let displayCartItems = (cartItems) => {
                  </div>
                  </div>
              <div class="col-2 text-right">
-                 <button id="${
-                   cartItem._id
-                 }" type="button" class="btn btn-outline-danger btn-xs deleteCartItem">
+                 <button id="${cartItem._id}" data-mealId="${
+        cartItem.meal_id
+      }" type="button" class="btn btn-outline-danger btn-xs deleteCartItem">
                      <i class="fa fa-trash" aria-hidden="true"></i>
                  </button>
              </div>
@@ -227,11 +226,9 @@ async function deleteItem() {
   let result = await cartData.deleteCartItem(this.id);
 
   //if the result is true or zero an item has been deleted
-  if (result) {
-    //reload everything on the page
+  if (result || result == 0) {
     loadCartItems();
-    loadCart();
-    navCart.loadNavCart();
+    helperFunctions.changeNavCartTotalAfterItemDeleted(this.dataset.mealid);
   }
 }
 //function which will decide which page to send the user after

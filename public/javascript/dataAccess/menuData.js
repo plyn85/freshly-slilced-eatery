@@ -49,5 +49,8 @@ let addMealToCart = async (mealData) => {
   } catch (err) {
     console.log(err);
   }
-}; // End Functions
+};
+
+// End Functions
+//imports
 export { getMeals, addMealToCart };

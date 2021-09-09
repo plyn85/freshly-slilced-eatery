@@ -6,7 +6,7 @@ import * as helperFunctions from "../helper_functions/helpers.js";
 // Get all cartItems
 let getCartItems = async () => {
   //get the users unique id
-  let userId = JSON.parse(localStorage.getItem("userId"));
+  let userId = helperFunctions.getObjectFromLocalStorage("userId");
   try {
     // get cartItems data - note only one parameter in function call
     return await api.getDataAsync(`${api.BASE_URL}/cart/?id=${userId}`);
@@ -18,7 +18,8 @@ let getCartItems = async () => {
 
 // Get the cart
 let getCart = async () => {
-  let userId = JSON.parse(localStorage.getItem("userId"));
+  let userId = helperFunctions.getObjectFromLocalStorage("userId");
+
   //convert to a number
   try {
     // get cart data - note only one parameter in function call
@@ -34,7 +35,8 @@ let getCart = async () => {
 
 // Get the cart
 let deleteCartItem = async (id) => {
-  let userId = JSON.parse(localStorage.getItem("userId"));
+  let userId = helperFunctions.getObjectFromLocalStorage("userId");
+
   const url = `${api.BASE_URL}/cart/${id}/${userId}`;
   //http method
   let httpMethod = "DELETE";
@@ -53,10 +55,8 @@ let deleteCartItem = async (id) => {
       //if the result is zero cart is deleted
       if (result === 0) {
         alert("you cart is empty");
-        //remove the userId in local storage
-        window.localStorage.removeItem("userId");
         //and create a new one thats zero as this will never be a real userId
-        window.localStorage.setItem("userId", 0);
+        helperFunctions.addObjectToLocalStorage("userId", 0);
       }
       return result;
       // return result;
@@ -65,7 +65,7 @@ let deleteCartItem = async (id) => {
       console.log(err);
     }
   }
-}; // End Functions
+};
 
 // Get the cart
 let changeQuantity = async (mealData) => {

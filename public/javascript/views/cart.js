@@ -205,15 +205,15 @@ let loadCart = async () => {
 //
 //Function to display the cart
 let displayCart = (subTotal) => {
+  //check if the subtotal is equal to NaN
+  if (subTotal == NaN || subTotal == undefined) {
+    subTotal = 0;
+  }
   //add the html to be displayed with the subTotal
   let cartSubTotal = `
         SubTotal:
          ${new Intl.NumberFormat("en-US", options).format(subTotal)}
       `;
-  //check if the subtotal is equal to NaN
-  if (cartSubTotal == NaN) {
-    cartSubTotal = 0;
-  }
   //get the id of bottom section of the cartCard
   let cartCardLower = document.getElementById("cartCardLower");
   //add to cart page
@@ -228,6 +228,7 @@ async function deleteItem() {
   //if the result is true or zero an item has been deleted
   if (result || result == 0) {
     loadCartItems();
+    loadCart();
     helperFunctions.changeNavCartTotalAfterItemDeleted(this.dataset.mealid);
   }
 }

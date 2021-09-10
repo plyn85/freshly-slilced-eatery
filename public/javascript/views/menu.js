@@ -62,10 +62,10 @@ async function addMealToCart() {
   const userId = await mealsData.addMealToCart(mealData);
   //if the return value is true the item is not already in the cart
   if (userId) {
-    // reload the navCart
-    navCart.loadNavCart();
     //add meal to local storage
     addMealToLocalStorage("mealData", mealData);
+    // reload the navCart
+    navCart.displayNavCartTotal();
   }
 }
 

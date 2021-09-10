@@ -59,6 +59,7 @@ let addMealToLocalStorage = (objName, mealData) => {
   //add the total
   addObjectToLocalStorage("navCartTotal", `${navTotal}`);
 };
+//end function
 
 /**
  * Add an object to local storage
@@ -77,6 +78,8 @@ let addObjectToLocalStorage = (objName, obj) => {
 let getObjectFromLocalStorage = (objName) => {
   return JSON.parse(localStorage.getItem(objName));
 };
+//end function
+
 /**
  * Check the returned response is valid from the api call
  * @param {obj} fetchRequestResult  The fetchRequest result
@@ -86,13 +89,15 @@ let checkFetchRequestResult = (fetchRequestResult) => {
     Object.entries(fetchRequestResult).length === 0 ||
     fetchRequestResult.message === "Failed to fetch"
   ) {
-    //console.log("The request was not successful");
     return false;
   } else return true;
 };
+//end function
 
 /**
- * change the total of the navCart
+ * changes the total of the navCart after the quantity button is clicked
+ * @param {Number} mealId  the mealId of the meal that has been deleted
+ * @param {String} value  the value of the quantity button (+ or -)
  */
 let changeNavCartTotal = (mealId, value) => {
   //get the objects from local storage
@@ -125,6 +130,12 @@ let changeNavCartTotal = (mealId, value) => {
   addObjectToLocalStorage("navCartTotal", navTotal);
   addObjectToLocalStorage("mealData", mealData);
 };
+//end function
+
+/**
+ * changes the total of the navCart after an item is deleted
+ * @param {Number} mealId  the mealId of the meal that has been deleted
+ */
 
 let changeNavCartTotalAfterItemDeleted = (mealId) => {
   //variables
@@ -148,8 +159,19 @@ let changeNavCartTotalAfterItemDeleted = (mealId) => {
   addObjectToLocalStorage("navCartTotal", newNavTotal);
   addObjectToLocalStorage("mealData", mealData);
 };
+//end function
+
 /**
- * gets the current day and time
+ * removes an object from local storage
+ * @param {String} objectName  the name of the object to be removed
+ */
+
+let removeFromLocalStorage = (objectName) => {
+  localStorage.removeItem(objectName);
+};
+//end function
+
+/* gets the current day and time
  * @param {String} elementId  the Id of the element to add the current date and time to
  */
 let getCurrentDayAndTime = (elementId) => {
@@ -187,8 +209,9 @@ let getCurrentDayAndTime = (elementId) => {
     elementId
   ).innerHTML = `Today is ${currentDayOfWeek} It,s currently ${hours}:${mins}`;
 };
-
 //end function
+
+//exports
 export {
   addToLocalStorageObject,
   addObjectToLocalStorage,
@@ -198,4 +221,5 @@ export {
   changeNavCartTotal,
   addMealToLocalStorage,
   changeNavCartTotalAfterItemDeleted,
+  removeFromLocalStorage,
 };

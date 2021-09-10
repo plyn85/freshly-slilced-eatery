@@ -1,6 +1,6 @@
 //imports
 import { stripePayment } from "../dataAccess/stripePayment.js";
-import { addCustomerOrderData } from "../dataAccess/collectionData.js";
+import { addCustomerOrderData } from "../dataAccess/customerOrder.js";
 import * as helperFunctions from "../helper_functions/helpers.js";
 // Create a Stripe client.
 let stripe = Stripe("pk_test_OtuMpmziQFrVOnItNeA1NK8n00Pdyae7Qg");
@@ -76,12 +76,16 @@ let stripeTokenHandler = async (token) => {
       helperFunctions.getObjectFromLocalStorage("customerOrder");
 
     //send it to the API
-    let customerOrderAdded = addCustomerOrderData(
+    let customerOrderAdded = await addCustomerOrderData(
       customerOrderInfoFromLocalStorage
     );
     //if the order has been added send the customer to the success page
     if (customerOrderAdded) {
       alert("your order was a success");
+      //reset the user id to 0
+      helperFunctions.addObjectToLocalStorage("userId", 0);
+      helperFunctions.removeFromLocalStorage("mealData");
+      helperFunctions.removeFromLocalStorage("navCartTotal");
       window.location.replace("success.html");
     }
   } else {

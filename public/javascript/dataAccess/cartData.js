@@ -54,7 +54,6 @@ let deleteCartItem = async (id) => {
       }
       //if the result is zero cart is deleted
       if (result === 0) {
-        alert("you cart is empty");
         //and create a new one thats zero as this will never be a real userId
         helperFunctions.addObjectToLocalStorage("userId", 0);
       }

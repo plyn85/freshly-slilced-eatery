@@ -1,6 +1,7 @@
 //imports
 import * as cartData from "../dataAccess/cartData.js";
 import * as helperFunctions from "../helper_functions/helpers.js";
+import * as navCart from "../views/navCart.js";
 //passed in to numberFormat to change  to currency
 let options = { style: "currency", currency: "EUR" };
 //
@@ -169,6 +170,8 @@ async function changeQuantityCartItem() {
           helperFunctions.changeNavCartTotal(this.id, this.value);
         }
       }
+      // reload the navCart every time the loop runs
+      navCart.displayNavCartTotal();
     }
   }
 }
@@ -230,6 +233,8 @@ async function deleteItem() {
     loadCartItems();
     loadCart();
     helperFunctions.changeNavCartTotalAfterItemDeleted(this.dataset.mealid);
+    // reload the navCart
+    navCart.displayNavCartTotal();
   }
 }
 //function which will decide which page to send the user after

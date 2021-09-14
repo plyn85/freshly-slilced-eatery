@@ -63,6 +63,60 @@
             <!-- start main -->
             <main>
                 <section>
+                    <!-- toast for meal added-->
+                    <div class="position-fixed top-50 start-50 translate-middle p-3" style="z-index: 11">
+                        <div
+                            class="toast bg-green white bebas"
+                            role="alert"
+                            aria-live="assertive"
+                            aria-atomic="true"
+                            id="showMealAdded"
+                        >
+                            <div class="toast-header">
+                                <i class="fas fa-leaf fa-lg green"></i>
+                                <br>
+                                <br>
+                                <strong class="me-auto">Freshly Sliced Eatery</strong>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="toast"
+                                    aria-label="Close"
+                                ></button>
+                            </div>
+                            <div class="toast-body mont-font">
+                                A meal has been added to your cart
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end toast -->
+                    <!-- toast for meal is already in cart-->
+                    <div class="position-fixed top-50 start-50 translate-middle p-3" style="z-index: 11">
+                        <div
+                            class="toast bg-green white bebas"
+                            role="alert"
+                            aria-live="assertive"
+                            aria-atomic="true"
+                            id="mealInCart"
+                        >
+                            <div class="toast-header">
+                                <i class="fas fa-leaf fa-lg green"></i>
+                                <br>
+                                <br>
+                                <strong class="me-auto">Freshly Sliced Eatery</strong>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="toast"
+                                    aria-label="Close"
+                                ></button>
+                            </div>
+                            <div class="toast-body mont-font">
+                                This meal is already in your cart
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end toast -->
                     <!-- container wrapping menu page -->
                     <div class="container-fluid">
                         <div class="row py-3  bg-img-div-3 justify-content-center">
@@ -143,5 +197,6 @@
                 <!-- load view shopping cart in the navigation bar-->
                 <script src="./javascript/views/navCart.js" type="module"></script>
                 <script src="./javascript/views/menu.js" type="module"></script>
+                <script src="./javascript/toasts/toast-views/toasts.js" type="module"></script>
             </body>
         </html>

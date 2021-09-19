@@ -63,58 +63,14 @@
             <!-- start main -->
             <main>
                 <section>
-                    <!-- toast for meal added-->
-                    <div class="position-fixed top-50 start-50 translate-middle p-3" style="z-index: 11">
-                        <div
-                            class="toast bg-green white bebas"
-                            role="alert"
-                            aria-live="assertive"
-                            aria-atomic="true"
-                            id="showMealAdded"
-                        >
-                            <div class="toast-header">
-                                <i class="fas fa-leaf fa-lg green"></i>
-                                <br>
-                                <br>
-                                <strong class="me-auto">Freshly Sliced Eatery</strong>
-                                <button
-                                    type="button"
-                                    class="btn-close"
-                                    data-bs-dismiss="toast"
-                                    aria-label="Close"
-                                ></button>
-                            </div>
-                            <div class="toast-body mont-font">
-                                A meal has been added to your cart
-                            </div>
-                        </div>
+                    <!-- toast when a meal is added  -->
+                    <div class="row snackBar" id="showMealAdded">
+                        <div class="col">A meal has been added to your cart</div>
                     </div>
                     <!-- end toast -->
-                    <!-- toast for meal is already in cart-->
-                    <div class="position-fixed top-50 start-50 translate-middle p-3" style="z-index: 11">
-                        <div
-                            class="toast bg-green white bebas"
-                            role="alert"
-                            aria-live="assertive"
-                            aria-atomic="true"
-                            id="mealInCart"
-                        >
-                            <div class="toast-header">
-                                <i class="fas fa-leaf fa-lg green"></i>
-                                <br>
-                                <br>
-                                <strong class="me-auto">Freshly Sliced Eatery</strong>
-                                <button
-                                    type="button"
-                                    class="btn-close"
-                                    data-bs-dismiss="toast"
-                                    aria-label="Close"
-                                ></button>
-                            </div>
-                            <div class="toast-body mont-font">
-                                This meal is already in your cart
-                            </div>
-                        </div>
+                    <!-- toast when a meal is already in cart  -->
+                    <div class="row snackBar" id="mealInCart">
+                        <div class="col">That meal is already in your Cart!</div>
                     </div>
                     <!-- end toast -->
                     <!-- container wrapping menu page -->
@@ -192,11 +148,8 @@
                 <!-- end main -->
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
                 <!-- Load view script -->
-                <!-- validator js -->
-                <script src="https://cdn.jsdelivr.net/npm/validator-js@0.2.1/src/validator.min.js"></script>
                 <!-- load view shopping cart in the navigation bar-->
                 <script src="./javascript/views/navCart.js" type="module"></script>
                 <script src="./javascript/views/menu.js" type="module"></script>
-                <script src="./javascript/toasts/toast-views/toasts.js" type="module"></script>
             </body>
         </html>

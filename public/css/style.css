@@ -16,7 +16,9 @@ html {
 .hide {
   display: none;
 }
-
+.show {
+  display: block;
+}
 /* fonts  */
 .navbar,
 .mont-font,
@@ -39,6 +41,10 @@ html {
 
 .green {
   color: #80bd01;
+}
+
+.bg-green {
+  background-color: #80bd01;
 }
 /* for navbar */
 /* .navbar {
@@ -311,6 +317,28 @@ button:hover {
   border-radius: 0px;
   border-bottom: 2px solid blue !important;
 }
+/* for toasts  */
+.snackBar {
+  display: none;
+  min-width: 250px;
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid #80bd01;
+  background-color: #eeeaea;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  z-index: 10;
+  font-family: "Montserrat", sans-serif;
+  font-size: 17px;
+}
+.showSnackBar {
+  display: block;
+}
+
+/* end toasts */
 
 /* for login form */
 

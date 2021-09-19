@@ -3,7 +3,7 @@
 import * as navCart from "../views/navCart.js";
 import * as mealsData from "../dataAccess/menuData.js";
 import { addMealToLocalStorage } from "../helper_functions/helpers.js";
-import * as toasts from "../toasts/toast-views/toasts.js";
+import { showToast } from "../toasts/toast-views/toasts.js";
 
 //
 //Use the array map method to iterate through meals
@@ -69,10 +69,10 @@ async function addMealToCart() {
     // reload the navCart
     navCart.displayNavCartTotal();
     //call the toast
-    toasts.showToast("showMealAdded");
+    showToast("showMealAdded");
   } else {
     //call the toast
-    toasts.showToast("mealInCart");
+    showToast("mealInCart");
   }
 }
 
